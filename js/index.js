@@ -7,14 +7,13 @@ const signinModal = document.getElementById('signin-modal');
 const cartModal = document.getElementById('cartModal');
 
 //ingredient modal*******************
-const detailsModal = document.getElementById('detailsModal')
+const detailsModal = document.getElementById('detailsModal');
 const card = document.querySelectorAll('.card');
 const closeDetailsModal = document.querySelectorAll('.close__details');
 //ingredient modal*******************
 
 const signup = document.getElementById('signup'),
   signin = document.getElementById('signin');
-  
 
 signup.addEventListener('click', () => {
   signupModal.classList.add('show__modal');
@@ -45,29 +44,26 @@ window.addEventListener('click', e => {
   clearSuggestions();
 });
 
-
 //show ingredients details modal************************************
-card.forEach((value) => {
-  value.addEventListener('click', ()=> {
-      detailsModal.classList.add('show')
-  })
-})
+card.forEach(value => {
+  value.addEventListener('click', () => {
+    detailsModal.classList.add('show');
+  });
+});
 
 //hide details  modal
-closeDetailsModal.forEach((value) => {
-  value.addEventListener('click', ()=> {
-      detailsModal.classList.remove('show')
-  })
-})
+closeDetailsModal.forEach(value => {
+  value.addEventListener('click', () => {
+    detailsModal.classList.remove('show');
+  });
+});
 
 //hide details  modal outside  click
 window.addEventListener('click', e => {
   e.target == detailsModal ? detailsModal.classList.remove('show') : false;
-})
+});
 
 //show ingredients details modal****************************
-
-
 
 // search section
 const search = document.querySelector('.search-label');
@@ -338,9 +334,8 @@ const searchOnInput = () => {
       if (val.toLowerCase().includes(search.value.toLowerCase())) {
         suggestions.style = 'padding: 5px;';
         const suggest = document.createElement('li');
-        suggest.innerHTML = `<a href="./pages/search.html?${val}" target="_self">${val}</a>`;
+        suggest.innerHTML = `<a href="./pages/search.html?search=${val}" onclick="searchTargetOnClick(this)">${val}</a>`;
         suggestions.prepend(suggest);
-        localStorage.setItem('search-target', val);
         check = 1;
       }
     });
@@ -348,4 +343,8 @@ const searchOnInput = () => {
   } else {
     clearSuggestions();
   }
+};
+
+const searchTargetOnClick = link => {
+  localStorage.setItem('search-target', link.textContent);
 };

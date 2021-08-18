@@ -17,9 +17,18 @@
       crossorigin="anonymous"
     />
     <!-- css -->
-    <link rel="stylesheet" href="../css/search.css" />
+
     <link rel="stylesheet" href="../css/styles.css" />
     <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/search.css" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
 
     <link rel="icon" href="../img/restaurant-icon.png" />
     <title>Resturant</title>
@@ -29,7 +38,7 @@
       <!-- NavBar -->
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="../index.html"
+          <a class="navbar-brand" href="#"
             ><i class="fas fa-utensils fa-2x"></i
           ></a>
           <button
@@ -45,6 +54,9 @@
           </button>
           <div class="collapse navbar-collapse ml-auto" id="header-navbar">
             <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="#recipes">Our Cuisines</a>
+              </li>
               <li class="nav-item">
                 <a class="nav-link" href="#" id="signin"> Sign in </a>
               </li>
@@ -70,6 +82,7 @@
                   >
                     <li>
                       <button
+                        id="cart-open"
                         type="button"
                         class="btn btn-primary dropdown-item"
                         data-bs-toggle="modal"
@@ -94,14 +107,13 @@
                         class="btn btn-primary dropdown-item"
                         data-bs-toggle="modal"
                         data-bs-target="#orderModal"
-                        disabled
                       >
                         <!--
-                             NOTE 
-                              i added "disabled" to the button as user can't show the orderList unless he is signed in
-  
-                              will well change this by javascript
-                          -->
+                           NOTE 
+                            i added "disabled" to the button as user can't show the orderList unless he is signed in
+
+                            will well change this by javascript
+                        -->
                         <i class="fas fa-hamburger"></i> Orders
                       </button>
                     </li>
@@ -110,21 +122,27 @@
               </li>
               <!-- dropdown -->
               <li class="nav-item">
-                <form class="d-flex">
-                  <input
-                    class="form-control me-2"
-                    type="search"
-                    placeholder="Search"
-                    aria-label="Search"
-                  />
-                  <button
-                    id="btn-search"
-                    class="btn btn-outline-primary"
-                    type="submit"
-                  >
-                    Search
-                  </button>
-                </form>
+                <div class="search-section">
+                  <form class="d-flex">
+                    <input
+                      class="form-control me-2 search-label"
+                      type="search"
+                      placeholder="Search"
+                      aria-label="Search"
+                      oninput="searchOnInput()"
+                    />
+                    <button
+                      id="search"
+                      class="btn btn-outline-primary"
+                      type="submit"
+                    >
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </form>
+                  <ul class="suggestions">
+                    <!-- Seggestions -->
+                  </ul>
+                </div>
               </li>
             </ul>
           </div>
@@ -136,7 +154,7 @@
       <h3 class="search-target" style="text-align: center; margin: 30px"></h3>
       <div class="container">
         <div class="row">
-          <div class="col-12 recipes">
+          <div class="col-12 recipes" id="#recipes">
             <div class="row">
               <div class="col-sm-12 col-md-6 col-lg-4">
                 <div class="card">
@@ -291,6 +309,396 @@
           </div>
         </div>
       </div>
+
+      <!--Cart Modal -->
+      <div
+        class="modal fade"
+        id="cartModal"
+        tabindex="-1"
+        aria-labelledby="cartModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="cartModalLabel">Cart</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <ul class="cart-items">
+                <li class="cart-item">
+                  <div class="row">
+                    <div class="col-8 cart-content">
+                      <h3>Pizza</h3>
+                      <div class="summary">
+                        <span class="price">12$</span>
+                        <span class="amount">x 2</span>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <img class="pic" src="../img/pizza.jpg" />
+                    </div>
+                  </div>
+                </li>
+                <li class="cart-item">
+                  <div class="row">
+                    <div class="col-8 cart-content">
+                      <h3>Pizza</h3>
+                      <div class="summary">
+                        <span class="price">12$</span>
+                        <span class="amount">x 2</span>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <img class="pic" src="../img/pizza.jpg" />
+                    </div>
+                  </div>
+                </li>
+
+                <li class="cart-item">
+                  <div class="row">
+                    <div class="col-8 cart-content">
+                      <h3>Pizza</h3>
+                      <div class="summary">
+                        <span class="price">12$</span>
+                        <span class="amount">x 2</span>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <img class="pic" src="../img/pizza.jpg" />
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="orderNow"
+                data-bs-dismiss="modal"
+              >
+                Order Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Cart Modal -->
+
+      <!--favourite Modal -->
+      <div
+        class="modal fade"
+        id="favouriteModal"
+        tabindex="-1"
+        aria-labelledby="favouriteModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Favourite</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">....</div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Favourite Modal -->
+
+      <!-- order List Modal -->
+      <div
+        class="modal fade"
+        id="orderModal"
+        tabindex="-1"
+        aria-labelledby="orderModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="orderModalLabel">Modal title</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">...</div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End order List modal -->
+      <!-- form model -->
+      <!-- Sign Up Modal -->
+      <div class="form__container" id="signup-modal">
+        <div class="form__modal">
+          <button class="close-btn" id="close">
+            <i class="fa fa-times"></i>
+          </button>
+          <div class="modal__form__header">
+            <h3>Sign Up</h3>
+          </div>
+          <div class="modal__form__content">
+            <!-- <p>Put you data to sign up </p> -->
+            <form class="modal__form">
+              <div>
+                <label for="name">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="Enter Name"
+                  class="form-input"
+                />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Enter Email"
+                  class="form-input"
+                />
+              </div>
+              <div>
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Enter Password"
+                  class="form-input"
+                />
+              </div>
+
+              <div>
+                <label for="password-confirm">Repeat Password</label>
+                <input
+                  type="password"
+                  id="password-confirm"
+                  placeholder="Enter Password Again"
+                  class="form-input"
+                />
+              </div>
+
+              <!-- <div>
+                      <label for="postCode">Post Code</label>
+                      <input
+                        type="number"
+                        id="PostCode"
+                        placeholder="Enter Post code"
+                        class="form-input"
+                      />
+                    </div>
+                    <div>
+                      <label for="address">address</label>
+                      <input
+                        type="address"
+                        id="address"
+                        placeholder="Enter address"
+                        class="form-input"
+                      />
+                    </div> -->
+              <input type="submit" value="Sign Up" class="submit-btn" />
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- End Sign up modal -->
+
+      <!-- Sign in modal -->
+      <div class="form__container" id="signin-modal">
+        <div class="form__modal">
+          <button class="close-btn" id="signin-close">
+            <i class="fa fa-times"></i>
+          </button>
+          <div class="modal__form__header">
+            <h3>Sign In</h3>
+          </div>
+          <div class="modal__form__content">
+            <!-- <p>Put you data to sign up </p> -->
+            <form class="modal__form">
+              <div>
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Enter Email"
+                  class="form-input"
+                />
+              </div>
+              <div>
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Enter Password"
+                  class="form-input"
+                />
+              </div>
+
+              <input type="submit" value="Sign In" class="submit-btn" />
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- End Sign in modal  -->
+      <!-- End form model -->
+
+      <!--details Modal -->
+      <div
+        class="modal fade"
+        id="detailsModal"
+        tabindex="-1"
+        aria-labelledby="detailsModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Ingredient</h5>
+              <button
+                type="button"
+                class="btn-close close__details"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <!--Start Body -->
+              <div class="recipe">
+                <figure class="recipe__fig">
+                  <img
+                    src="../img/pestoa0e7.jpg"
+                    alt="pizza"
+                    class="recipe__img"
+                  />
+                  <h1 class="recipe__title">
+                    <span>Pasta with tomato cream sauce</span>
+                  </h1>
+                </figure>
+                <div class="recipe__details">
+                  <div class="recipe__info">
+                    <i class="fas fa-male recipe__info-icon"></i>
+                    <span class="recipe__info-people">4</span>
+                    <span class="recipe__info-text"> servings</span>
+                  </div>
+                  <div class="recipe-button">
+                    <button class="recipe__love">
+                      <i class="far fa-heart"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="recipe__ingredients">
+                  <ul class="recipe__ingredient-list">
+                    <li class="recipe__item">
+                      <i class="fas fa-check recipe__icon"></i>
+                      <div class="recipe__count">1000</div>
+                      <div class="recipe__ingredient">
+                        <span class="recipe__unit">g</span>
+                        pasta
+                      </div>
+                    </li>
+                    <li class="recipe__item">
+                      <i class="fas fa-check recipe__icon"></i>
+                      <div class="recipe__count">1/2</div>
+                      <div class="recipe__ingredient">
+                        <span class="recipe__unit">cup</span>
+                        ricotta cheese
+                      </div>
+                    </li>
+                    <li class="recipe__item">
+                      <i class="fas fa-check recipe__icon"></i>
+                      <div class="recipe__count">1</div>
+                      <div class="recipe__ingredient">
+                        <span class="recipe__unit"></span>
+                        can of tomatoes, whole or crushed
+                      </div>
+                    </li>
+                    <li class="recipe__item">
+                      <i class="fas fa-check recipe__icon"></i>
+                      <div class="recipe__count">1</div>
+                      <div class="recipe__ingredient">
+                        <span class="recipe__unit"></span>
+                        can tuna packed in olive oil
+                      </div>
+                    </li>
+                    <li class="recipe__item">
+                      <i class="fas fa-check recipe__icon"></i>
+                      <div class="recipe__count">1/2</div>
+                      <div class="recipe__ingredient">
+                        <span class="recipe__unit">cup</span>
+                        grated parmesan cheese
+                      </div>
+                    </li>
+                    <li class="recipe__item">
+                      <i class="fas fa-check recipe__icon"></i>
+                      <div class="recipe__count">1/4</div>
+                      <div class="recipe__ingredient">
+                        <span class="recipe__unit">cup</span>
+                        fresh basil, chopped or torn
+                      </div>
+                    </li>
+                  </ul>
+                  <button class="btn-small recipe__btn">
+                    <i class="fas fa-cart-plus"></i>
+                    <span>Add to Cart</span>
+                  </button>
+                </div>
+              </div>
+
+              <!--End Body -->
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary close__details"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--details Modal -->
     </main>
 
     <script
