@@ -1,0 +1,236 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto Slab", serif, monospace;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #655a56;
+  min-height: calc(100vh - 2 * 1vw);
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.navbar {
+  padding: 10px 20px;
+}
+
+.navbar-nav .nav-item {
+  margin: 10px;
+}
+.navbar-nav .nav-item .nav-link {
+  font-size: 0.8em;
+  font-weight: bold;
+}
+.navbar-nav .nav-item .signup {
+  background-color: #f73e3e;
+  color: #fff !important;
+  width: 200px;
+  border-radius: 20px;
+  text-align: center;
+}
+.navbar-nav .nav-item .signup:hover, .navbar-nav .nav-item .signup:focus {
+  color: #fff !important;
+  background-color: red;
+}
+
+.main .container .popular-header,
+.main .container .cuisines-header {
+  text-align: center;
+  color: #222;
+  font-weight: bold;
+  margin: 20px;
+}
+.main .container .popular {
+  padding: 12px;
+}
+.main .container .popular .card {
+  margin: 10px auto;
+}
+.main .container .popular .card .card-img-top {
+  height: 250px;
+}
+.main .container .popular .card .card-body .card-title {
+  font-size: 1.15em;
+  font-weight: bold;
+  margin: auto 5px;
+}
+.main .container .popular .card .card-body .food-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #333;
+}
+.main .container .popular .card .card-body .food-info p {
+  color: #222;
+  font-weight: bold;
+}
+.main .container .cuisines {
+  padding: 12px;
+}
+.main .container .cuisines .recipes {
+  background-color: #eee;
+  border-radius: 10px;
+}
+.main .container .cuisines .categories {
+  width: 40%;
+  margin: 10px auto 20px auto;
+  display: flex;
+  justify-content: space-between;
+}
+.main .container .cuisines .categories .btn {
+  font-size: 0.8em;
+  width: 100px;
+  border-radius: 20px;
+}
+.main .container .cuisines .categories .btn-outline-danger {
+  color: #f73e3e;
+}
+.main .container .cuisines .categories .btn-outline-danger:focus {
+  background-color: #f73e3e;
+  color: #fff;
+}
+.main .container .cuisines .categories .btn-outline-danger:hover {
+  color: #fff;
+}
+.main .container .mobile {
+  padding: 12px;
+}
+.main .container .mobile .mobile-info {
+  margin: 5px 0px;
+}
+.main .container .mobile .mobile-info h3 {
+  color: #111;
+  font-weight: bold;
+}
+.main .container .mobile .mobile-info p {
+  line-height: 2;
+}
+.main .container .mobile .app-photo {
+  width: 100%;
+  height: max-content;
+}
+
+.search-section {
+  position: relative;
+}
+.search-section form {
+  margin-bottom: 3px;
+}
+.search-section ul {
+  padding: 0px;
+  width: 100%;
+  height: fit-content;
+  max-height: 500px;
+  background-color: #eee;
+  z-index: 3;
+  position: absolute;
+  list-style: none;
+  left: 0px;
+  overflow: hidden;
+}
+.search-section ul li {
+  border-bottom: 1px solid #fff;
+  padding: 10px;
+}
+
+.card {
+  margin: 5px;
+  cursor: pointer;
+}
+.card:hover {
+  box-shadow: 5px 5px 5px 2px #ccc;
+}
+.card:active {
+  box-shadow: 2px 3px 5px 2px #bbb;
+}
+
+.pages {
+  width: 97%;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px auto;
+  padding: 10px;
+  border-radius: 20px;
+  overflow-x: auto;
+}
+.pages .btn {
+  width: 60px;
+  margin: 5px;
+  background-color: #ddd;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.recipe .recipe-content {
+  margin: auto 5px;
+  line-height: 2;
+}
+.recipe .recipe-content .recipe-title,
+.recipe .recipe-content .recipe-price {
+  font-size: 1.1em;
+  font-size: bold;
+  color: #111;
+}
+.recipe .recipe-content .recipe-text {
+  text-align: justify;
+  font-size: 0.8em;
+  font-size: bold;
+  color: #999;
+}
+.recipe .recipe-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.recipe .recipe-img .recipe-asset {
+  width: 99%;
+  height: max-content;
+}
+
+.footer {
+  margin: 20px;
+  text-align: center;
+  font-size: 0.8em;
+}
+
+@media (max-width: 983px) {
+  .navbar-nav .nav-item {
+    margin: 10px auto;
+  }
+  .navbar-nav .nav-item a {
+    background-color: #f73e3e;
+    color: #fff !important;
+    width: 200px;
+    border-radius: 20px;
+    text-align: center;
+  }
+  .navbar-nav .nav-item a:hover, .navbar-nav .nav-item a:focus {
+    color: #fff !important;
+    background-color: red;
+  }
+
+  .main .container .cuisines .categories {
+    width: 90%;
+  }
+  .main .container .cuisines .categories .btn {
+    margin: 5px;
+  }
+}
+@media (min-width: 984px) and (max-width: 1349px) {
+  .main .container .cuisines .categories {
+    width: 50%;
+  }
+  .main .container .cuisines .categories .btn {
+    margin: 5px;
+  }
+}
+
+/*# sourceMappingURL=styles.css.map */
