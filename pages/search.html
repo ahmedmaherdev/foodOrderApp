@@ -38,7 +38,7 @@
       <!-- NavBar -->
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#"
+          <a class="navbar-brand" href="../index.html"
             ><i class="fas fa-utensils fa-2x"></i
           ></a>
           <button
@@ -477,7 +477,7 @@
           </div>
           <div class="modal__form__content">
             <!-- <p>Put you data to sign up </p> -->
-            <form class="modal__form">
+            <form class="modal__form needs-validation" novalidate>
               <div>
                 <label for="name">Name</label>
                 <input
@@ -485,25 +485,34 @@
                   id="name"
                   placeholder="Enter Name"
                   class="form-input"
+                  onfocus="this.value=''"
+                  required
                 />
+                <div class="invalid-feedback">Incorrect Name</div>
               </div>
               <div>
                 <label for="email">Email</label>
                 <input
                   type="email"
                   id="email"
-                  placeholder="Enter Email"
                   class="form-input"
+                  placeholder="example@email,com"
+                  onfocus="this.value=''"
+                  required
                 />
+                <div class="invalid-feedback">Incorrect Email</div>
               </div>
               <div>
-                <label for="password">Password</label>
+                <label for="password-user">Password</label>
                 <input
                   type="password"
-                  id="password"
+                  id="password-user"
                   placeholder="Enter Password"
                   class="form-input"
+                  onfocus="this.value=''"
+                  required
                 />
+                <div class="invalid-feedback">Incorrect Password</div>
               </div>
 
               <div>
@@ -513,27 +522,32 @@
                   id="password-confirm"
                   placeholder="Enter Password Again"
                   class="form-input"
+                  onfocus="this.value=''"
+                  required
                 />
+                <div class="invalid-feedback password-confirm-error">
+                  Not Same Password
+                </div>
               </div>
 
               <!-- <div>
-                      <label for="postCode">Post Code</label>
-                      <input
-                        type="number"
-                        id="PostCode"
-                        placeholder="Enter Post code"
-                        class="form-input"
-                      />
-                    </div>
-                    <div>
-                      <label for="address">address</label>
-                      <input
-                        type="address"
-                        id="address"
-                        placeholder="Enter address"
-                        class="form-input"
-                      />
-                    </div> -->
+                  <label for="postCode">Post Code</label>
+                  <input
+                    type="number"
+                    id="PostCode"
+                    placeholder="Enter Post code"
+                    class="form-input"
+                  />
+                </div>
+                <div>
+                  <label for="address">address</label>
+                  <input
+                    type="address"
+                    id="address"
+                    placeholder="Enter address"
+                    class="form-input"
+                  />
+                </div> -->
               <input type="submit" value="Sign Up" class="submit-btn" />
             </form>
           </div>
@@ -553,7 +567,7 @@
           </div>
           <div class="modal__form__content">
             <!-- <p>Put you data to sign up </p> -->
-            <form class="modal__form">
+            <form class="modal__form needs-validation" novalidate>
               <div>
                 <label for="email">Email</label>
                 <input
@@ -561,8 +575,12 @@
                   id="email"
                   placeholder="Enter Email"
                   class="form-input"
+                  onfocus="this.value=''"
+                  required
                 />
+                <div class="invalid-feedback">Incorrect Email</div>
               </div>
+
               <div>
                 <label for="password">Password</label>
                 <input
@@ -570,10 +588,13 @@
                   id="password"
                   placeholder="Enter Password"
                   class="form-input"
+                  onfocus="this.value=''"
+                  required
                 />
+                <div class="invalid-feedback">Incorrect Password</div>
               </div>
 
-              <input type="submit" value="Sign In" class="submit-btn" />
+              <input type="submit" value="Sign in" class="submit-btn" />
             </form>
           </div>
         </div>

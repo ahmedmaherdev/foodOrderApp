@@ -354,3 +354,36 @@ const searchOnInput = () => {
 const searchTargetOnClick = link => {
   localStorage.setItem('search-target', link.textContent);
 };
+
+// form validation
+
+// Fetch all the forms we want to apply custom Bootstrap validation styles to
+const pass = document.querySelector('#password-user');
+const passConfirm = document.querySelector('#password-confirm');
+const forms = document.querySelectorAll('.needs-validation');
+
+// Loop over them and prevent submission
+Array.prototype.slice.call(forms).forEach(function (form) {
+  form.addEventListener(
+    'submit',
+    function (event) {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    },
+    false
+  );
+});
+
+passConfirm.addEventListener('input', () => {
+  const passConfirmError = document.querySelector('.password-confirm-error');
+  if (pass.value !== passConfirm.value) {
+    passConfirmError.classList.remove('invalid-feedback');
+    passConfirmError.style = 'font-size: .875em; color: #dc3545;';
+  } else {
+    passConfirmError.classList.add('invalid-feedback');
+  }
+});
+// password confirmation

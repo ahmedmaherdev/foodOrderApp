@@ -34,7 +34,7 @@
       <!-- NavBar -->
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#"
+          <a class="navbar-brand" href="/index.html"
             ><i class="fas fa-utensils fa-2x"></i
           ></a>
           <button
@@ -640,58 +640,72 @@
           </div>
         </div>
         <!-- End order List modal -->
-        <!-- form model -->
-        <!-- Sign Up Modal -->
-        <div class="form__container" id="signup-modal">
-          <div class="form__modal">
-            <button class="close-btn" id="close">
-              <i class="fa fa-times"></i>
-            </button>
-            <div class="modal__form__header">
-              <h3>Sign Up</h3>
-            </div>
-            <div class="modal__form__content">
-              <!-- <p>Put you data to sign up </p> -->
-              <form class="modal__form">
-                <div>
-                  <label for="name">Name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    placeholder="Enter Name"
-                    class="form-input"
-                  />
-                </div>
-                <div>
-                  <label for="email">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    placeholder="Enter Email"
-                    class="form-input"
-                  />
-                </div>
-                <div>
-                  <label for="password">Password</label>
-                  <input
-                    type="password"
-                    id="password"
-                    placeholder="Enter Password"
-                    class="form-input"
-                  />
-                </div>
+         <!-- form model -->
+      <!-- Sign Up Modal -->
+      <div class="form__container" id="signup-modal">
+        <div class="form__modal">
+          <button class="close-btn" id="close">
+            <i class="fa fa-times"></i>
+          </button>
+          <div class="modal__form__header">
+            <h3>Sign Up</h3>
+          </div>
+          <div class="modal__form__content">
+            <!-- <p>Put you data to sign up </p> -->
+            <form class="modal__form needs-validation" novalidate>
+              <div>
+                <label for="name">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="Enter Name"
+                  class="form-input"
+                  onfocus="this.value=''"
+                  required
+                />
+                <div class="invalid-feedback">Incorrect Name</div>
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  class="form-input"
+                  placeholder="example@email,com"
+                  onfocus="this.value=''"
+                  required
+                />
+                <div class="invalid-feedback">Incorrect Email</div>
+              </div>
+              <div>
+                <label for="password-user">Password</label>
+                <input
+                  type="password"
+                  id="password-user"
+                  placeholder="Enter Password"
+                  class="form-input"
+                  onfocus="this.value=''"
+                  required
+                />
+                <div class="invalid-feedback">Incorrect Password</div>
+              </div>
 
-                <div>
-                  <label for="password-confirm">Repeat Password</label>
-                  <input
-                    type="password"
-                    id="password-confirm"
-                    placeholder="Enter Password Again"
-                    class="form-input"
-                  />
+              <div>
+                <label for="password-confirm">Repeat Password</label>
+                <input
+                  type="password"
+                  id="password-confirm"
+                  placeholder="Enter Password Again"
+                  class="form-input"
+                  onfocus="this.value=''"
+                  required
+                />
+                <div class="invalid-feedback password-confirm-error">
+                  Not Same Password
                 </div>
-               
-                <!-- <div>
+              </div>
+
+              <!-- <div>
                   <label for="postCode">Post Code</label>
                   <input
                     type="number"
@@ -709,54 +723,59 @@
                     class="form-input"
                   />
                 </div> -->
-                <input type="submit" value="Sign Up" class="submit-btn" />
-              </form>
-            </div>
+              <input type="submit" value="Sign Up" class="submit-btn" />
+            </form>
           </div>
         </div>
+      </div>
 
-        <!-- End Sign up modal -->
+      <!-- End Sign up modal -->
 
-        <!-- Sign in modal -->
-        <div class="form__container" id="signin-modal">
-          <div class="form__modal">
-            <button class="close-btn" id="signin-close">
-              <i class="fa fa-times"></i>
-            </button>
-            <div class="modal__form__header">
-              <h3>Sign In</h3>
-            </div>
-            <div class="modal__form__content">
-              <!-- <p>Put you data to sign up </p> -->
-              <form class="modal__form">
-           
-                <div>
-                  <label for="email">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    placeholder="Enter Email"
-                    class="form-input"
-                  />
-                </div>
-                <div>
-                  <label for="password">Password</label>
-                  <input
-                    type="password"
-                    id="password"
-                    placeholder="Enter Password"
-                    class="form-input"
-                  />
-                </div>
+      <!-- Sign in modal -->
+      <div class="form__container" id="signin-modal">
+        <div class="form__modal">
+          <button class="close-btn" id="signin-close">
+            <i class="fa fa-times"></i>
+          </button>
+          <div class="modal__form__header">
+            <h3>Sign In</h3>
+          </div>
+          <div class="modal__form__content">
+            <!-- <p>Put you data to sign up </p> -->
+            <form class="modal__form needs-validation" novalidate>
+              <div>
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Enter Email"
+                  class="form-input"
+                  onfocus="this.value=''"
+                  required
+                />
+                <div class="invalid-feedback">Incorrect Email</div>
+              </div>
 
-            
-                <input type="submit" value="Sign In" class="submit-btn" />
-              </form>
-            </div>
+              <div>
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Enter Password"
+                  class="form-input"
+                  onfocus="this.value=''"
+                  required
+                />
+                <div class="invalid-feedback">Incorrect Password</div>
+              </div>
+
+              <input type="submit" value="Sign in" class="submit-btn" />
+            </form>
           </div>
         </div>
-        <!-- End Sign in modal  -->
-        <!-- End form model -->
+      </div>
+      <!-- End Sign in modal  -->
+      <!-- End form model -->
 
                <!--details Modal -->
        <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">

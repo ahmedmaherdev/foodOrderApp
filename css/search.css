@@ -1,0 +1,12 @@
+.recipes {
+  background-color: #eee;
+  border-radius: 10px;
+}
+
+.card:hover {
+  box-shadow: 5px 5px 2px #ccc;
+}
+
+.card:active {
+  box-shadow: 3px 3px 2px #ddd;
+}
