@@ -338,8 +338,9 @@ const searchOnInput = () => {
       if (val.toLowerCase().includes(search.value.toLowerCase())) {
         suggestions.style = 'padding: 5px;';
         const suggest = document.createElement('li');
-        suggest.textContent = val;
+        suggest.innerHTML = `<a href="./pages/search.html?${val}" target="_self">${val}</a>`;
         suggestions.prepend(suggest);
+        localStorage.setItem('search-target', val);
         check = 1;
       }
     });

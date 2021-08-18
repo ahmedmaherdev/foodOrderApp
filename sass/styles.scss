@@ -167,6 +167,12 @@ body {
     li {
       border-bottom: 1px solid #fff;
       padding: 10px;
+
+      a {
+        background-color: #eee;
+        color: inherit;
+        text-decoration: none;
+      }
     }
   }
 }

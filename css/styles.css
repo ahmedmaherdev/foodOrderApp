@@ -139,6 +139,11 @@ body {
   border-bottom: 1px solid #fff;
   padding: 10px;
 }
+.search-section ul li a {
+  background-color: #eee;
+  color: inherit;
+  text-decoration: none;
+}
 
 .card {
   margin: 5px;
