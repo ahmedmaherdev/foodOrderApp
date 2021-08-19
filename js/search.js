@@ -341,6 +341,7 @@ const searchOnInput = () => {
         suggestions.style = 'padding: 5px;';
         const suggest = document.createElement('li');
         suggest.innerHTML = `<a href="./search.html?search=${val}" onclick="searchTargetOnClick(this)">${val}</a>`;
+        //
         suggestions.prepend(suggest);
         check = 1;
       }
