@@ -5,7 +5,7 @@
 }
 
 body {
-  font-family: "Roboto Slab", serif, monospace;
+  font-family: 'Roboto Slab', serif, monospace;
   font-size: 15px;
   font-weight: 500;
   line-height: 1.6;
@@ -35,7 +35,8 @@ body {
   border-radius: 20px;
   text-align: center;
 }
-.navbar-nav .nav-item .signup:hover, .navbar-nav .nav-item .signup:focus {
+.navbar-nav .nav-item .signup:hover,
+.navbar-nav .nav-item .signup:focus {
   color: #fff !important;
   background-color: red;
 }
@@ -146,14 +147,16 @@ body {
 }
 
 .card {
-  margin: 5px;
+  margin: 7px;
   cursor: pointer;
 }
 .card:hover {
-  box-shadow: 5px 5px 5px 2px #ccc;
+  transform: scale(1.05, 1.05);
+  box-shadow: 3px 3px 3px #eee;
 }
 .card:active {
-  box-shadow: 2px 3px 5px 2px #bbb;
+  transform: scale(0.97, 0.97);
+  box-shadow: 2px 2px 2px #eee;
 }
 
 .pages {
@@ -217,7 +220,12 @@ body {
     border-radius: 20px;
     text-align: center;
   }
-  .navbar-nav .nav-item a:hover, .navbar-nav .nav-item a:focus {
+  .navbar-nav .nav-item .suggestions li a {
+    background-color: #eee;
+    color: #333 !important;
+  }
+  .navbar-nav .nav-item a:hover,
+  .navbar-nav .nav-item a:focus {
     color: #fff !important;
     background-color: red;
   }
