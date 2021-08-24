@@ -68,259 +68,10 @@ window.addEventListener('click', e => {
 // search section
 const search = document.querySelector('.search-label');
 
-const countryList = [
-  'Afghanistan',
-  'Albania',
-  'Algeria',
-  'American Samoa',
-  'Andorra',
-  'Angola',
-  'Anguilla',
-  'Antarctica',
-  'Antigua and Barbuda',
-  'Argentina',
-  'Armenia',
-  'Aruba',
-  'Australia',
-  'Austria',
-  'Azerbaijan',
-  'Bahamas (the)',
-  'Bahrain',
-  'Bangladesh',
-  'Barbados',
-  'Belarus',
-  'Belgium',
-  'Belize',
-  'Benin',
-  'Bermuda',
-  'Bhutan',
-  'Bolivia (Plurinational State of)',
-  'Bonaire, Sint Eustatius and Saba',
-  'Bosnia and Herzegovina',
-  'Botswana',
-  'Bouvet Island',
-  'Brazil',
-  'British Indian Ocean Territory (the)',
-  'Brunei Darussalam',
-  'Bulgaria',
-  'Burkina Faso',
-  'Burundi',
-  'Cabo Verde',
-  'Cambodia',
-  'Cameroon',
-  'Canada',
-  'Cayman Islands (the)',
-  'Central African Republic (the)',
-  'Chad',
-  'Chile',
-  'China',
-  'Christmas Island',
-  'Cocos (Keeling) Islands (the)',
-  'Colombia',
-  'Comoros (the)',
-  'Congo (the Democratic Republic of the)',
-  'Congo (the)',
-  'Cook Islands (the)',
-  'Costa Rica',
-  'Croatia',
-  'Cuba',
-  'Curaçao',
-  'Cyprus',
-  'Czechia',
-  "Côte d'Ivoire",
-  'Denmark',
-  'Djibouti',
-  'Dominica',
-  'Dominican Republic (the)',
-  'Ecuador',
-  'Egypt',
-  'El Salvador',
-  'Equatorial Guinea',
-  'Eritrea',
-  'Estonia',
-  'Eswatini',
-  'Ethiopia',
-  'Falkland Islands (the) [Malvinas]',
-  'Faroe Islands (the)',
-  'Fiji',
-  'Finland',
-  'France',
-  'French Guiana',
-  'French Polynesia',
-  'French Southern Territories (the)',
-  'Gabon',
-  'Gambia (the)',
-  'Georgia',
-  'Germany',
-  'Ghana',
-  'Gibraltar',
-  'Greece',
-  'Greenland',
-  'Grenada',
-  'Guadeloupe',
-  'Guam',
-  'Guatemala',
-  'Guernsey',
-  'Guinea',
-  'Guinea-Bissau',
-  'Guyana',
-  'Haiti',
-  'Heard Island and McDonald Islands',
-  'Holy See (the)',
-  'Honduras',
-  'Hong Kong',
-  'Hungary',
-  'Iceland',
-  'India',
-  'Indonesia',
-  'Iran (Islamic Republic of)',
-  'Iraq',
-  'Ireland',
-  'Isle of Man',
-  'Israel',
-  'Italy',
-  'Jamaica',
-  'Japan',
-  'Jersey',
-  'Jordan',
-  'Kazakhstan',
-  'Kenya',
-  'Kiribati',
-  "Korea (the Democratic People's Republic of)",
-  'Korea (the Republic of)',
-  'Kuwait',
-  'Kyrgyzstan',
-  "Lao People's Democratic Republic (the)",
-  'Latvia',
-  'Lebanon',
-  'Lesotho',
-  'Liberia',
-  'Libya',
-  'Liechtenstein',
-  'Lithuania',
-  'Luxembourg',
-  'Macao',
-  'Madagascar',
-  'Malawi',
-  'Malaysia',
-  'Maldives',
-  'Mali',
-  'Malta',
-  'Marshall Islands (the)',
-  'Martinique',
-  'Mauritania',
-  'Mauritius',
-  'Mayotte',
-  'Mexico',
-  'Micronesia (Federated States of)',
-  'Moldova (the Republic of)',
-  'Monaco',
-  'Mongolia',
-  'Montenegro',
-  'Montserrat',
-  'Morocco',
-  'Mozambique',
-  'Myanmar',
-  'Namibia',
-  'Nauru',
-  'Nepal',
-  'Netherlands (the)',
-  'New Caledonia',
-  'New Zealand',
-  'Nicaragua',
-  'Niger (the)',
-  'Nigeria',
-  'Niue',
-  'Norfolk Island',
-  'Northern Mariana Islands (the)',
-  'Norway',
-  'Oman',
-  'Pakistan',
-  'Palau',
-  'Palestine, State of',
-  'Panama',
-  'Papua New Guinea',
-  'Paraguay',
-  'Peru',
-  'Philippines (the)',
-  'Pitcairn',
-  'Poland',
-  'Portugal',
-  'Puerto Rico',
-  'Qatar',
-  'Republic of North Macedonia',
-  'Romania',
-  'Russian Federation (the)',
-  'Rwanda',
-  'Réunion',
-  'Saint Barthélemy',
-  'Saint Helena, Ascension and Tristan da Cunha',
-  'Saint Kitts and Nevis',
-  'Saint Lucia',
-  'Saint Martin (French part)',
-  'Saint Pierre and Miquelon',
-  'Saint Vincent and the Grenadines',
-  'Samoa',
-  'San Marino',
-  'Sao Tome and Principe',
-  'Saudi Arabia',
-  'Senegal',
-  'Serbia',
-  'Seychelles',
-  'Sierra Leone',
-  'Singapore',
-  'Sint Maarten (Dutch part)',
-  'Slovakia',
-  'Slovenia',
-  'Solomon Islands',
-  'Somalia',
-  'South Africa',
-  'South Georgia and the South Sandwich Islands',
-  'South Sudan',
-  'Spain',
-  'Sri Lanka',
-  'Sudan (the)',
-  'Suriname',
-  'Svalbard and Jan Mayen',
-  'Sweden',
-  'Switzerland',
-  'Syrian Arab Republic',
-  'Taiwan',
-  'Tajikistan',
-  'Tanzania, United Republic of',
-  'Thailand',
-  'Timor-Leste',
-  'Togo',
-  'Tokelau',
-  'Tonga',
-  'Trinidad and Tobago',
-  'Tunisia',
-  'Turkey',
-  'Turkmenistan',
-  'Turks and Caicos Islands (the)',
-  'Tuvalu',
-  'Uganda',
-  'Ukraine',
-  'United Arab Emirates (the)',
-  'United Kingdom of Great Britain and Northern Ireland (the)',
-  'United States Minor Outlying Islands (the)',
-  'United States of America (the)',
-  'Uruguay',
-  'Uzbekistan',
-  'Vanuatu',
-  'Venezuela (Bolivarian Republic of)',
-  'Viet Nam',
-  'Virgin Islands (British)',
-  'Virgin Islands (U.S.)',
-  'Wallis and Futuna',
-  'Western Sahara',
-  'Yemen',
-  'Zambia',
-  'Zimbabwe',
-  'Åland Islands',
-];
+const countryList = ['ahasjhkda'];
 
 const suggestions = document.querySelector('.suggestions');
+
 const clearSuggestions = () => {
   suggestions.querySelectorAll('li').forEach(val => {
     val.remove();
@@ -348,36 +99,140 @@ const searchOnInput = () => {
 const searchTargetOnClick = link => {
   localStorage.setItem('search-target', link.textContent);
 };
+// End Search section
 
-// form validation
+// define arrays of data
+const categoriesArr = [];
+const recipesArr = [];
 
-// Fetch all the forms we want to apply custom Bootstrap validation styles to
-const pass = document.querySelector('#password-user');
-const passConfirm = document.querySelector('#password-confirm');
-const forms = document.querySelectorAll('.needs-validation');
+// function get categories
+let categoriesBtns = null;
+const categories = document.querySelector('.categories');
 
-// Loop over them and prevent submission
-Array.prototype.slice.call(forms).forEach(function (form) {
-  form.addEventListener(
-    'submit',
-    function (event) {
-      if (!form.checkValidity()) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-      form.classList.add('was-validated');
-    },
-    false
-  );
-});
+const createCategory = val => {
+  const category = document.createElement('button');
+  category.classList.add('btn', 'btn-outline-danger');
+  category.value = val['_id'];
+  category.textContent = val.name;
+  return category;
+};
 
-passConfirm.addEventListener('input', () => {
-  const passConfirmError = document.querySelector('.password-confirm-error');
-  if (pass.value !== passConfirm.value) {
-    passConfirmError.classList.remove('invalid-feedback');
-    passConfirmError.style = 'font-size: .875em; color: #dc3545;';
-  } else {
-    passConfirmError.classList.add('invalid-feedback');
-  }
-});
-// password confirmation
+const getCategories = async url => {
+  await fetch(url, {
+    method: 'get',
+  })
+    .then(res => res.json())
+    .then(data => {
+      const {
+        data: { data: categoriesArray },
+      } = data;
+      categoriesArray.forEach(val => {
+        categories.appendChild(createCategory(val));
+        categoriesArr.push(val);
+      });
+
+      // console.log(categoriesArray);
+    })
+    .catch(err => console.error(err));
+  categoriesBtns = document.querySelectorAll('.categories .btn');
+};
+
+getCategories('https://panda-restaurant.herokuapp.com/api/v1/categories/');
+
+// categories actions
+const AfterCatergoriesLoad = 3000;
+setTimeout(() => {
+  categoriesBtns.forEach(cat => {
+    cat.addEventListener('click', () => {
+      recipes.classList.add('hidden');
+      categoriesSearchContainer.classList.remove('hidden');
+      recipesArr.forEach(rec => {
+        if (cat.textContent === rec.category) {
+          const recipe = document.createElement('div');
+          recipe.classList.add('col-sm-12', 'col-md-6', 'col-lg-4');
+          recipe.innerHTML = `
+            <div class="card">
+              <div class="card-body">
+                <div class="row recipe">
+                  <div class="col-8">
+                    <div class="recipe-content">
+                      <h4 class="recipe-title">${rec.name}</h4>
+                      <p class="recipe-text">
+                        ${rec.category}<br>
+                        ${rec.slug}
+                      </p>
+                      <p class="recipe-price">${rec.price}$</p>
+                    </div>
+                  </div>
+                  <div class="col-4 recipe-img">
+                    <img
+                      src=${rec.imageCover}
+                      alt="${rec.name} image"
+                      class="recipe-asset"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+        `;
+          categoriesSearchContainer.appendChild(recipe);
+        }
+      });
+    });
+  });
+}, AfterCatergoriesLoad);
+
+const categoriesSearchContainer = document.querySelector('.category-search');
+
+// end get categories
+
+// function get all recipes
+const recipes = document.querySelector('.recipes-container');
+
+const getRecipes = async url => {
+  await fetch(url, { method: 'get' })
+    .then(res => res.json())
+    .then(data => {
+      const {
+        data: { data: recipesArray },
+      } = data;
+      recipesArray.forEach(val => {
+        const recipe = document.createElement('div');
+        recipe.classList.add('col-sm-12', 'col-md-6', 'col-lg-4');
+        recipe.innerHTML = `
+          <div class="card">
+            <div class="card-body">
+              <div class="row recipe">
+                <div class="col-8">
+                  <div class="recipe-content">
+                    <h4 class="recipe-title">${val.name}</h4>
+                    <p class="recipe-text">
+                      ${val.category}<br>
+                      ${val.slug}
+                    </p>
+                    <p class="recipe-price">${val.price}$</p>
+                  </div>
+                </div>
+                <div class="col-4 recipe-img">
+                  <img
+                    src=${val.imageCover}
+                    alt="${val.name} image"
+                    class="recipe-asset"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+      `;
+        recipes.appendChild(recipe);
+        recipesArr.push(val);
+      });
+
+      // console.log(recipesArray);
+    })
+    .catch(err => console.error(err));
+};
+
+getRecipes('https://panda-restaurant.herokuapp.com/api/v1/recipes/');
+
+// End recipies

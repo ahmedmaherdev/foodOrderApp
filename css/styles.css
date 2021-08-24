@@ -78,17 +78,21 @@ body {
 .main .container .cuisines .recipes {
   background-color: #eee;
   border-radius: 10px;
+  max-height: 570px;
+  overflow-y: auto;
 }
 .main .container .cuisines .categories {
-  width: 40%;
+  width: 70%;
   margin: 10px auto 20px auto;
   display: flex;
   justify-content: space-between;
+  overflow-x: auto;
 }
 .main .container .cuisines .categories .btn {
   font-size: 0.8em;
-  width: 100px;
+  width: 150px;
   border-radius: 20px;
+  padding: 10px 15px;
 }
 .main .container .cuisines .categories .btn-outline-danger {
   color: #f73e3e;
@@ -201,12 +205,17 @@ body {
 .recipe .recipe-img .recipe-asset {
   width: 99%;
   height: max-content;
+  border-radius: 50%;
 }
 
 .footer {
   margin: 20px;
   text-align: center;
   font-size: 0.8em;
+}
+
+.hidden {
+  display: none !important;
 }
 
 @media (max-width: 983px) {
