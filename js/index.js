@@ -78,35 +78,55 @@ const clearSuggestions = () => {
   });
   suggestions.style = ' padding: 0px';
 };
-const searchOnInput = () => {
+const searchOnInput = async () => {
   let check = 0;
   if (search.value) {
-    countryList.forEach(val => {
-      if (val.toLowerCase().includes(search.value.toLowerCase())) {
-        suggestions.style = 'padding: 5px;';
-        const suggest = document.createElement('li');
-        suggest.innerHTML = `<a href="./pages/search.html?search=${val}" onclick="searchTargetOnClick(this)">${val}</a>`;
-        suggestions.prepend(suggest);
-        check = 1;
-      }
-    });
-    if (check === 0) clearSuggestions();
+    const requestOptions = {
+      method: 'GET',
+      redirect: 'follow',
+    };
+
+    await fetch(
+      `https://panda-restaurant.herokuapp.com/api/v1/recipes/search?s=${search.value}`,
+      requestOptions
+    )
+      .then(res => res.json())
+      .then(data => {
+        const {
+          data: { data: arr },
+        } = data;
+        let check = 0;
+        if (arr.length) {
+          arr.forEach(val => {
+            suggestions.style = 'padding: 5px;';
+            const suggest = document.createElement('li');
+            suggest.innerHTML = `<a href="./pages/search.html?search=${val.name}" onclick="searchOnClick(this)">${val.name}</a>`;
+            suggestions.prepend(suggest);
+            check = 1;
+          });
+          if (check === 0) clearSuggestions();
+        } else {
+          clearSuggestions();
+        }
+        console.log(arr);
+      })
+      .catch(error => console.log('error', error));
   } else {
     clearSuggestions();
   }
 };
 
-const searchTargetOnClick = link => {
-  localStorage.setItem('search-target', link.textContent);
+const searchOnClick = val => {
+  localStorage.setItem('search-target', val.textContent);
 };
+
 // End Search section
 
 // define arrays of data
 const categoriesArr = [];
 const recipesArr = [];
 
-// function get categories
-let categoriesBtns = null;
+// let categoriesBtns = 0;
 const categories = document.querySelector('.categories');
 
 const createCategory = val => {
@@ -117,6 +137,7 @@ const createCategory = val => {
   return category;
 };
 
+// function get catergories
 const getCategories = async url => {
   await fetch(url, {
     method: 'get',
@@ -126,63 +147,61 @@ const getCategories = async url => {
       const {
         data: { data: categoriesArray },
       } = data;
-      categoriesArray.forEach(val => {
-        categories.appendChild(createCategory(val));
-        categoriesArr.push(val);
+      categoriesArray.forEach(cat => {
+        categories.appendChild(createCategory(cat));
+        createContainerForCatergory(cat.name);
+        categoriesArr.push(cat);
+        return categoriesArray;
       });
-
-      // console.log(categoriesArray);
     })
+
     .catch(err => console.error(err));
-  categoriesBtns = document.querySelectorAll('.categories .btn');
 };
 
+document.addEventListener('DOMContentLoaded', () => {
+  const categoriesBtns = document.querySelectorAll('.categories .btn');
+  console.log(categoriesBtns);
+  categoriesBtns.forEach(btn => {
+    btn.addEventListener('click', categoryAction(btn));
+  });
+});
+
+// categories btns actions
+
+//////////////////////////////////////////
 getCategories('https://panda-restaurant.herokuapp.com/api/v1/categories/');
 
-// categories actions
-const AfterCatergoriesLoad = 3000;
-setTimeout(() => {
-  categoriesBtns.forEach(cat => {
-    cat.addEventListener('click', () => {
-      recipes.classList.add('hidden');
-      categoriesSearchContainer.classList.remove('hidden');
-      recipesArr.forEach(rec => {
-        if (cat.textContent === rec.category) {
-          const recipe = document.createElement('div');
-          recipe.classList.add('col-sm-12', 'col-md-6', 'col-lg-4');
-          recipe.innerHTML = `
-            <div class="card">
-              <div class="card-body">
-                <div class="row recipe">
-                  <div class="col-8">
-                    <div class="recipe-content">
-                      <h4 class="recipe-title">${rec.name}</h4>
-                      <p class="recipe-text">
-                        ${rec.category}<br>
-                        ${rec.slug}
-                      </p>
-                      <p class="recipe-price">${rec.price}$</p>
-                    </div>
-                  </div>
-                  <div class="col-4 recipe-img">
-                    <img
-                      src=${rec.imageCover}
-                      alt="${rec.name} image"
-                      class="recipe-asset"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-        `;
-          categoriesSearchContainer.appendChild(recipe);
-        }
-      });
-    });
+// function action of catergory
+const categoryAction = btn => {
+  const containers = document.querySelectorAll('.recipes  .row');
+  hideAllContainers(containers);
+  containers.forEach(val => {
+    if (val.classList.contains(btn.textContent)) {
+      val.classList.remove('hidden');
+    }
   });
-}, AfterCatergoriesLoad);
+};
 
-const categoriesSearchContainer = document.querySelector('.category-search');
+// hidden all catergores containers
+const hideAllContainers = containers => {
+  containers.forEach(val => {
+    if (!val.classList.contains('hidden')) {
+      val.classList.add('hidden');
+    }
+  });
+};
+
+// function to create container for each category recipes
+const createContainerForCatergory = cat => {
+  const recipes = document.querySelector('.recipes');
+  const categoryContainer = document.createElement('div');
+  categoryContainer.classList.add(
+    'row',
+    `${cat.includes(' ') ? cat.replace(' ', '-') : cat}`,
+    'hidden'
+  );
+  recipes.appendChild(categoryContainer);
+};
 
 // end get categories
 
@@ -197,41 +216,48 @@ const getRecipes = async url => {
         data: { data: recipesArray },
       } = data;
       recipesArray.forEach(val => {
-        const recipe = document.createElement('div');
-        recipe.classList.add('col-sm-12', 'col-md-6', 'col-lg-4');
-        recipe.innerHTML = `
-          <div class="card">
-            <div class="card-body">
-              <div class="row recipe">
-                <div class="col-8">
-                  <div class="recipe-content">
-                    <h4 class="recipe-title">${val.name}</h4>
-                    <p class="recipe-text">
-                      ${val.category}<br>
-                      ${val.slug}
-                    </p>
-                    <p class="recipe-price">${val.price}$</p>
-                  </div>
-                </div>
-                <div class="col-4 recipe-img">
-                  <img
-                    src=${val.imageCover}
-                    alt="${val.name} image"
-                    class="recipe-asset"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-      `;
-        recipes.appendChild(recipe);
+        createRecipe(recipes, val);
         recipesArr.push(val);
       });
 
-      // console.log(recipesArray);
+      console.log(recipesArray);
     })
     .catch(err => console.error(err));
 };
+
+// function to create recipe
+const createRecipe = (container, res) => {
+  const card = `
+  <div class="card">
+    <div class="card-body">
+      <div class="row recipe">
+        <div class="col-8">
+          <div class="recipe-content">
+            <h4 class="recipe-title">${res.name}</h4>
+            <p class="recipe-text">
+              ${res.category}<br>
+              ${res.slug}
+            </p>
+            <p class="recipe-price">${res.price}$</p>
+          </div>
+        </div>
+        <div class="col-4 recipe-img">
+          <img
+            src=${res.imageCover}
+            alt="${res.name} image"
+            class="recipe-asset"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+`;
+  const recipe = document.createElement('div');
+  recipe.classList.add('col-sm-12', 'col-md-6', 'col-lg-4');
+  recipe.innerHTML = card;
+  container.appendChild(recipe);
+};
+////////////////////////////////////////
 
 getRecipes('https://panda-restaurant.herokuapp.com/api/v1/recipes/');
 

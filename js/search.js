@@ -74,258 +74,6 @@ window.addEventListener('click', e => {
 // search section
 const search = document.querySelector('.search-label');
 
-const countryList = [
-  'Afghanistan',
-  'Albania',
-  'Algeria',
-  'American Samoa',
-  'Andorra',
-  'Angola',
-  'Anguilla',
-  'Antarctica',
-  'Antigua and Barbuda',
-  'Argentina',
-  'Armenia',
-  'Aruba',
-  'Australia',
-  'Austria',
-  'Azerbaijan',
-  'Bahamas (the)',
-  'Bahrain',
-  'Bangladesh',
-  'Barbados',
-  'Belarus',
-  'Belgium',
-  'Belize',
-  'Benin',
-  'Bermuda',
-  'Bhutan',
-  'Bolivia (Plurinational State of)',
-  'Bonaire, Sint Eustatius and Saba',
-  'Bosnia and Herzegovina',
-  'Botswana',
-  'Bouvet Island',
-  'Brazil',
-  'British Indian Ocean Territory (the)',
-  'Brunei Darussalam',
-  'Bulgaria',
-  'Burkina Faso',
-  'Burundi',
-  'Cabo Verde',
-  'Cambodia',
-  'Cameroon',
-  'Canada',
-  'Cayman Islands (the)',
-  'Central African Republic (the)',
-  'Chad',
-  'Chile',
-  'China',
-  'Christmas Island',
-  'Cocos (Keeling) Islands (the)',
-  'Colombia',
-  'Comoros (the)',
-  'Congo (the Democratic Republic of the)',
-  'Congo (the)',
-  'Cook Islands (the)',
-  'Costa Rica',
-  'Croatia',
-  'Cuba',
-  'Curaçao',
-  'Cyprus',
-  'Czechia',
-  "Côte d'Ivoire",
-  'Denmark',
-  'Djibouti',
-  'Dominica',
-  'Dominican Republic (the)',
-  'Ecuador',
-  'Egypt',
-  'El Salvador',
-  'Equatorial Guinea',
-  'Eritrea',
-  'Estonia',
-  'Eswatini',
-  'Ethiopia',
-  'Falkland Islands (the) [Malvinas]',
-  'Faroe Islands (the)',
-  'Fiji',
-  'Finland',
-  'France',
-  'French Guiana',
-  'French Polynesia',
-  'French Southern Territories (the)',
-  'Gabon',
-  'Gambia (the)',
-  'Georgia',
-  'Germany',
-  'Ghana',
-  'Gibraltar',
-  'Greece',
-  'Greenland',
-  'Grenada',
-  'Guadeloupe',
-  'Guam',
-  'Guatemala',
-  'Guernsey',
-  'Guinea',
-  'Guinea-Bissau',
-  'Guyana',
-  'Haiti',
-  'Heard Island and McDonald Islands',
-  'Holy See (the)',
-  'Honduras',
-  'Hong Kong',
-  'Hungary',
-  'Iceland',
-  'India',
-  'Indonesia',
-  'Iran (Islamic Republic of)',
-  'Iraq',
-  'Ireland',
-  'Isle of Man',
-  'Israel',
-  'Italy',
-  'Jamaica',
-  'Japan',
-  'Jersey',
-  'Jordan',
-  'Kazakhstan',
-  'Kenya',
-  'Kiribati',
-  "Korea (the Democratic People's Republic of)",
-  'Korea (the Republic of)',
-  'Kuwait',
-  'Kyrgyzstan',
-  "Lao People's Democratic Republic (the)",
-  'Latvia',
-  'Lebanon',
-  'Lesotho',
-  'Liberia',
-  'Libya',
-  'Liechtenstein',
-  'Lithuania',
-  'Luxembourg',
-  'Macao',
-  'Madagascar',
-  'Malawi',
-  'Malaysia',
-  'Maldives',
-  'Mali',
-  'Malta',
-  'Marshall Islands (the)',
-  'Martinique',
-  'Mauritania',
-  'Mauritius',
-  'Mayotte',
-  'Mexico',
-  'Micronesia (Federated States of)',
-  'Moldova (the Republic of)',
-  'Monaco',
-  'Mongolia',
-  'Montenegro',
-  'Montserrat',
-  'Morocco',
-  'Mozambique',
-  'Myanmar',
-  'Namibia',
-  'Nauru',
-  'Nepal',
-  'Netherlands (the)',
-  'New Caledonia',
-  'New Zealand',
-  'Nicaragua',
-  'Niger (the)',
-  'Nigeria',
-  'Niue',
-  'Norfolk Island',
-  'Northern Mariana Islands (the)',
-  'Norway',
-  'Oman',
-  'Pakistan',
-  'Palau',
-  'Palestine, State of',
-  'Panama',
-  'Papua New Guinea',
-  'Paraguay',
-  'Peru',
-  'Philippines (the)',
-  'Pitcairn',
-  'Poland',
-  'Portugal',
-  'Puerto Rico',
-  'Qatar',
-  'Republic of North Macedonia',
-  'Romania',
-  'Russian Federation (the)',
-  'Rwanda',
-  'Réunion',
-  'Saint Barthélemy',
-  'Saint Helena, Ascension and Tristan da Cunha',
-  'Saint Kitts and Nevis',
-  'Saint Lucia',
-  'Saint Martin (French part)',
-  'Saint Pierre and Miquelon',
-  'Saint Vincent and the Grenadines',
-  'Samoa',
-  'San Marino',
-  'Sao Tome and Principe',
-  'Saudi Arabia',
-  'Senegal',
-  'Serbia',
-  'Seychelles',
-  'Sierra Leone',
-  'Singapore',
-  'Sint Maarten (Dutch part)',
-  'Slovakia',
-  'Slovenia',
-  'Solomon Islands',
-  'Somalia',
-  'South Africa',
-  'South Georgia and the South Sandwich Islands',
-  'South Sudan',
-  'Spain',
-  'Sri Lanka',
-  'Sudan (the)',
-  'Suriname',
-  'Svalbard and Jan Mayen',
-  'Sweden',
-  'Switzerland',
-  'Syrian Arab Republic',
-  'Taiwan',
-  'Tajikistan',
-  'Tanzania, United Republic of',
-  'Thailand',
-  'Timor-Leste',
-  'Togo',
-  'Tokelau',
-  'Tonga',
-  'Trinidad and Tobago',
-  'Tunisia',
-  'Turkey',
-  'Turkmenistan',
-  'Turks and Caicos Islands (the)',
-  'Tuvalu',
-  'Uganda',
-  'Ukraine',
-  'United Arab Emirates (the)',
-  'United Kingdom of Great Britain and Northern Ireland (the)',
-  'United States Minor Outlying Islands (the)',
-  'United States of America (the)',
-  'Uruguay',
-  'Uzbekistan',
-  'Vanuatu',
-  'Venezuela (Bolivarian Republic of)',
-  'Viet Nam',
-  'Virgin Islands (British)',
-  'Virgin Islands (U.S.)',
-  'Wallis and Futuna',
-  'Western Sahara',
-  'Yemen',
-  'Zambia',
-  'Zimbabwe',
-  'Åland Islands',
-];
-
 const suggestions = document.querySelector('.suggestions');
 const clearSuggestions = () => {
   suggestions.querySelectorAll('li').forEach(val => {
@@ -333,58 +81,106 @@ const clearSuggestions = () => {
   });
   suggestions.style = ' padding: 0px';
 };
-const searchOnInput = () => {
+const searchOnInput = async () => {
   let check = 0;
   if (search.value) {
-    countryList.forEach(val => {
-      if (val.toLowerCase().includes(search.value.toLowerCase())) {
-        suggestions.style = 'padding: 5px;';
-        const suggest = document.createElement('li');
-        suggest.innerHTML = `<a href="./search.html?search=${val}" onclick="searchTargetOnClick(this)">${val}</a>`;
-        //
-        suggestions.prepend(suggest);
-        check = 1;
-      }
-    });
-    if (check === 0) clearSuggestions();
+    const requestOptions = {
+      method: 'GET',
+      redirect: 'follow',
+    };
+
+    await fetch(
+      `https://panda-restaurant.herokuapp.com/api/v1/recipes/search?s=${search.value}`,
+      requestOptions
+    )
+      .then(res => res.json())
+      .then(data => {
+        const {
+          data: { data: arr },
+        } = data;
+        let check = 0;
+        if (arr.length) {
+          arr.forEach(val => {
+            suggestions.style = 'padding: 5px;';
+            const suggest = document.createElement('li');
+            suggest.innerHTML = `<a href="../pages/search.html?search=${val.name}" onclick="searchOnClick(this)">${val.name}</a>`;
+            suggestions.prepend(suggest);
+            check = 1;
+          });
+          if (check === 0) clearSuggestions();
+        } else {
+          clearSuggestions();
+        }
+        console.log(arr);
+        return;
+      })
+      .catch(error => console.log('error', error));
   } else {
     clearSuggestions();
   }
 };
 
-const searchTargetOnClick = link => {
-  localStorage.setItem('search-target', link.textContent);
+const searchOnClick = val => {
+  localStorage.setItem('search-target', val.textContent);
 };
 
+// function create search target content
+const searchTargetContent = async search => {
+  const requestOptions = {
+    method: 'GET',
+    redirect: 'follow',
+  };
+  await fetch(
+    `https://panda-restaurant.herokuapp.com/api/v1/recipes/search?s=${search}`,
+    requestOptions
+  )
+    .then(res => res.json())
+    .then(data => {
+      const {
+        data: { data: arr },
+      } = data;
+      arr.forEach(res => {
+        if (res.name === search) createCard(res);
+      });
+    });
+};
+
+// function create cart
+const createCard = res => {
+  //  <div class="col-sm-12 col-md-6 col-lg-4">
+  const recipes = document.querySelector('.recipes .row');
+  const card = `
+ 
+  <div class="card">
+    <div class="card-body">
+      <div class="row recipe">
+        <div class="col-8">
+          <div class="recipe-content">
+            <h4 class="recipe-title">${res.name}</h4>
+            <p class="recipe-text">
+              ${res.category}
+            </p>
+            <p class="recipe-price">${res.price}$</p>
+          </div>
+        </div>
+        <div class="col-4 recipe-img">
+          <img
+            src=${res.imageCover}
+            alt="${res.name} image"
+            class="recipe-asset"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  `;
+  const recipe = document.createElement('div');
+  recipe.classList.add('col-sm-12', 'col-md-6', 'col-lg-4');
+  recipe.innerHTML = card;
+  recipes.appendChild(recipe);
+};
+
+searchTargetContent(searchWord);
 // form validation
 
-// Fetch all the forms we want to apply custom Bootstrap validation styles to
-const pass = document.querySelector('#password-user');
-const passConfirm = document.querySelector('#password-confirm');
-const forms = document.querySelectorAll('.needs-validation');
-
-// Loop over them and prevent submission
-Array.prototype.slice.call(forms).forEach(function (form) {
-  form.addEventListener(
-    'submit',
-    function (event) {
-      if (!form.checkValidity()) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-      form.classList.add('was-validated');
-    },
-    false
-  );
-});
-
-passConfirm.addEventListener('input', () => {
-  const passConfirmError = document.querySelector('.password-confirm-error');
-  if (pass.value !== passConfirm.value) {
-    passConfirmError.classList.remove('invalid-feedback');
-    passConfirmError.style = 'font-size: .875em; color: #dc3545;';
-  } else {
-    passConfirmError.classList.add('invalid-feedback');
-  }
-});
 // password confirmation
