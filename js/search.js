@@ -22,7 +22,7 @@ const signup = document.getElementById('signup'),
   signin = document.getElementById('signin');
 
 signup.addEventListener('click', () => {
-  signupModal.classList.add('show__modal');
+  ui.signupModal.classList.add('show__modal');
 });
 
 signin.addEventListener('click', () => {
@@ -127,10 +127,17 @@ const searchOnClick = val => {
 
 // search btn
 const searchBtn = document.getElementById('search');
+const searchBtnLink = document.querySelector('.search-btn-link');
+
 searchBtn.addEventListener('click', () => {
   searchOnClick(search.value);
-  window.location = './search.html';
 });
+
+searchBtn.addEventListener('focus', () => {
+  searchBtnLink.style.color = '#eee';
+});
+
+searchBtnLink.addEventListener('click', searchOnClick(search.value));
 
 // add Enter Event to search input
 
@@ -156,17 +163,18 @@ const searchTargetContent = async search => {
       const {
         data: { data: arr },
       } = data;
+      const recipes = document.querySelector('.recipes .row');
       arr.forEach(res => {
         // if (res.name === search)
-        createCard(res);
+        createRecipe(recipes, res);
       });
     });
 };
 
 // function create cart
-const createCard = res => {
+const createRecipe = (container, res) => {
   //  <div class="col-sm-12 col-md-6 col-lg-4">
-  const recipes = document.querySelector('.recipes .row');
+
   const card = `
  
   <div class="card">
@@ -195,7 +203,7 @@ const createCard = res => {
   const recipe = document.createElement('div');
   recipe.classList.add('col-sm-12', 'col-md-6', 'col-lg-4');
   recipe.innerHTML = card;
-  recipes.appendChild(recipe);
+  container.appendChild(recipe);
 };
 
 searchTargetContent(searchWord);

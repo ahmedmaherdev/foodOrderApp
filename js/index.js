@@ -1,11 +1,11 @@
 'use strict';
+
 const closeSignup = document.getElementById('close');
 const closeSignin = document.getElementById('signin-close');
 const orderNow = document.getElementById('orderNow');
 const signupModal = document.getElementById('signup-modal');
 const signinModal = document.getElementById('signin-modal');
 const cartModal = document.getElementById('cartModal');
-
 //ingredient modal*******************
 const detailsModal = document.getElementById('detailsModal');
 const card = document.querySelectorAll('.card');
@@ -68,8 +68,6 @@ window.addEventListener('click', e => {
 // search section
 const search = document.querySelector('.search-label');
 
-const countryList = ['ahasjhkda'];
-
 const suggestions = document.querySelector('.suggestions');
 
 const clearSuggestions = () => {
@@ -124,14 +122,23 @@ const searchOnClick = val => {
 // search btn
 const searchBtn = document.getElementById('search');
 searchBtn.addEventListener('click', () => {
-  searchOnClick(search.value);
-  window.location.href = './pages/search.html';
+  if (search.value) {
+    searchOnClick(search.value);
+    window.location = './pages/search.html';
+  }
+});
+
+const searchBtnLink = document.querySelector('.search-btn-link');
+searchBtnLink.addEventListener('click', () => {
+  if (search.value) {
+    searchOnClick(search.value);
+  }
 });
 
 // add Enter Event to search input
 
 search.addEventListener('keyup', e => {
-  if (e.key === 'Enter') {
+  if (e.key === 'Enter' && search.value) {
     searchOnClick(search.value);
     window.location = './pages/search.html';
   }
@@ -225,22 +232,103 @@ const createContainerForCatergory = cat => {
 // function get all recipes
 const recipes = document.querySelector('.recipes-container');
 
-const getRecipes = async url => {
-  await fetch(url, { method: 'get' })
-    .then(res => res.json())
-    .then(data => {
-      const {
-        data: { data: recipesArray },
-      } = data;
-      recipesArray.forEach(val => {
-        createRecipe(recipes, val);
-        recipesArr.push(val);
-      });
+// const getRecipes = async url => {
+//   await fetch(url, { method: 'get' })
+//     .then(res => res.json())
+//     .then(data => {
+//       const {
+//         data: { data: recipesArray },
+//       } = data;
+//       recipesArray.forEach(val => {
+//         createRecipe(recipes, val);
+//         recipesArr.push(val);
+//       });
 
-      // console.log(recipesArray);
-    })
-    .catch(err => console.error(err));
-};
+//       // console.log(recipesArray);
+//     })
+//     .catch(err => console.error(err));
+// };
+
+const res = [
+  {
+    name: 'lol',
+    category: 'salad',
+    slug: 'slug',
+    price: '12$',
+    imageCover:
+      'https://panda-restaurant.herokuapp.com/img/recipes/recipe-tomato-soup.jpeg',
+  },
+  {
+    name: 'lol',
+    category: 'salad',
+    slug: 'slug',
+    price: '12$',
+    imageCover:
+      'https://panda-restaurant.herokuapp.com/img/recipes/recipe-tomato-soup.jpeg',
+  },
+  {
+    name: 'lol',
+    category: 'salad',
+    slug: 'slug',
+    price: '12$',
+    imageCover:
+      'https://panda-restaurant.herokuapp.com/img/recipes/recipe-tomato-soup.jpeg',
+  },
+  {
+    name: 'lol',
+    category: 'salad',
+    slug: 'slug',
+    price: '12$',
+    imageCover:
+      'https://panda-restaurant.herokuapp.com/img/recipes/recipe-tomato-soup.jpeg',
+  },
+  {
+    name: 'lol',
+    category: 'salad',
+    slug: 'slug',
+    price: '12$',
+    imageCover:
+      'https://panda-restaurant.herokuapp.com/img/recipes/recipe-tomato-soup.jpeg',
+  },
+  {
+    name: 'lol',
+    category: 'salad',
+    slug: 'slug',
+    price: '12$',
+    imageCover:
+      'https://panda-restaurant.herokuapp.com/img/recipes/recipe-tomato-soup.jpeg',
+  },
+  {
+    name: 'lol',
+    category: 'salad',
+    slug: 'slug',
+    price: '12',
+    imageCover:
+      'https://panda-restaurant.herokuapp.com/img/recipes/recipe-tomato-soup.jpeg',
+  },
+  {
+    name: 'lol',
+    category: 'salad',
+    slug: 'slug',
+    price: '12$',
+    imageCover:
+      'https://panda-restaurant.herokuapp.com/img/recipes/recipe-tomato-soup.jpeg',
+  },
+  {
+    name: 'lol',
+    category: 'salad',
+    slug: 'slug',
+    price: '12$',
+    imageCover:
+      'https://panda-restaurant.herokuapp.com/img/recipes/recipe-tomato-soup.jpeg',
+  },
+];
+
+function getRecipes(recipes, res) {
+  res.forEach(item => {
+    createRecipe(recipes, item);
+  });
+}
 
 // function to create recipe
 const createRecipe = (container, res) => {
@@ -276,6 +364,8 @@ const createRecipe = (container, res) => {
 };
 ////////////////////////////////////////
 
-getRecipes('https://panda-restaurant.herokuapp.com/api/v1/recipes/');
+// getRecipes('https://panda-restaurant.herokuapp.com/api/v1/recipes/');
+getRecipes(recipes, res);
 
+// export default createRecipe;
 // End recipies

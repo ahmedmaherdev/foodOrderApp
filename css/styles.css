@@ -208,6 +208,10 @@ body {
   border-radius: 50%;
 }
 
+.search-section .search-btn-link {
+  color: #eee;
+}
+
 .footer {
   margin: 20px;
   text-align: center;

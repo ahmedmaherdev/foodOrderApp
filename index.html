@@ -122,7 +122,6 @@
               <li class="nav-item">
                 <div class="search-section">
                   <form class="d-flex">
-                    <!-- onfocus="this.value=''" -->
                     <input
                       class="form-control me-2 search-label"
                       type="search"
@@ -131,12 +130,12 @@
                       oninput="searchOnInput()"
                       onfocus="this.value=''" 
                     />
-                    <button id="search" class="btn btn-outline-primary" type="submit">
-                      <i class="fas fa-search"></i>
+                    <button id="search" class="btn btn-primary">
+                      <a href="./pages/search.html" class="search-btn-link"><i class="fas fa-search"></i></a> 
                     </button>
                   </form>
                   <ul class="suggestions">
-                    <!-- Seggestions -->
+                    <!-- Suggestions -->
                   </ul>
                 </div>
                
@@ -229,7 +228,7 @@
             <div class="row recipes-container">
             </div>
           </div>
-          <div class="row">
+          <!-- <div class="row">
              
                 <div class="col-12 pages">
                   <button class="btn">1</button>
@@ -240,7 +239,7 @@
                   <button class="btn">6</button>
               
                 </div>
-            </div>
+            </div> -->
           </div>
 
           <!-- End recipes -->
