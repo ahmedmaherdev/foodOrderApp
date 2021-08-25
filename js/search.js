@@ -103,7 +103,7 @@ const searchOnInput = async () => {
           arr.forEach(val => {
             suggestions.style = 'padding: 5px;';
             const suggest = document.createElement('li');
-            suggest.innerHTML = `<a href="../pages/search.html?search=${val.name}" onclick="searchOnClick(this)">${val.name}</a>`;
+            suggest.innerHTML = `<a href="../pages/search.html?search=${val.name}" onclick="searchOnClick(this.textContent)">${val.name}</a>`;
             suggestions.prepend(suggest);
             check = 1;
           });
@@ -120,9 +120,26 @@ const searchOnInput = async () => {
   }
 };
 
+// function search after clicked
 const searchOnClick = val => {
-  localStorage.setItem('search-target', val.textContent);
+  localStorage.setItem('search-target', val);
 };
+
+// search btn
+const searchBtn = document.getElementById('search');
+searchBtn.addEventListener('click', () => {
+  searchOnClick(search.value);
+  window.location = './search.html';
+});
+
+// add Enter Event to search input
+
+search.addEventListener('keyup', e => {
+  if (e.key === 'Enter') {
+    searchOnClick(search.value);
+    window.location = './search.html';
+  }
+});
 
 // function create search target content
 const searchTargetContent = async search => {
@@ -140,7 +157,8 @@ const searchTargetContent = async search => {
         data: { data: arr },
       } = data;
       arr.forEach(res => {
-        if (res.name === search) createCard(res);
+        // if (res.name === search)
+        createCard(res);
       });
     });
 };

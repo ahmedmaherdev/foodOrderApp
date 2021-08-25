@@ -100,7 +100,7 @@ const searchOnInput = async () => {
           arr.forEach(val => {
             suggestions.style = 'padding: 5px;';
             const suggest = document.createElement('li');
-            suggest.innerHTML = `<a href="./pages/search.html?search=${val.name}" onclick="searchOnClick(this)">${val.name}</a>`;
+            suggest.innerHTML = `<a href="./pages/search.html?search=${val.name}" onclick="searchOnClick(this.textContent)">${val.name}</a>`;
             suggestions.prepend(suggest);
             check = 1;
           });
@@ -108,7 +108,7 @@ const searchOnInput = async () => {
         } else {
           clearSuggestions();
         }
-        console.log(arr);
+        // console.log(arr);
       })
       .catch(error => console.log('error', error));
   } else {
@@ -116,9 +116,26 @@ const searchOnInput = async () => {
   }
 };
 
+// function search after clicked
 const searchOnClick = val => {
-  localStorage.setItem('search-target', val.textContent);
+  localStorage.setItem('search-target', val);
 };
+
+// search btn
+const searchBtn = document.getElementById('search');
+searchBtn.addEventListener('click', () => {
+  searchOnClick(search.value);
+  window.location.href = './pages/search.html';
+});
+
+// add Enter Event to search input
+
+search.addEventListener('keyup', e => {
+  if (e.key === 'Enter') {
+    searchOnClick(search.value);
+    window.location = './pages/search.html';
+  }
+});
 
 // End Search section
 
@@ -160,7 +177,7 @@ const getCategories = async url => {
 
 document.addEventListener('DOMContentLoaded', () => {
   const categoriesBtns = document.querySelectorAll('.categories .btn');
-  console.log(categoriesBtns);
+  // console.log(categoriesBtns);
   categoriesBtns.forEach(btn => {
     btn.addEventListener('click', categoryAction(btn));
   });
@@ -220,7 +237,7 @@ const getRecipes = async url => {
         recipesArr.push(val);
       });
 
-      console.log(recipesArray);
+      // console.log(recipesArray);
     })
     .catch(err => console.error(err));
 };

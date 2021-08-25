@@ -122,13 +122,14 @@
               <li class="nav-item">
                 <div class="search-section">
                   <form class="d-flex">
+                    <!-- onfocus="this.value=''" -->
                     <input
                       class="form-control me-2 search-label"
                       type="search"
                       placeholder="Search"
                       aria-label="Search"
                       oninput="searchOnInput()"
-                      onfocus="this.value=''"
+                      onfocus="this.value=''" 
                     />
                     <button id="search" class="btn btn-outline-primary" type="submit">
                       <i class="fas fa-search"></i>
