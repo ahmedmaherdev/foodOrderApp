@@ -124,21 +124,23 @@
               <!-- dropdown -->
               <li class="nav-item">
                 <div class="search-section">
-                  <form class="d-flex">
+                  <div class="d-flex">
                     <input
                       class="form-control me-2 search-label"
                       type="search"
                       placeholder="Search"
                       aria-label="Search"
-                      oninput="searchOnInput()"
+                      onchange="searchOnChange()"
                       onfocus="this.value=''"
                     />
-                    <button id="search" class="btn btn-primary">
-                      <a href="../pages/search.html" class="search-btn-link"
-                        ><i class="fas fa-search"></i
-                      ></a>
+                    <button
+                      id="search"
+                      class="btn btn-outline-primary"
+                      type="submit"
+                    >
+                      <i class="fas fa-search"></i>
                     </button>
-                  </form>
+                  </div>
                   <ul class="suggestions">
                     <!-- Seggestions -->
                   </ul>
@@ -155,7 +157,7 @@
       <div class="container">
         <div class="row">
           <div class="col-12 recipes" id="#recipes">
-            <div class="row"></div>
+            <div class="row recipes-container"></div>
           </div>
         </div>
       </div>
@@ -344,7 +346,7 @@
                 <label for="email">Email</label>
                 <input
                   type="email"
-                  id="email"
+                  id="singupEmail"
                   class="form-input"
                   placeholder="example@email,com"
                   onfocus="this.value=''"
@@ -422,7 +424,7 @@
                 <label for="email">Email</label>
                 <input
                   type="email"
-                  id="email"
+                  id="signinEmail"
                   placeholder="Enter Email"
                   class="form-input"
                   onfocus="this.value=''"
@@ -471,9 +473,9 @@
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="ingredients">
               <!--Start Body -->
-              <div class="recipe">
+              <!-- <div class="recipe">
                 <figure class="recipe__fig">
                   <img
                     src="../img/pestoa0e7.jpg"
@@ -553,7 +555,7 @@
                     <span>Add to Cart</span>
                   </button>
                 </div>
-              </div>
+              </div> -->
 
               <!--End Body -->
             </div>
@@ -582,6 +584,6 @@
       integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
       crossorigin="anonymous"
     ></script>
-    <script src="../js/search.js"></script>
+    <script type="module" src="../js/search.js"></script>
   </body>
 </html>

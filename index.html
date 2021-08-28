@@ -20,11 +20,13 @@
     <link rel="stylesheet" href="./css/styles.css" />
     <link rel="stylesheet" href="./css/main.css" />
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
 
-    
     <link rel="icon" href="./img/restaurant-icon.png" />
     <title>Resturant</title>
   </head>
@@ -71,21 +73,21 @@
                     aria-expanded="false"
                     disabled
                   >
-                    <i class="fas fa-user "></i>
+                    <i class="fas fa-user"></i>
                   </button>
                   <ul
-                    class="dropdown-menu "
+                    class="dropdown-menu"
                     aria-labelledby="dropdownMenuButton1"
                   >
                     <li>
                       <button
-                      id="cart-open"
+                        id="cart-open"
                         type="button"
-                        class="btn btn-primary dropdown-item "
+                        class="btn btn-primary dropdown-item"
                         data-bs-toggle="modal"
                         data-bs-target="#cartModal"
                       >
-                        <i class="fas fa-cart-arrow-down "></i> Cart
+                        <i class="fas fa-cart-arrow-down"></i> Cart
                       </button>
                     </li>
                     <li>
@@ -104,7 +106,6 @@
                         class="btn btn-primary dropdown-item"
                         data-bs-toggle="modal"
                         data-bs-target="#orderModal"
-                      
                       >
                         <!--
                            NOTE 
@@ -121,24 +122,28 @@
               <!-- dropdown -->
               <li class="nav-item">
                 <div class="search-section">
-                  <form class="d-flex">
+                  <div class="d-flex">
                     <input
                       class="form-control me-2 search-label"
                       type="search"
                       placeholder="Search"
                       aria-label="Search"
-                      oninput="searchOnInput()"
-                      onfocus="this.value=''" 
+                      onfocus="this.value=''"
                     />
-                    <button id="search" class="btn btn-primary">
-                      <a href="./pages/search.html" class="search-btn-link"><i class="fas fa-search"></i></a> 
+                    <button
+                      id="search"
+                      class="btn btn-outline-primary"
+                      type="submit"
+                    >
+                      <i class="fas fa-search"></i>
                     </button>
-                  </form>
+                  </div>
+                  <!-- onfocus="this.value=''" -->
+
                   <ul class="suggestions">
-                    <!-- Suggestions -->
+                    <!-- Seggestions -->
                   </ul>
                 </div>
-               
               </li>
             </ul>
           </div>
@@ -151,68 +156,7 @@
       <div class="container">
         <!-- Our Popular Food -->
         <h3 class="popular-header">Our Popular Food</h3>
-        <div class="row popular">
-          <div class="col-sm-6 col-md-4 col-lg-3">
-            <div class="card">
-              <img
-                src="./img/pizza.jpg"
-                alt="pizza image"
-                class="card-img-top"
-              />
-              <div class="card-body">
-                <div class="food-info">
-                  <h4 class="card-title">Pizza</h4>
-                  <p class="card-text price">10$</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-4 col-lg-3"">
-            <div class="card">
-              <img
-                src="./img/pizza.jpg"
-                alt="pizza image"
-                class="card-img-top"
-              />
-              <div class="card-body">
-                <div class="food-info">
-                  <h4 class="card-title">Pizza</h4>
-                  <p class="card-text price">10$</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-4 col-lg-3"">
-            <div class="card">
-              <img
-                src="./img/pizza.jpg"
-                alt="pizza image"
-                class="card-img-top"
-              />
-              <div class="card-body">
-                <div class="food-info">
-                  <h4 class="card-title">Pizza</h4>
-                  <p class="card-text price">10$</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-4 col-lg-3"">
-            <div class="card">
-              <img
-                src="./img/pizza.jpg"
-                alt="pizza image"
-                class="card-img-top"
-              />
-              <div class="card-body">
-                <div class="food-info">
-                  <h4 class="card-title">Pizza</h4>
-                  <p class="card-text price">10$</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="row popular"></div>
 
         <!-- Our Cuisines -->
 
@@ -220,33 +164,22 @@
 
         <div class="row cuisines">
           <!-- categories -->
-          <div class="col-12 categories">
-          </div>
+          <div class="col-12 categories"></div>
           <!-- End categories -->
           <!-- recipes -->
           <div class="col-12 recipes">
-            <div class="row recipes-container">
+            <div class="row recipes-container"></div>
+            <div class="row">
+              <div class="col-12 pages"></div>
             </div>
           </div>
-          <!-- <div class="row">
-             
-                <div class="col-12 pages">
-                  <button class="btn">1</button>
-                  <button class="btn">2</button>
-                  <button class="btn">3</button>
-                  <button class="btn">4</button>
-                  <button class="btn">5</button>
-                  <button class="btn">6</button>
-              
-                </div>
-            </div> -->
-          </div>
+        </div>
 
-          <!-- End recipes -->
+        <!-- End recipes -->
 
-          <!-- End Cuisines -->
+        <!-- End Cuisines -->
 
-           <!-- Mobile App -->
+        <!-- Mobile App -->
 
         <div class="row mobile">
           <div class="col-sm-12 col-md-6 mobile-info">
@@ -265,168 +198,168 @@
             <img src="./img/pizza.jpg" alt="app photo" class="app-photo" />
           </div>
 
-           <!-- End Mobile App -->
+          <!-- End Mobile App -->
         </div>
-        
-          <!-- End Container -->
+
+        <!-- End Container -->
       </div>
 
-    
-   
-
-       
-
-        <!--Cart Modal -->
-        <div
-          class="modal fade"
-          id="cartModal"
-          tabindex="-1"
-          aria-labelledby="cartModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="cartModalLabel">Cart</h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <ul class="cart-items">
-                  <li class="cart-item">
-                    <div class="row">
-                    
-                      
-                      <div class="col-8 cart-content">
-                        <h3>Pizza</h3>
+      <!--Cart Modal -->
+      <div
+        class="modal fade"
+        id="cartModal"
+        tabindex="-1"
+        aria-labelledby="cartModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="cartModalLabel">Cart</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <ul class="cart-items">
+                <li class="cart-item">
+                  <div class="row">
+                    <div class="col-8 cart-content">
+                      <h3>Pizza</h3>
                       <div class="summary">
                         <span class="price">12$</span>
                         <span class="amount">x 2</span>
                       </div>
-                      </div>
-                      <div class="col-4"><img class="pic" src="./img/pizza.jpg" /></div>
                     </div>
-                  </li>
-                  <li class="cart-item">
-                    <div class="row">
-                    
-                      
-                      <div class="col-8 cart-content">
-                        <h3>Pizza</h3>
+                    <div class="col-4">
+                      <img class="pic" src="./img/pizza.jpg" />
+                    </div>
+                  </div>
+                </li>
+                <li class="cart-item">
+                  <div class="row">
+                    <div class="col-8 cart-content">
+                      <h3>Pizza</h3>
                       <div class="summary">
                         <span class="price">12$</span>
                         <span class="amount">x 2</span>
                       </div>
-                      </div>
-                      <div class="col-4"><img class="pic" src="./img/pizza.jpg" /></div>
                     </div>
-                  </li>
+                    <div class="col-4">
+                      <img class="pic" src="./img/pizza.jpg" />
+                    </div>
+                  </div>
+                </li>
 
-                  <li class="cart-item">
-                    <div class="row">
-                    
-                      
-                      <div class="col-8 cart-content">
-                        <h3>Pizza</h3>
+                <li class="cart-item">
+                  <div class="row">
+                    <div class="col-8 cart-content">
+                      <h3>Pizza</h3>
                       <div class="summary">
                         <span class="price">12$</span>
                         <span class="amount">x 2</span>
                       </div>
-                      </div>
-                      <div class="col-4"><img class="pic" src="./img/pizza.jpg" /></div>
                     </div>
-                  </li>
-                </ul>
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                  Close
-                </button>
-                <button type="button" class="btn btn-primary" id="orderNow" data-bs-dismiss="modal">
-                  Order Now
-                </button>
-              </div>
+                    <div class="col-4">
+                      <img class="pic" src="./img/pizza.jpg" />
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="orderNow"
+                data-bs-dismiss="modal"
+              >
+                Order Now
+              </button>
             </div>
           </div>
         </div>
-        <!--Cart Modal -->
+      </div>
+      <!--Cart Modal -->
 
-        <!--favourite Modal -->
-        <div
-          class="modal fade"
-          id="favouriteModal"
-          tabindex="-1"
-          aria-labelledby="favouriteModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Favourite</h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">....</div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                  Close
-                </button>
-              </div>
+      <!--favourite Modal -->
+      <div
+        class="modal fade"
+        id="favouriteModal"
+        tabindex="-1"
+        aria-labelledby="favouriteModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Favourite</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">....</div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
             </div>
           </div>
         </div>
-        <!--Favourite Modal -->
+      </div>
+      <!--Favourite Modal -->
 
-        <!-- order List Modal -->
-        <div
-          class="modal fade"
-          id="orderModal"
-          tabindex="-1"
-          aria-labelledby="orderModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="orderModalLabel">Modal title</h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">...</div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                  Close
-                </button>
-              </div>
+      <!-- order List Modal -->
+      <div
+        class="modal fade"
+        id="orderModal"
+        tabindex="-1"
+        aria-labelledby="orderModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="orderModalLabel">Modal title</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">...</div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
             </div>
           </div>
         </div>
-        <!-- End order List modal -->
-         <!-- form model -->
+      </div>
+      <!-- End order List modal -->
+      <!-- form model -->
       <!-- Sign Up Modal -->
       <div class="form__container" id="signup-modal">
         <div class="form__modal">
@@ -455,7 +388,7 @@
                 <label for="email">Email</label>
                 <input
                   type="email"
-                  id="email"
+                  id="signupEmail"
                   class="form-input"
                   placeholder="example@email,com"
                   onfocus="this.value=''"
@@ -533,7 +466,7 @@
                 <label for="email">Email</label>
                 <input
                   type="email"
-                  id="email"
+                  id="signinEmail"
                   placeholder="Enter Email"
                   class="form-input"
                   onfocus="this.value=''"
@@ -563,17 +496,28 @@
       <!-- End Sign in modal  -->
       <!-- End form model -->
 
-               <!--details Modal -->
-       <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+      <!--details Modal -->
+      <div
+        class="modal fade"
+        id="detailsModal"
+        tabindex="-1"
+        aria-labelledby="detailsModalLabel"
+        aria-hidden="true"
+      >
         <div class="modal-dialog">
-        <div class="modal-content">
+          <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ingredient</h5>
-            <button type="button" class="btn-close close__details" data-bs-dismiss="modal" aria-label="Close"></button>
+              <h5 class="modal-title" id="exampleModalLabel">Ingredient</h5>
+              <button
+                type="button"
+                class="btn-close close__details"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="ingredients">
               <!--Start Body -->
-              <div class="recipe">
+              <!-- <div class="recipe">
                 <figure class="recipe__fig">
                   <img src="./img/pestoa0e7.jpg" alt="pizza" class="recipe__img">
                   <h1 class="recipe__title">
@@ -650,20 +594,23 @@
                   </button>
               </div>
                 
-            </div>
+            </div> -->
 
               <!--End Body -->
-
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary close__details" data-bs-dismiss="modal">Close</button>
+              <button
+                type="button"
+                class="btn btn-secondary close__details"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
             </div>
+          </div>
         </div>
-        </div>
-    </div>
-    <!--details Modal -->
-
-       
+      </div>
+      <!--details Modal -->
     </main>
 
     <!-- End Main -->
@@ -681,6 +628,7 @@
       integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
       crossorigin="anonymous"
     ></script>
-    <script src="./js/index.js"></script>
+
+    <script type="module" src="./js/index.js"></script>
   </body>
 </html>

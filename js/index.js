@@ -1,82 +1,19 @@
 'use strict';
 
-const closeSignup = document.getElementById('close');
-const closeSignin = document.getElementById('signin-close');
-const orderNow = document.getElementById('orderNow');
-const signupModal = document.getElementById('signup-modal');
-const signinModal = document.getElementById('signin-modal');
-const cartModal = document.getElementById('cartModal');
-//ingredient modal*******************
-const detailsModal = document.getElementById('detailsModal');
-const card = document.querySelectorAll('.card');
-const closeDetailsModal = document.querySelectorAll('.close__details');
-//ingredient modal*******************
+import { elements, loadSpinner, clearLoader } from './base.js';
+import { createPopular, popular } from './createRecipe.js';
+import { DisplayList, SetupPagination } from './paginations.js';
+import { createIngredientsModel } from './ingredientsModal.js';
 
-const signup = document.getElementById('signup'),
-  signin = document.getElementById('signin');
+let current_page = 1;
+let itemsPerPage = 3;
 
-signup.addEventListener('click', () => {
-  signupModal.classList.add('show__modal');
-});
-
-signin.addEventListener('click', () => {
-  signinModal.classList.add('show__modal');
-});
-
-//show modal
-orderNow.addEventListener('click', () => {
-  signupModal.classList.add('show__modal');
-});
-
-//hide modal
-closeSignup.addEventListener('click', () => {
-  signupModal.classList.remove('show__modal');
-});
-
-closeSignin.addEventListener('click', () => {
-  signinModal.classList.remove('show__modal');
-});
-
-//hide modal outside  click
-window.addEventListener('click', e => {
-  e.target == signupModal ? signupModal.classList.remove('show__modal') : false;
-  e.target == signinModal ? signinModal.classList.remove('show__modal') : false;
-  clearSuggestions();
-});
-
-//show ingredients details modal************************************
-card.forEach(value => {
-  value.addEventListener('click', () => {
-    detailsModal.classList.add('show');
-  });
-});
-
-//hide details  modal
-closeDetailsModal.forEach(value => {
-  value.addEventListener('click', () => {
-    detailsModal.classList.remove('show');
-  });
-});
-
-//hide details  modal outside  click
-window.addEventListener('click', e => {
-  e.target == detailsModal ? detailsModal.classList.remove('show') : false;
-});
-
-//show ingredients details modal****************************
-
+//////////////////////////////////////////////////////////////////////
 // search section
 const search = document.querySelector('.search-label');
-
 const suggestions = document.querySelector('.suggestions');
 
-const clearSuggestions = () => {
-  suggestions.querySelectorAll('li').forEach(val => {
-    val.remove();
-  });
-  suggestions.style = ' padding: 0px';
-};
-const searchOnInput = async () => {
+const searchOnChange = async () => {
   let check = 0;
   if (search.value) {
     const requestOptions = {
@@ -95,6 +32,7 @@ const searchOnInput = async () => {
         } = data;
         let check = 0;
         if (arr.length) {
+          suggestions.innerHTML = '';
           arr.forEach(val => {
             suggestions.style = 'padding: 5px;';
             const suggest = document.createElement('li');
@@ -106,7 +44,7 @@ const searchOnInput = async () => {
         } else {
           clearSuggestions();
         }
-        // console.log(arr);
+        console.log(arr);
       })
       .catch(error => console.log('error', error));
   } else {
@@ -114,43 +52,44 @@ const searchOnInput = async () => {
   }
 };
 
-// function search after clicked
-const searchOnClick = val => {
-  localStorage.setItem('search-target', val);
+const searchOnClick = url => {
+  if (search.value) {
+    localStorage.setItem('search-target', search.value);
+    window.location = `${url}`;
+  }
+};
+window.searchOnClick = searchOnClick;
+
+const clearSuggestions = () => {
+  suggestions.querySelectorAll('li').forEach(val => {
+    val.remove();
+  });
+  suggestions.style = ' padding: 0px';
 };
 
 // search btn
 const searchBtn = document.getElementById('search');
 searchBtn.addEventListener('click', () => {
-  if (search.value) {
-    searchOnClick(search.value);
-    window.location = './pages/search.html';
-  }
+  searchOnClick('./pages/search.html');
 });
 
-const searchBtnLink = document.querySelector('.search-btn-link');
-searchBtnLink.addEventListener('click', () => {
-  if (search.value) {
-    searchOnClick(search.value);
-  }
-});
+search.addEventListener('input', searchOnChange);
 
 // add Enter Event to search input
 
 search.addEventListener('keyup', e => {
-  if (e.key === 'Enter' && search.value) {
-    searchOnClick(search.value);
-    window.location = './pages/search.html';
+  if (e.key === 'Enter') {
+    searchOnClick('./pages/search.html');
   }
 });
 
 // End Search section
+/////////////////////////////////////////////////////////////////////
 
 // define arrays of data
 const categoriesArr = [];
 const recipesArr = [];
 
-// let categoriesBtns = 0;
 const categories = document.querySelector('.categories');
 
 const createCategory = val => {
@@ -158,6 +97,7 @@ const createCategory = val => {
   category.classList.add('btn', 'btn-outline-danger');
   category.value = val['_id'];
   category.textContent = val.name;
+  category.setAttribute('onclick', 'categoryBtnAction(this.textContent)');
   return category;
 };
 
@@ -172,200 +112,138 @@ const getCategories = async url => {
         data: { data: categoriesArray },
       } = data;
       categoriesArray.forEach(cat => {
-        categories.appendChild(createCategory(cat));
-        createContainerForCatergory(cat.name);
+        const category = createCategory(cat);
+        categories.appendChild(category);
         categoriesArr.push(cat);
-        return categoriesArray;
       });
     })
 
     .catch(err => console.error(err));
 };
 
-document.addEventListener('DOMContentLoaded', () => {
-  const categoriesBtns = document.querySelectorAll('.categories .btn');
-  // console.log(categoriesBtns);
-  categoriesBtns.forEach(btn => {
-    btn.addEventListener('click', categoryAction(btn));
-  });
-});
-
 // categories btns actions
 
+const categoryBtnAction = async categoryName => {
+  await fetch(
+    `https://panda-restaurant.herokuapp.com/api/v1/recipes/?category=${categoryName}`,
+    {
+      method: 'get',
+    }
+  )
+    .then(res => res.json())
+    .then(data => {
+      const {
+        data: { data: recipesArray },
+      } = data;
+      // console.log(recipesArray);
+      DisplayList(recipesArray, recipes, itemsPerPage, current_page);
+      SetupPagination(recipesArray, pages, itemsPerPage);
+    })
+
+    .catch(err => console.error(err));
+};
+window.categoryBtnAction = categoryBtnAction;
 //////////////////////////////////////////
 getCategories('https://panda-restaurant.herokuapp.com/api/v1/categories/');
 
-// function action of catergory
-const categoryAction = btn => {
-  const containers = document.querySelectorAll('.recipes  .row');
-  hideAllContainers(containers);
-  containers.forEach(val => {
-    if (val.classList.contains(btn.textContent)) {
-      val.classList.remove('hidden');
-    }
-  });
-};
-
-// hidden all catergores containers
-const hideAllContainers = containers => {
-  containers.forEach(val => {
-    if (!val.classList.contains('hidden')) {
-      val.classList.add('hidden');
-    }
-  });
-};
-
-// function to create container for each category recipes
-const createContainerForCatergory = cat => {
-  const recipes = document.querySelector('.recipes');
-  const categoryContainer = document.createElement('div');
-  categoryContainer.classList.add(
-    'row',
-    `${cat.includes(' ') ? cat.replace(' ', '-') : cat}`,
-    'hidden'
-  );
-  recipes.appendChild(categoryContainer);
-};
-
 // end get categories
 
+///////////////////////////////////////////////////////////////////////////////
+
 // function get all recipes
-const recipes = document.querySelector('.recipes-container');
+// const recipes = document.querySelector('.recipes-container');
+const recipes = elements.recipeContainer;
+const pages = document.querySelector('.pages');
 
-// const getRecipes = async url => {
-//   await fetch(url, { method: 'get' })
-//     .then(res => res.json())
-//     .then(data => {
-//       const {
-//         data: { data: recipesArray },
-//       } = data;
-//       recipesArray.forEach(val => {
-//         createRecipe(recipes, val);
-//         recipesArr.push(val);
-//       });
+const getRecipes = async url => {
+  loadSpinner(recipes);
+  await fetch(url, { method: 'get' })
+    .then(res => res.json())
+    .then(data => {
+      const {
+        data: { data: recipesArray },
+      } = data;
+      const popularArray = [...recipesArray.slice(0, 4)];
+      recipesArray.forEach(val => {
+        recipesArr.push(val);
+      });
+      popularArray.forEach(res => createPopular(popular, res));
+      return recipesArray;
+    })
+    .then(arr => {
+      clearLoader();
+      DisplayList(arr, recipes, itemsPerPage, current_page);
+      SetupPagination(arr, pages, itemsPerPage);
+      return arr;
+    })
 
-//       // console.log(recipesArray);
-//     })
-//     .catch(err => console.error(err));
-// };
-
-const res = [
-  {
-    name: 'lol',
-    category: 'salad',
-    slug: 'slug',
-    price: '12$',
-    imageCover:
-      'https://panda-restaurant.herokuapp.com/img/recipes/recipe-tomato-soup.jpeg',
-  },
-  {
-    name: 'lol',
-    category: 'salad',
-    slug: 'slug',
-    price: '12$',
-    imageCover:
-      'https://panda-restaurant.herokuapp.com/img/recipes/recipe-tomato-soup.jpeg',
-  },
-  {
-    name: 'lol',
-    category: 'salad',
-    slug: 'slug',
-    price: '12$',
-    imageCover:
-      'https://panda-restaurant.herokuapp.com/img/recipes/recipe-tomato-soup.jpeg',
-  },
-  {
-    name: 'lol',
-    category: 'salad',
-    slug: 'slug',
-    price: '12$',
-    imageCover:
-      'https://panda-restaurant.herokuapp.com/img/recipes/recipe-tomato-soup.jpeg',
-  },
-  {
-    name: 'lol',
-    category: 'salad',
-    slug: 'slug',
-    price: '12$',
-    imageCover:
-      'https://panda-restaurant.herokuapp.com/img/recipes/recipe-tomato-soup.jpeg',
-  },
-  {
-    name: 'lol',
-    category: 'salad',
-    slug: 'slug',
-    price: '12$',
-    imageCover:
-      'https://panda-restaurant.herokuapp.com/img/recipes/recipe-tomato-soup.jpeg',
-  },
-  {
-    name: 'lol',
-    category: 'salad',
-    slug: 'slug',
-    price: '12',
-    imageCover:
-      'https://panda-restaurant.herokuapp.com/img/recipes/recipe-tomato-soup.jpeg',
-  },
-  {
-    name: 'lol',
-    category: 'salad',
-    slug: 'slug',
-    price: '12$',
-    imageCover:
-      'https://panda-restaurant.herokuapp.com/img/recipes/recipe-tomato-soup.jpeg',
-  },
-  {
-    name: 'lol',
-    category: 'salad',
-    slug: 'slug',
-    price: '12$',
-    imageCover:
-      'https://panda-restaurant.herokuapp.com/img/recipes/recipe-tomato-soup.jpeg',
-  },
-];
-
-function getRecipes(recipes, res) {
-  res.forEach(item => {
-    createRecipe(recipes, item);
-  });
-}
-
-// function to create recipe
-const createRecipe = (container, res) => {
-  const card = `
-  <div class="card">
-    <div class="card-body">
-      <div class="row recipe">
-        <div class="col-8">
-          <div class="recipe-content">
-            <h4 class="recipe-title">${res.name}</h4>
-            <p class="recipe-text">
-              ${res.category}<br>
-              ${res.slug}
-            </p>
-            <p class="recipe-price">${res.price}$</p>
-          </div>
-        </div>
-        <div class="col-4 recipe-img">
-          <img
-            src=${res.imageCover}
-            alt="${res.name} image"
-            class="recipe-asset"
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-`;
-  const recipe = document.createElement('div');
-  recipe.classList.add('col-sm-12', 'col-md-6', 'col-lg-4');
-  recipe.innerHTML = card;
-  container.appendChild(recipe);
+    .catch(err => console.error(err));
 };
-////////////////////////////////////////
 
-// getRecipes('https://panda-restaurant.herokuapp.com/api/v1/recipes/');
-getRecipes(recipes, res);
+getRecipes('https://panda-restaurant.herokuapp.com/api/v1/recipes/');
 
-// export default createRecipe;
-// End recipies
+const makemodalVisible = async card => {
+  await fetch(
+    `https://panda-restaurant.herokuapp.com/api/v1/recipes/?name=${
+      card.querySelector('.recipe-name').textContent
+    }`
+  )
+    .then(res => res.json())
+    .then(data => {
+      const {
+        data: { data: rec },
+      } = data;
+      elements.detailsModal.classList.add('show');
+      createIngredientsModel(rec);
+    });
+};
+
+window.makemodalVisible = makemodalVisible;
+
+/*Events */
+elements.signup.addEventListener('click', () => {
+  elements.signupModal.classList.add('show__modal');
+});
+
+elements.signin.addEventListener('click', () => {
+  elements.signinModal.classList.add('show__modal');
+});
+
+//show modal
+elements.orderNow.addEventListener('click', () => {
+  elements.signupModal.classList.add('show__modal');
+});
+
+//hide modal
+elements.closeSignup.addEventListener('click', () => {
+  elements.signupModal.classList.remove('show__modal');
+});
+
+elements.closeSignin.addEventListener('click', () => {
+  elements.signinModal.classList.remove('show__modal');
+});
+
+//hide modal outside  click
+window.addEventListener('click', e => {
+  e.target == elements.signupModal
+    ? elements.signupModal.classList.remove('show__modal')
+    : false;
+  e.target == elements.signinModal
+    ? elements.signinModal.classList.remove('show__modal')
+    : false;
+  clearSuggestions();
+});
+
+//hide details  modal
+elements.closeDetailsModal.forEach(value => {
+  value.addEventListener('click', () => {
+    elements.detailsModal.classList.remove('show');
+  });
+});
+
+//hide details  modal outside  click
+window.addEventListener('click', e => {
+  e.target == elements.detailsModal
+    ? elements.detailsModal.classList.remove('show')
+    : false;
+});

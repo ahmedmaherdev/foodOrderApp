@@ -1,87 +1,68 @@
 'use strict';
 
+import { elements as elements } from './base.js';
+import { createRecipe as createRecipe } from './createRecipe.js';
+import { createIngredientsModel as createIngredientsModel } from './ingredientsModal.js';
 const searchTarget = document.querySelector('.search-target');
 let searchWord = localStorage.getItem('search-target');
 
 searchTarget.textContent = `You search about: ${searchWord}`;
 
-const closeSignup = document.getElementById('close');
-const closeSignin = document.getElementById('signin-close');
-const orderNow = document.getElementById('orderNow');
-const signupModal = document.getElementById('signup-modal');
-const signinModal = document.getElementById('signin-modal');
-const cartModal = document.getElementById('cartModal');
-
-//ingredient modal*******************
-const detailsModal = document.getElementById('detailsModal');
-const card = document.querySelectorAll('.card');
-const closeDetailsModal = document.querySelectorAll('.close__details');
-//ingredient modal*******************
-
-const signup = document.getElementById('signup'),
-  signin = document.getElementById('signin');
-
-signup.addEventListener('click', () => {
-  ui.signupModal.classList.add('show__modal');
+elements.signup.addEventListener('click', () => {
+  elements.signupModal.classList.add('show__modal');
 });
 
-signin.addEventListener('click', () => {
-  signinModal.classList.add('show__modal');
+elements.signin.addEventListener('click', () => {
+  elements.signinModal.classList.add('show__modal');
 });
 
 //show modal
-orderNow.addEventListener('click', () => {
-  signupModal.classList.add('show__modal');
+elements.orderNow.addEventListener('click', () => {
+  elements.signupModal.classList.add('show__modal');
 });
 
 //hide modal
-closeSignup.addEventListener('click', () => {
-  signupModal.classList.remove('show__modal');
+elements.closeSignup.addEventListener('click', () => {
+  elements.signupModal.classList.remove('show__modal');
 });
 
-closeSignin.addEventListener('click', () => {
-  signinModal.classList.remove('show__modal');
+elements.closeSignin.addEventListener('click', () => {
+  elements.signinModal.classList.remove('show__modal');
 });
 
 //hide modal outside  click
 window.addEventListener('click', e => {
-  e.target == signupModal ? signupModal.classList.remove('show__modal') : false;
-  e.target == signinModal ? signinModal.classList.remove('show__modal') : false;
+  e.target == elements.signupModal
+    ? elements.signupModal.classList.remove('show__modal')
+    : false;
+  e.target == elements.signinModal
+    ? elements.signinModal.classList.remove('show__modal')
+    : false;
   clearSuggestions();
 });
 
-//show ingredients details modal************************************
-card.forEach(value => {
-  value.addEventListener('click', () => {
-    detailsModal.classList.add('show');
-  });
-});
-
 //hide details  modal
-closeDetailsModal.forEach(value => {
+elements.closeDetailsModal.forEach(value => {
   value.addEventListener('click', () => {
-    detailsModal.classList.remove('show');
+    elements.detailsModal.classList.remove('show');
   });
 });
 
 //hide details  modal outside  click
 window.addEventListener('click', e => {
-  e.target == detailsModal ? detailsModal.classList.remove('show') : false;
+  e.target == elements.detailsModal
+    ? elements.detailsModal.classList.remove('show')
+    : false;
 });
 
 //show ingredients details modal****************************
 
+//////////////////////////////////////////////////////////////////////
 // search section
 const search = document.querySelector('.search-label');
-
 const suggestions = document.querySelector('.suggestions');
-const clearSuggestions = () => {
-  suggestions.querySelectorAll('li').forEach(val => {
-    val.remove();
-  });
-  suggestions.style = ' padding: 0px';
-};
-const searchOnInput = async () => {
+
+const searchOnChange = async () => {
   let check = 0;
   if (search.value) {
     const requestOptions = {
@@ -100,10 +81,11 @@ const searchOnInput = async () => {
         } = data;
         let check = 0;
         if (arr.length) {
+          suggestions.innerHTML = '';
           arr.forEach(val => {
             suggestions.style = 'padding: 5px;';
             const suggest = document.createElement('li');
-            suggest.innerHTML = `<a href="../pages/search.html?search=${val.name}" onclick="searchOnClick(this.textContent)">${val.name}</a>`;
+            suggest.innerHTML = `<a href="./pages/search.html?search=${val.name}" onclick="searchOnClick(this.textContent)">${val.name}</a>`;
             suggestions.prepend(suggest);
             check = 1;
           });
@@ -112,7 +94,6 @@ const searchOnInput = async () => {
           clearSuggestions();
         }
         console.log(arr);
-        return;
       })
       .catch(error => console.log('error', error));
   } else {
@@ -120,33 +101,39 @@ const searchOnInput = async () => {
   }
 };
 
-// function search after clicked
-const searchOnClick = val => {
-  localStorage.setItem('search-target', val);
+window.searchOnChange = searchOnChange;
+
+const searchOnClick = url => {
+  if (search.value) {
+    localStorage.setItem('search-target', search.value);
+    window.location = `${url}`;
+  }
+};
+
+const clearSuggestions = () => {
+  suggestions.querySelectorAll('li').forEach(val => {
+    val.remove();
+  });
+  suggestions.style = ' padding: 0px';
 };
 
 // search btn
 const searchBtn = document.getElementById('search');
-const searchBtnLink = document.querySelector('.search-btn-link');
-
 searchBtn.addEventListener('click', () => {
-  searchOnClick(search.value);
+  searchOnClick('./search.html');
 });
 
-searchBtn.addEventListener('focus', () => {
-  searchBtnLink.style.color = '#eee';
-});
-
-searchBtnLink.addEventListener('click', searchOnClick(search.value));
+search.addEventListener('input', searchOnChange);
 
 // add Enter Event to search input
 
 search.addEventListener('keyup', e => {
   if (e.key === 'Enter') {
-    searchOnClick(search.value);
-    window.location = './search.html';
+    searchOnClick('./search.html');
   }
 });
+
+const recipes = elements.recipeContainer;
 
 // function create search target content
 const searchTargetContent = async search => {
@@ -163,50 +150,32 @@ const searchTargetContent = async search => {
       const {
         data: { data: arr },
       } = data;
-      const recipes = document.querySelector('.recipes .row');
       arr.forEach(res => {
-        // if (res.name === search)
         createRecipe(recipes, res);
       });
     });
 };
+searchTargetContent(searchWord);
+// End Search section
+/////////////////////////////////////////////////////////////////////
 
-// function create cart
-const createRecipe = (container, res) => {
-  //  <div class="col-sm-12 col-md-6 col-lg-4">
-
-  const card = `
- 
-  <div class="card">
-    <div class="card-body">
-      <div class="row recipe">
-        <div class="col-8">
-          <div class="recipe-content">
-            <h4 class="recipe-title">${res.name}</h4>
-            <p class="recipe-text">
-              ${res.category}
-            </p>
-            <p class="recipe-price">${res.price}$</p>
-          </div>
-        </div>
-        <div class="col-4 recipe-img">
-          <img
-            src=${res.imageCover}
-            alt="${res.name} image"
-            class="recipe-asset"
-          />
-        </div>
-      </div>
-    </div>
-  </div>
-  `;
-  const recipe = document.createElement('div');
-  recipe.classList.add('col-sm-12', 'col-md-6', 'col-lg-4');
-  recipe.innerHTML = card;
-  container.appendChild(recipe);
+const makemodalVisible = async card => {
+  await fetch(
+    `https://panda-restaurant.herokuapp.com/api/v1/recipes/?name=${
+      card.querySelector('.recipe-name').textContent
+    }`
+  )
+    .then(res => res.json())
+    .then(data => {
+      const {
+        data: { data: rec },
+      } = data;
+      elements.detailsModal.classList.add('show');
+      createIngredientsModel(rec);
+    });
 };
 
-searchTargetContent(searchWord);
+window.makemodalVisible = makemodalVisible;
 // form validation
 
 // password confirmation

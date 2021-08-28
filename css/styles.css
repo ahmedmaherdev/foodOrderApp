@@ -164,21 +164,30 @@ body {
 }
 
 .pages {
-  width: 97%;
+  width: 50%;
   background-color: #fff;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   margin: 20px auto;
   padding: 10px;
   border-radius: 20px;
   overflow-x: auto;
 }
-.pages .btn {
+.pages button {
   width: 60px;
   margin: 5px;
   background-color: #ddd;
   padding: 10px 20px;
   border-radius: 10px;
+}
+
+.pages button:hover {
+	background-color: #1926db;
+}
+
+.pages button.active {
+	background-color: #1926db;
+	box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);
 }
 
 .recipe .recipe-content {
@@ -206,10 +215,6 @@ body {
   width: 99%;
   height: max-content;
   border-radius: 50%;
-}
-
-.search-section .search-btn-link {
-  color: #eee;
 }
 
 .footer {
