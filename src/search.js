@@ -2,13 +2,24 @@
 
 import { elements as elements } from './base.js';
 import { createRecipe as createRecipe } from './createRecipe.js';
-import { createIngredientsModel as createIngredientsModel } from './ingredientsModal.js';
+import {
+  createIngredientsModel as createIngredientsModel,
+  arrOfIDs as arrOfIDs,
+  addToCart as addToCart,
+  createCarts as createCarts,
+} from './ingredientsModal.js';
 import { searchOnClick, searchOnClickLink } from './searchActions.js';
 import { signin, signup, logged } from './form.js';
 const searchTarget = document.querySelector('.search-target');
 let searchWord = localStorage.getItem('search-target');
 
 searchTarget.textContent = `You search about: ${searchWord}`;
+
+// add to card
+window.arrOfIDs = arrOfIDs;
+window.addToCart = addToCart;
+const cartBtn = document.getElementById('cart-open');
+cartBtn.addEventListener('click', createCarts);
 
 // logged
 logged();

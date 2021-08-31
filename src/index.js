@@ -3,7 +3,12 @@
 import { elements, loadSpinner, clearLoader } from './base.js';
 import { createPopular, popular } from './createRecipe.js';
 import { DisplayList, SetupPagination } from './paginations.js';
-import { createIngredientsModel } from './ingredientsModal.js';
+import {
+  createIngredientsModel,
+  arrOfIDs,
+  addToCart,
+  createCarts,
+} from './ingredientsModal.js';
 import {
   searchOnChange,
   searchOnClick,
@@ -14,6 +19,12 @@ let current_page = 1;
 let itemsPerPage = 3;
 
 logged();
+
+// add to card
+window.arrOfIDs = arrOfIDs;
+window.addToCard = addToCart;
+const cartBtn = document.getElementById('cart-open');
+cartBtn.addEventListener('click', createCarts);
 
 //////////////////////////////////////////////////////////////////////
 // search section
