@@ -346,7 +346,7 @@
           </div>
           <div class="modal__form__content">
             <!-- <p>Put you data to sign up </p> -->
-            <form class="modal__form">
+            <div class="modal__form">
               <div class="signup-error"></div>
               <div>
                 <label for="name">Name</label>
@@ -356,7 +356,7 @@
                   placeholder="Enter Name"
                   class="form-input"
                   onfocus="this.value=''"
-                  minlength="5"
+                  maxlength="40"
                   required
                 />
                 <div class="name-error hidden">Incorrect Name</div>
@@ -425,9 +425,10 @@
                     class="form-input"
                   />
                 </div> -->
-              <input type="submit" value="Sign Up" class="submit-btn" />
+
+              <button class="btn submit-btn btn-md btn-primary">Sign Up</button>
               <p onclick="toggleSignModals()">have an account? signIn</p>
-            </form>
+            </div>
           </div>
         </div>
       </div>
@@ -445,7 +446,7 @@
           </div>
           <div class="modal__form__content">
             <!-- <p>Put you data to sign up </p> -->
-            <form class="modal__form">
+            <div class="modal__form">
               <div class="signin-error"></div>
               <div>
                 <label for="email">Email</label>
@@ -475,18 +476,16 @@
                 />
                 <div class="password-error hidden">Incorrect Password</div>
               </div>
-
-              <input type="submit" value="Sign in" class="submit-btn" />
+              <button class="btn submit-btn btn-md btn-primary">Sign In</button>
               <p onclick="toggleSignModals()">
                 signUp if you didn't have an account
               </p>
-            </form>
+            </div>
           </div>
         </div>
       </div>
       <!-- End Sign in modal  -->
       <!-- End form model -->
-
       <!--details Modal -->
       <div
         class="modal fade"

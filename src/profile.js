@@ -57,3 +57,14 @@ export const profile = profileData => {
     `;
   cardUser.innerHTML = profileInfo;
 };
+
+// sign out
+
+const signout = () => {
+  localStorage.setItem('user-logged', false);
+  localStorage.setItem('user-token', '');
+  window.location = '../index.html';
+};
+
+const signoutBtn = document.getElementById('signoutBtn');
+signoutBtn.addEventListener('click', signout);

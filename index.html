@@ -389,7 +389,7 @@
           </div>
           <div class="modal__form__content">
             <!-- <p>Put you data to sign up </p> -->
-            <form class="modal__form">
+            <div class="modal__form">
               <div class="signup-error"></div>
               <div>
                 <label for="name">Name</label>
@@ -468,9 +468,10 @@
                     class="form-input"
                   />
                 </div> -->
-              <input type="submit" value="Sign Up" class="submit-btn" />
+
+              <button class="btn submit-btn btn-md btn-primary">Sign Up</button>
               <p onclick="toggleSignModals()">have an account? signIn</p>
-            </form>
+            </div>
           </div>
         </div>
       </div>
@@ -488,7 +489,7 @@
           </div>
           <div class="modal__form__content">
             <!-- <p>Put you data to sign up </p> -->
-            <form class="modal__form">
+            <div class="modal__form">
               <div class="signin-error"></div>
               <div>
                 <label for="email">Email</label>
@@ -518,12 +519,11 @@
                 />
                 <div class="password-error hidden">Incorrect Password</div>
               </div>
-
-              <input type="submit" value="Sign in" class="submit-btn" />
+              <button class="btn submit-btn btn-md btn-primary">Sign In</button>
               <p onclick="toggleSignModals()">
                 signUp if you didn't have an account
               </p>
-            </form>
+            </div>
           </div>
         </div>
       </div>

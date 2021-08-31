@@ -208,15 +208,32 @@ window.handleAddToCartBtn = handleAddToCartBtn;
 signin.submitBtn.addEventListener('click', signin.postSignin);
 signin.email.addEventListener('input', signin.validEmail);
 signin.password.addEventListener('input', signin.validPassword);
-
+signin.email.addEventListener('keyup', e => {
+  if (e.key === 'Enter') signin.postSignin();
+});
+signin.password.addEventListener('keyup', e => {
+  if (e.key === 'Enter') signin.postSignin();
+});
 //  sign up
 signup.submitBtn.addEventListener('click', signup.postSignup);
 signup.email.addEventListener('input', signup.validEmail);
 signup.password.addEventListener('input', signup.validPassword);
 signup.name.addEventListener('input', signup.validName);
 signup.passwordConfirm.addEventListener('input', signup.validPasswordConfirm);
-
+signup.email.addEventListener('keyup', e => {
+  if (e.key === 'Enter') signup.postSignup();
+});
+signup.name.addEventListener('keyup', e => {
+  if (e.key === 'Enter') signup.postSignup();
+});
+signup.password.addEventListener('keyup', e => {
+  if (e.key === 'Enter') signup.postSignup();
+});
+signup.passwordConfirm.addEventListener('keyup', e => {
+  if (e.key === 'Enter') signup.postSignup();
+});
 // sign out
+
 const signout = () => {
   localStorage.setItem('user-logged', false);
   localStorage.setItem('user-token', '');
