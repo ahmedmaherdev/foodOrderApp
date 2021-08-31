@@ -182,12 +182,12 @@ body {
 }
 
 .pages button:hover {
-	background-color: #1926db;
+  background-color: #1926db;
 }
 
 .pages button.active {
-	background-color: #1926db;
-	box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);
+  background-color: #1926db;
+  box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.2);
 }
 
 .recipe .recipe-content {
@@ -213,8 +213,36 @@ body {
 }
 .recipe .recipe-img .recipe-asset {
   width: 99%;
-  height: max-content;
+  height: 90%;
   border-radius: 50%;
+}
+
+.modal__form p {
+  cursor: pointer;
+}
+
+.modal__form p:hover {
+  text-decoration: underline;
+}
+
+#signin-modal .signin-error,
+#signin-modal .password-error,
+#signin-modal .email-error,
+#signup-modal .signup-error,
+#signup-modal .password-error,
+#signup-modal .email-error,
+#signup-modal .password-confirm-error,
+#signup-modal .name-error {
+  text-align: left;
+  font-size: bold;
+  color: red;
+}
+.signoutBtnContainer {
+  text-align: left;
+}
+#signoutBtn {
+  width: 80%;
+  margin: 5px 10px;
 }
 
 .footer {

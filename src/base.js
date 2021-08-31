@@ -15,24 +15,24 @@ export const elements = {
   //ingredient modal*******************
 
   signup: document.getElementById('signup'),
-  signin: document.getElementById('signin')
-}
+  signin: document.getElementById('signin'),
+  profileBtn: document.getElementById('profileBtn'),
+};
 
 //   module.export = resObj
 
 const elementString = {
-  loader: 'spinner'
-}
-
+  loader: 'spinner',
+};
 
 export function loadSpinner(parentElement) {
   const loader = `
       <div class="${elementString.loader}"></div>
       `;
-      parentElement.insertAdjacentHTML('afterbegin', loader)
+  parentElement.insertAdjacentHTML('afterbegin', loader);
 }
 
 export const clearLoader = () => {
   const loader = document.querySelector(`.${elementString.loader}`);
-  if(loader) loader.parentElement.removeChild(loader)
-}
+  if (loader) loader.parentElement.removeChild(loader);
+};

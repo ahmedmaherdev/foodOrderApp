@@ -57,15 +57,15 @@
               <li class="nav-item">
                 <a class="nav-link" href="#recipes">Our Cuisines</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item signin-icon">
                 <a class="nav-link" href="#" id="signin"> Sign in </a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item signup-icon">
                 <a class="nav-link signup" href="#" id="signup"> Sign up </a>
               </li>
 
               <!-- dropdown -->
-              <li class="nav-item">
+              <li class="nav-item user-icon hidden">
                 <div class="dropdown">
                   <button
                     class="btn btn-secondary dropdown-toggle"
@@ -73,7 +73,6 @@
                     id="dropdownMenuButton1"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
-                    disabled
                   >
                     <i class="fas fa-user"></i>
                   </button>
@@ -116,6 +115,24 @@
                             will well change this by javascript
                         -->
                         <i class="fas fa-hamburger"></i> Orders
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        id="profileBtn"
+                        type="button"
+                        class="btn btn-primary dropdown-item"
+                      >
+                        <i class="fas fa-user-circle"></i> Profile
+                      </button>
+                    </li>
+                    <li class="signoutBtnContainer">
+                      <button
+                        id="signoutBtn"
+                        type="button"
+                        class="btn btn-primary"
+                      >
+                        Sign Out
                       </button>
                     </li>
                   </ul>
@@ -329,7 +346,8 @@
           </div>
           <div class="modal__form__content">
             <!-- <p>Put you data to sign up </p> -->
-            <form class="modal__form needs-validation" novalidate>
+            <form class="modal__form">
+              <div class="signup-error"></div>
               <div>
                 <label for="name">Name</label>
                 <input
@@ -338,21 +356,24 @@
                   placeholder="Enter Name"
                   class="form-input"
                   onfocus="this.value=''"
+                  minlength="5"
                   required
                 />
-                <div class="invalid-feedback">Incorrect Name</div>
+                <div class="name-error hidden">Incorrect Name</div>
               </div>
               <div>
                 <label for="email">Email</label>
                 <input
                   type="email"
-                  id="singupEmail"
+                  id="signupEmail"
                   class="form-input"
                   placeholder="example@email,com"
                   onfocus="this.value=''"
+                  minlength="10"
+                  maxlength="40"
                   required
                 />
-                <div class="invalid-feedback">Incorrect Email</div>
+                <div class="email-error hidden">Incorrect Email</div>
               </div>
               <div>
                 <label for="password-user">Password</label>
@@ -362,9 +383,12 @@
                   placeholder="Enter Password"
                   class="form-input"
                   onfocus="this.value=''"
+                  minlength="8"
                   required
                 />
-                <div class="invalid-feedback">Incorrect Password</div>
+                <div class="password-error hidden">
+                  Invalid Password , password must bigger than characters
+                </div>
               </div>
 
               <div>
@@ -375,9 +399,10 @@
                   placeholder="Enter Password Again"
                   class="form-input"
                   onfocus="this.value=''"
+                  minlength="8"
                   required
                 />
-                <div class="invalid-feedback password-confirm-error">
+                <div class="password-confirm-error hidden">
                   Not Same Password
                 </div>
               </div>
@@ -401,6 +426,7 @@
                   />
                 </div> -->
               <input type="submit" value="Sign Up" class="submit-btn" />
+              <p onclick="toggleSignModals()">have an account? signIn</p>
             </form>
           </div>
         </div>
@@ -419,7 +445,8 @@
           </div>
           <div class="modal__form__content">
             <!-- <p>Put you data to sign up </p> -->
-            <form class="modal__form needs-validation" novalidate>
+            <form class="modal__form">
+              <div class="signin-error"></div>
               <div>
                 <label for="email">Email</label>
                 <input
@@ -428,9 +455,11 @@
                   placeholder="Enter Email"
                   class="form-input"
                   onfocus="this.value=''"
+                  minlength="10"
+                  maxlength="40"
                   required
                 />
-                <div class="invalid-feedback">Incorrect Email</div>
+                <div class="email-error hidden">Incorrect Email</div>
               </div>
 
               <div>
@@ -441,12 +470,16 @@
                   placeholder="Enter Password"
                   class="form-input"
                   onfocus="this.value=''"
+                  minlength="8"
                   required
                 />
-                <div class="invalid-feedback">Incorrect Password</div>
+                <div class="password-error hidden">Incorrect Password</div>
               </div>
 
               <input type="submit" value="Sign in" class="submit-btn" />
+              <p onclick="toggleSignModals()">
+                signUp if you didn't have an account
+              </p>
             </form>
           </div>
         </div>

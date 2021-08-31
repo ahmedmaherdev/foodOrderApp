@@ -9,9 +9,11 @@ import {
   searchOnClick,
   searchOnClickLink,
 } from './searchActions.js';
-
+import { signin, signup, logged } from './form.js';
 let current_page = 1;
 let itemsPerPage = 3;
+
+logged();
 
 //////////////////////////////////////////////////////////////////////
 // search section
@@ -202,3 +204,63 @@ window.addEventListener('click', e => {
     ? elements.detailsModal.classList.remove('show')
     : false;
 });
+
+elements.profileBtn.addEventListener('click', () => {
+  //  await getUser(token)
+  const url = './pages/profile.html';
+  window.location = `${url}`;
+});
+//handle add to card button
+// localStorage.removeItem('logged', true);
+function handleAddToCartBtn() {
+  if (localStorage.getItem('user-logged')) {
+    console.log('item added to cart');
+  } else {
+    toggleSignModals();
+  }
+}
+
+function openSignUModal() {
+  elements.signupModal.classList.add('show__modal');
+}
+
+// for toggle signup an sign in
+function toggleSignModals() {
+  if (elements.signupModal.classList.contains('show__modal')) {
+    elements.signupModal.classList.remove('show__modal');
+    elements.signinModal.classList.add('show__modal');
+  } else {
+    elements.signupModal.classList.add('show__modal');
+    elements.signinModal.classList.remove('show__modal');
+  }
+}
+
+window.openSignUModal = openSignUModal;
+window.toggleSignModals = toggleSignModals;
+window.handleAddToCartBtn = handleAddToCartBtn;
+
+//////////////////////////////////////////////////////////
+
+//   sign in
+
+signin.submitBtn.addEventListener('click', signin.postSignin);
+signin.email.addEventListener('input', signin.validEmail);
+signin.password.addEventListener('input', signin.validPassword);
+
+//  sign up
+signup.submitBtn.addEventListener('click', signup.postSignup);
+signup.email.addEventListener('input', signup.validEmail);
+signup.password.addEventListener('input', signup.validPassword);
+signup.name.addEventListener('input', signup.validName);
+signup.passwordConfirm.addEventListener('input', signup.validPasswordConfirm);
+
+// sign out
+
+const signout = () => {
+  localStorage.setItem('user-logged', false);
+  localStorage.setItem('user-token', '');
+  location.reload();
+};
+
+const signoutBtn = document.getElementById('signoutBtn');
+signoutBtn.addEventListener('click', signout);

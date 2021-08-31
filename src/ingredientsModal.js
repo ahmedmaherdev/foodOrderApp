@@ -29,7 +29,7 @@ export function createIngredientsModel(rec) {
           <span class="recipe__info-text"> min</span>
         </div>
         <div class="recipe-button">
-          <button class="recipe__love">
+          <button class="recipe__love" value=${recipe._id}>
             <i class="far fa-heart"></i>
           </button>
         </div>
@@ -39,7 +39,7 @@ export function createIngredientsModel(rec) {
         <ul class="recipe__ingredient-list">
         ${recipe.ingredients.map(el => createIngredientLi(el)).join('')} 
         </ul>
-        <button class="btn-small recipe__btn">
+        <button class="btn-small recipe__btn" value=${recipe._id}>
           <i class="fas fa-cart-plus"></i>
             <span>Add to Cart</span>
         </button>
