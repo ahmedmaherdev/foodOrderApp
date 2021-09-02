@@ -232,7 +232,8 @@ body {
 #signup-modal .password-error,
 #signup-modal .email-error,
 #signup-modal .password-confirm-error,
-#signup-modal .name-error {
+#signup-modal .name-error,
+#order-modal .order-error {
   text-align: left;
   font-size: bold;
   color: red;
@@ -243,6 +244,10 @@ body {
 #signoutBtn {
   width: 80%;
   margin: 5px 10px;
+}
+
+.order-result-items .row {
+  width: 100%;
 }
 
 .footer {

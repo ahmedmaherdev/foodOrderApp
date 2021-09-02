@@ -3,30 +3,40 @@
 import { elements, loadSpinner, clearLoader } from './base.js';
 import { createPopular, popular } from './createRecipe.js';
 import { DisplayList, SetupPagination } from './paginations.js';
-import {
-  createIngredientsModel,
-  arrOfIDs,
-  addToCart,
-  createCarts,
-} from './ingredientsModal.js';
+import { createIngredientsModel } from './ingredientsModal.js';
 import {
   searchOnChange,
   searchOnClick,
   searchOnClickLink,
 } from './searchActions.js';
 import { signin, signup, logged } from './form.js';
+import { addToCart, createCarts } from './cart.js';
+import { addToFavorite, createFavorites } from './favorite.js';
+import { postOrder } from './order.js';
+
 let current_page = 1;
 let itemsPerPage = 3;
 
 logged();
 
 // add to card
-window.arrOfIDs = arrOfIDs;
 window.addToCard = addToCart;
 const cartBtn = document.getElementById('cart-open');
 cartBtn.addEventListener('click', createCarts);
 
 //////////////////////////////////////////////////////////////////////
+
+// add to favorite
+window.addToFavorite = addToFavorite;
+const favoriteBtn = document.querySelector('.favorite-open');
+favoriteBtn.addEventListener('click', createFavorites);
+
+//////////////////////////////////////////////////////////////////////
+
+// make order
+elements.orderNowBtn.addEventListener('click', () => {
+  postOrder();
+});
 // search section
 
 const search = document.querySelector('.search-label');
@@ -179,8 +189,14 @@ elements.signin.addEventListener('click', () => {
 
 //show modal
 elements.orderNow.addEventListener('click', () => {
-  elements.signupModal.classList.add('show__modal');
+  console.log(JSON.parse(localStorage.getItem('card')).length);
+  if (JSON.parse(localStorage.getItem('card')).length > 0)
+    elements.orderModal.classList.add('show__modal');
 });
+
+elements.orderCloseBtn.addEventListener('click', () =>
+  elements.orderModal.classList.remove('show__modal')
+);
 
 //hide modal
 elements.closeSignup.addEventListener('click', () => {
@@ -198,6 +214,9 @@ window.addEventListener('click', e => {
     : false;
   e.target == elements.signinModal
     ? elements.signinModal.classList.remove('show__modal')
+    : false;
+  e.target == elements.orderModal
+    ? elements.orderModal.classList.remove('show__modal')
     : false;
   suggestions.innerHTML = '';
 });
@@ -223,13 +242,13 @@ elements.profileBtn.addEventListener('click', () => {
 });
 //handle add to card button
 // localStorage.removeItem('logged', true);
-function handleAddToCartBtn() {
-  if (localStorage.getItem('user-logged')) {
-    console.log('item added to cart');
-  } else {
-    toggleSignModals();
-  }
-}
+// function handleAddToCartBtn() {
+//   if (localStorage.getItem('user-logged')) {
+//     console.log('item added to cart');
+//   } else {
+//     toggleSignModals();
+//   }
+// }
 
 function openSignUModal() {
   elements.signupModal.classList.add('show__modal');
@@ -248,7 +267,7 @@ function toggleSignModals() {
 
 window.openSignUModal = openSignUModal;
 window.toggleSignModals = toggleSignModals;
-window.handleAddToCartBtn = handleAddToCartBtn;
+// window.handleAddToCartBtn = handleAddToCartBtn;
 
 //////////////////////////////////////////////////////////
 

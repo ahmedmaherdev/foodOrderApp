@@ -92,7 +92,7 @@
                     <li>
                       <button
                         type="button"
-                        class="btn btn-primary dropdown-item"
+                        class="btn btn-primary dropdown-item favorite-open"
                         data-bs-toggle="modal"
                         data-bs-target="#favouriteModal"
                       >
@@ -242,33 +242,7 @@
               ></button>
             </div>
             <div class="modal-body">
-              <ul class="cart-items">
-                <!-- <li class="cart-item">
-                  <div class="row">
-                    <div class="col-8 cart-content">
-                      <h3>Pizza</h3>
-                      <div class="summary">
-                        <span class="price">12$</span>
-                        <select class="amount" value="amount">
-                          <option value="1">x 1</option>
-                          <option value="2">x 2</option>
-                          <option value="3">x 3</option>
-                          <option value="4">x 4</option>
-                          <option value="5">x 5</option>
-                          <option value="6">x 6</option>
-                          <option value="7">x 7</option>
-                          <option value="8">x 8</option>
-                          <option value="9">x 9</option>
-                          <option value="10">x 10</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-4">
-                      <img class="pic" src="./img/pizza.jpg" />
-                    </div>
-                  </div>
-                </li> -->
-              </ul>
+              <ul class="cart-items"></ul>
             </div>
             <div class="modal-footer">
               <button
@@ -311,7 +285,9 @@
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">....</div>
+            <div class="modal-body">
+              <ul class="favorite-items"></ul>
+            </div>
             <div class="modal-footer">
               <button
                 type="button"
@@ -532,86 +508,6 @@
               ></button>
             </div>
             <div class="modal-body" id="ingredients">
-              <!--Start Body -->
-              <!-- <div class="recipe">
-                <figure class="recipe__fig">
-                  <img src="./img/pestoa0e7.jpg" alt="pizza" class="recipe__img">
-                  <h1 class="recipe__title">
-                    <span>Pasta with tomato cream sauce</span>
-                  </h1>
-                </figure>
-                <div class="recipe__details">
-                  <div class="recipe__info">
-                    <i class="fas fa-male recipe__info-icon"></i>
-                    <span class="recipe__info-people">4</span>
-                    <span class="recipe__info-text"> servings</span>
-                  </div>
-                  <div class="recipe-button">
-                    <button class="recipe__love">
-                      <i class="far fa-heart"></i>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="recipe__ingredients">
-                  <ul class="recipe__ingredient-list">
-                      <li class="recipe__item">
-                          <i class="fas fa-check recipe__icon"></i>
-                          <div class="recipe__count">1000</div>
-                          <div class="recipe__ingredient">
-                              <span class="recipe__unit">g</span>
-                              pasta
-                          </div>
-                      </li>
-                      <li class="recipe__item">
-                          <i class="fas fa-check recipe__icon"></i>
-                          <div class="recipe__count">1/2</div>
-                          <div class="recipe__ingredient">
-                              <span class="recipe__unit">cup</span>
-                              ricotta cheese
-                          </div>
-                      </li>
-                      <li class="recipe__item">
-                        <i class="fas fa-check recipe__icon"></i>
-                          <div class="recipe__count">1</div>
-                          <div class="recipe__ingredient">
-                              <span class="recipe__unit"></span>
-                              can of tomatoes, whole or crushed
-                          </div>
-                      </li>
-                      <li class="recipe__item">
-                        <i class="fas fa-check recipe__icon"></i>
-                          <div class="recipe__count">1</div>
-                          <div class="recipe__ingredient">
-                              <span class="recipe__unit"></span>
-                              can tuna packed in olive oil
-                          </div>
-                      </li>
-                      <li class="recipe__item">
-                        <i class="fas fa-check recipe__icon"></i>
-                          <div class="recipe__count">1/2</div>
-                          <div class="recipe__ingredient">
-                              <span class="recipe__unit">cup</span>
-                              grated parmesan cheese
-                          </div>
-                      </li>
-                      <li class="recipe__item">
-                        <i class="fas fa-check recipe__icon"></i>
-                          <div class="recipe__count">1/4</div>
-                          <div class="recipe__ingredient">
-                              <span class="recipe__unit">cup</span>
-                              fresh basil, chopped or torn
-                          </div>
-                      </li>
-                  </ul>
-                  <button class="btn-small recipe__btn">
-                    <i class="fas fa-cart-plus"></i>
-                      <span>Add to Cart</span>
-                  </button>
-              </div>
-                
-            </div> -->
-
               <!--End Body -->
             </div>
             <div class="modal-footer">
@@ -627,6 +523,92 @@
         </div>
       </div>
       <!--details Modal -->
+
+      <!-- Order Modal -->
+      <div class="form__container" id="order-modal">
+        <div class="form__modal">
+          <button class="close-btn" id="order-close">
+            <i class="fa fa-times"></i>
+          </button>
+          <div class="modal__form__header">
+            <h3>Order Now</h3>
+          </div>
+          <div class="modal__form__content">
+            <div class="modal__form">
+              <div class="order-error"></div>
+              <div>
+                <label for="phone-number">Phone Number</label>
+                <input
+                  type="tel"
+                  id="phone-number"
+                  placeholder="Enter Phone Number"
+                  class="form-input"
+                  onfocus="this.value=''"
+                  minlength="9"
+                  maxlength="16"
+                  required
+                />
+              </div>
+
+              <div>
+                <label for="address">Address</label>
+                <input
+                  type="text"
+                  id="address"
+                  placeholder="Enter your Address"
+                  class="form-input"
+                  onfocus="this.value=''"
+                  minlength="10"
+                  required
+                />
+              </div>
+              <button
+                class="btn btn-md btn-primary order"
+                data-bs-toggle="modal"
+                data-bs-target="#orderResultModal"
+              >
+                Order Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- End Order Modal -->
+
+      <!--Order Result Modal -->
+      <div
+        class="modal fade"
+        id="orderResultModal"
+        tabindex="-1"
+        aria-labelledby="orderResultModal"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Order Content</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body order-result-items"></div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Order Result Modal -->
     </main>
 
     <!-- End Main -->

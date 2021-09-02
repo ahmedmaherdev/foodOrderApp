@@ -17,6 +17,17 @@ export const elements = {
   signup: document.getElementById('signup'),
   signin: document.getElementById('signin'),
   profileBtn: document.getElementById('profileBtn'),
+
+  // order modal
+  orderModal: document.getElementById('order-modal'),
+  orderCloseBtn: document.querySelector('#order-close'),
+  orderNowBtn: document.querySelector('#order-modal .order'),
+  orderError: document.querySelector('#order-modal .order-error'),
+
+  // Order Result Modal
+  orderResultModal: document.getElementById('orderResultModal'),
+  // favorite modal
+  favoriteModal: document.getElementById('favouriteModal'),
 };
 
 //   module.export = resObj
