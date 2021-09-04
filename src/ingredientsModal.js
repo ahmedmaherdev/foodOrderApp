@@ -47,18 +47,8 @@ export function createIngredientsModel(rec) {
           <i class="fas fa-cart-plus"></i>
             <span>Add to Cart</span>
         </button>
-        <select class="recipe__amount" value="amount">
-          <option value="1">x 1</option>
-          <option value="2">x 2</option>
-          <option value="3">x 3</option>
-          <option value="4">x 4</option>
-          <option value="5">x 5</option>
-          <option value="6">x 6</option>
-          <option value="7">x 7</option>
-          <option value="8">x 8</option>
-          <option value="9">x 9</option>
-          <option value="10">x 10</option>
-        </select>
+        <input class="recipe__amount" type="number" value="1" min="1" step="1" max="100" oninput="changeinput(this)" style="width: 25%">
+       
         <button class="btn-small recipe__btn__order" value=${
           recipe._id
         } onclick="orderNowForRecipe(this)" data-bs-dismiss="modal">
@@ -85,3 +75,9 @@ export const orderNowForRecipe = recipeBtn => {
 };
 
 window.orderNowForRecipe = orderNowForRecipe;
+
+const changeinput = inp => {
+  if (inp.value === '0' || inp.value === '') inp.value = '1';
+};
+
+window.changeinput = changeinput;

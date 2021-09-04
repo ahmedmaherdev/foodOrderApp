@@ -357,7 +357,6 @@
                   id="name"
                   placeholder="Enter Name"
                   class="form-input"
-                  onfocus="this.value=''"
                   maxlength="40"
                   autocomplete="off"
                   required
@@ -371,7 +370,6 @@
                   id="signupEmail"
                   class="form-input"
                   placeholder="example@email,com"
-                  onfocus="this.value=''"
                   minlength="10"
                   maxlength="40"
                   autocomplete="off"
@@ -386,7 +384,6 @@
                   id="password-user"
                   placeholder="Enter Password"
                   class="form-input"
-                  onfocus="this.value=''"
                   minlength="8"
                   required
                 />
@@ -402,7 +399,6 @@
                   id="password-confirm"
                   placeholder="Enter Password Again"
                   class="form-input"
-                  onfocus="this.value=''"
                   minlength="8"
                   required
                 />
@@ -440,7 +436,6 @@
                   id="signinEmail"
                   placeholder="Enter Email"
                   class="form-input"
-                  onfocus="this.value=''"
                   minlength="10"
                   maxlength="40"
                   autocomplete="off"
@@ -456,7 +451,6 @@
                   id="password"
                   placeholder="Enter Password"
                   class="form-input"
-                  onfocus="this.value=''"
                   minlength="8"
                   required
                 />
@@ -528,12 +522,10 @@
                   id="phone-number"
                   placeholder="Enter Phone Number"
                   class="form-input"
-                  onfocus="this.value=''"
-                  minlength="8"
-                  maxlength="16"
                   required
                 />
               </div>
+              <div class="order-phone-error" style="color: red"></div>
 
               <div>
                 <label for="address">Address</label>
@@ -542,11 +534,11 @@
                   id="address"
                   placeholder="Enter your Address"
                   class="form-input"
-                  onfocus="this.value=''"
                   minlength="10"
                   required
                 />
               </div>
+              <div class="order-address-error" style="color: red"></div>
               <!-- data-bs-toggle="modal" -->
               <!-- data-bs-target="#orderResultModal" -->
               <button class="btn btn-md btn-primary order">Order Now</button>
