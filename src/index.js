@@ -23,7 +23,7 @@ logged();
 getOrdersBtn.addEventListener('click', getOrders);
 window.orderCancel = orderCancel;
 // add to card
-window.addToCard = addToCart;
+window.addToCart = addToCart;
 const cartBtn = document.getElementById('cart-open');
 cartBtn.addEventListener('click', createCarts);
 

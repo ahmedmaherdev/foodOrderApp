@@ -1,5 +1,5 @@
 import { elements } from './base.js';
-
+import { toggleSignModals as toggleSignModals } from './cart.js';
 const createIngredientLi = el => `
   <li class="recipe__item">
     <i class="fas fa-check recipe__icon"></i>
@@ -47,6 +47,24 @@ export function createIngredientsModel(rec) {
           <i class="fas fa-cart-plus"></i>
             <span>Add to Cart</span>
         </button>
+        <select class="recipe__amount" value="amount">
+          <option value="1">x 1</option>
+          <option value="2">x 2</option>
+          <option value="3">x 3</option>
+          <option value="4">x 4</option>
+          <option value="5">x 5</option>
+          <option value="6">x 6</option>
+          <option value="7">x 7</option>
+          <option value="8">x 8</option>
+          <option value="9">x 9</option>
+          <option value="10">x 10</option>
+        </select>
+        <button class="btn-small recipe__btn__order" value=${
+          recipe._id
+        } onclick="orderNowForRecipe(this)" data-bs-dismiss="modal">
+        <i class="fas fa-money-bill-wave"></i>
+            <span>Order Now</span>
+        </button>
       </div>
     </div>
 
@@ -55,3 +73,15 @@ export function createIngredientsModel(rec) {
 }
 
 /*  */
+
+export const orderNowForRecipe = recipeBtn => {
+  elements.detailsModal.classList.remove('show');
+  if (!JSON.parse(localStorage.getItem('user-logged'))) {
+    toggleSignModals();
+  } else {
+    elements.orderModal.classList.add('show__modal');
+    localStorage.setItem('recipe-ordered', true);
+  }
+};
+
+window.orderNowForRecipe = orderNowForRecipe;

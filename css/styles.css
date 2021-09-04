@@ -251,6 +251,18 @@ body {
   width: 100%;
 }
 
+.order-result-items .row .col-4,
+.order-result-items .row .col-4 {
+  text-align: center;
+}
+.order-result-items .row .col-8 {
+  padding-left: 31px;
+}
+
+.recipe__amount {
+  margin: 10px;
+}
+
 .footer {
   margin: 20px;
   text-align: center;

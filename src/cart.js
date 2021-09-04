@@ -1,6 +1,6 @@
 import { elements } from './base.js';
 
-export const arrOfIDs = [];
+export const arrOfIDs = JSON.parse(localStorage.getItem('card')) || [];
 export const addToCart = btn => {
   if (!JSON.parse(localStorage.getItem('user-logged'))) {
     elements.detailsModal.classList.remove('show');
@@ -74,7 +74,7 @@ function openSignUModal() {
 }
 
 // for toggle signup an sign in
-function toggleSignModals() {
+export function toggleSignModals() {
   if (elements.signupModal.classList.contains('show__modal')) {
     elements.signupModal.classList.remove('show__modal');
     elements.signinModal.classList.add('show__modal');

@@ -1,5 +1,6 @@
 import { elements } from './base.js';
-export const arrfavoriteIDs = [];
+export const arrfavoriteIDs =
+  JSON.parse(localStorage.getItem('favorite')) || [];
 export const addToFavorite = btn => {
   if (!JSON.parse(localStorage.getItem('user-logged'))) {
     elements.detailsModal.classList.remove('show');
