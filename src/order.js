@@ -6,7 +6,10 @@ const token = localStorage.getItem('user-token');
 export const postOrder = () => {
   const address = elements.orderModal.querySelector('#address').value,
     phoneNumber = elements.orderModal.querySelector('#phone-number').value;
-  if (JSON.parse(localStorage.getItem('card')).length > 0) {
+  if (
+    JSON.parse(localStorage.getItem('card')) &&
+    JSON.parse(localStorage.getItem('card')).length > 0
+  ) {
     orderItems = [];
     elements.cartModal.querySelectorAll('.row').forEach(val =>
       orderItems.push({
