@@ -7,7 +7,7 @@ export const postOrder = () => {
   const address = elements.orderModal.querySelector('#address').value,
     phoneNumber = elements.orderModal.querySelector('#phone-number').value;
   if (
-    JSON.parse(localStorage.getItem('card')) &&
+    localStorage.getItem('card') &&
     JSON.parse(localStorage.getItem('card')).length > 0
   ) {
     orderItems = [];
