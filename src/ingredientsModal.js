@@ -43,7 +43,7 @@ export function createIngredientsModel(rec) {
         </ul>
         <button class="btn-small recipe__btn" value=${
           recipe._id
-        } onclick="addToCard(this)" data-bs-dismiss="modal">
+        } onclick="addToCart(this)" data-bs-dismiss="modal">
           <i class="fas fa-cart-plus"></i>
             <span>Add to Cart</span>
         </button>

@@ -26,6 +26,10 @@ export const elements = {
 
   // Order Result Modal
   orderResultModal: document.getElementById('orderResultModal'),
+
+  // cancel modal
+  orderCancelModal: document.getElementById('orderCancelModal'),
+  ordersContainer: document.querySelector('#orderModal'),
   // favorite modal
   favoriteModal: document.getElementById('favouriteModal'),
 };

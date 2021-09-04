@@ -2,27 +2,63 @@
 
 import { elements as elements } from './base.js';
 import { createRecipe as createRecipe } from './createRecipe.js';
-import {
-  createIngredientsModel as createIngredientsModel,
-  arrOfIDs as arrOfIDs,
-  addToCart as addToCart,
-  createCarts as createCarts,
-} from './ingredientsModal.js';
+import { createIngredientsModel as createIngredientsModel } from './ingredientsModal.js';
 import { searchOnClick, searchOnClickLink } from './searchActions.js';
-import { signin, signup, logged } from './form.js';
+import { signin, signup, logged, signout } from './form.js';
+import { addToCart as addToCart, createCarts as createCarts } from './cart.js';
+import { addToFavorite, createFavorites } from './favorite.js';
+import { postOrder, closeModalResult } from './order.js';
+import { getOrdersBtn, getOrders, orderCancel } from './getOrders.js';
 const searchTarget = document.querySelector('.search-target');
 let searchWord = localStorage.getItem('search-target');
 
 searchTarget.textContent = `You search about: ${searchWord}`;
 
 // add to card
-window.arrOfIDs = arrOfIDs;
+
+// logged
+logged();
+
+// get Orders
+getOrdersBtn.addEventListener('click', getOrders);
+window.orderCancel = orderCancel;
+// add to card
 window.addToCart = addToCart;
 const cartBtn = document.getElementById('cart-open');
 cartBtn.addEventListener('click', createCarts);
 
-// logged
-logged();
+// close result order
+const closeOrderResultBtns = document.querySelectorAll(
+  '#orderResultModal .close'
+);
+closeOrderResultBtns.forEach(btn =>
+  btn.addEventListener('click', () =>
+    closeModalResult(elements.orderResultModal)
+  )
+);
+
+// close cancel modal result
+const closeCancelModalBtns =
+  elements.orderCancelModal.querySelectorAll('.close');
+closeCancelModalBtns.forEach(btn =>
+  btn.addEventListener('click', () =>
+    closeModalResult(elements.orderCancelModal)
+  )
+);
+
+//////////////////////////////////////////////////////////////////////
+
+// add to favorite
+window.addToFavorite = addToFavorite;
+const favoriteBtn = document.querySelector('.favorite-open');
+favoriteBtn.addEventListener('click', createFavorites);
+
+//////////////////////////////////////////////////////////////////////
+
+// make order
+elements.orderNowBtn.addEventListener('click', () => {
+  postOrder();
+});
 
 elements.signup.addEventListener('click', () => {
   elements.signupModal.classList.add('show__modal');
@@ -34,7 +70,8 @@ elements.signin.addEventListener('click', () => {
 
 //show modal
 elements.orderNow.addEventListener('click', () => {
-  elements.signupModal.classList.add('show__modal');
+  if (JSON.parse(localStorage.getItem('card')).length > 0)
+    elements.orderModal.classList.add('show__modal');
 });
 
 //hide modal
@@ -55,6 +92,13 @@ window.addEventListener('click', e => {
     ? elements.signinModal.classList.remove('show__modal')
     : false;
   clearSuggestions();
+
+  e.target == elements.orderCancelModal
+    ? closeModalResult(elements.orderCancelModal)
+    : false;
+  e.target == elements.orderResultModal
+    ? closeModalResult(elements.orderResultModal)
+    : false;
 });
 
 //hide details  modal
@@ -244,12 +288,6 @@ signup.passwordConfirm.addEventListener('keyup', e => {
   if (e.key === 'Enter') signup.postSignup();
 });
 // sign out
-
-const signout = () => {
-  localStorage.setItem('user-logged', false);
-  localStorage.setItem('user-token', '');
-  location.reload();
-};
 
 const signoutBtn = document.getElementById('signoutBtn');
 signoutBtn.addEventListener('click', signout);

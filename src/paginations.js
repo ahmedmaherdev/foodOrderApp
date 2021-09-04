@@ -4,7 +4,7 @@ import { elements } from './base.js';
 const recipes = elements.recipeContainer;
 
 let current_page = 1;
-let itemsPerPage = 3;
+let itemsPerPage = 6;
 
 export function DisplayList(items, wrapper, rows_per_page, page) {
   wrapper.innerHTML = '';

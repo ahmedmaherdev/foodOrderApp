@@ -9,20 +9,42 @@ import {
   searchOnClick,
   searchOnClickLink,
 } from './searchActions.js';
-import { signin, signup, logged } from './form.js';
+import { signin, signup, logged, signout } from './form.js';
 import { addToCart, createCarts } from './cart.js';
 import { addToFavorite, createFavorites } from './favorite.js';
-import { postOrder } from './order.js';
-
+import { postOrder, closeModalResult } from './order.js';
+import { getOrdersBtn, getOrders, orderCancel } from './getOrders.js';
 let current_page = 1;
-let itemsPerPage = 3;
+let itemsPerPage = 6;
 
 logged();
 
+// get Orders
+getOrdersBtn.addEventListener('click', getOrders);
+window.orderCancel = orderCancel;
 // add to card
 window.addToCard = addToCart;
 const cartBtn = document.getElementById('cart-open');
 cartBtn.addEventListener('click', createCarts);
+
+// close result order
+const closeOrderResultBtns = document.querySelectorAll(
+  '#orderResultModal .close'
+);
+closeOrderResultBtns.forEach(btn =>
+  btn.addEventListener('click', () =>
+    closeModalResult(elements.orderResultModal)
+  )
+);
+
+// close cancel modal result
+const closeCancelModalBtns =
+  elements.orderCancelModal.querySelectorAll('.close');
+closeCancelModalBtns.forEach(btn =>
+  btn.addEventListener('click', () =>
+    closeModalResult(elements.orderCancelModal)
+  )
+);
 
 //////////////////////////////////////////////////////////////////////
 
@@ -219,6 +241,12 @@ window.addEventListener('click', e => {
     ? elements.orderModal.classList.remove('show__modal')
     : false;
   suggestions.innerHTML = '';
+  e.target == elements.orderCancelModal
+    ? closeModalResult(elements.orderCancelModal)
+    : false;
+  e.target == elements.orderResultModal
+    ? closeModalResult(elements.orderResultModal)
+    : false;
 });
 
 //hide details  modal
@@ -301,12 +329,6 @@ signup.passwordConfirm.addEventListener('keyup', e => {
   if (e.key === 'Enter') signup.postSignup();
 });
 // sign out
-
-const signout = () => {
-  localStorage.setItem('user-logged', false);
-  localStorage.setItem('user-token', '');
-  location.reload();
-};
 
 const signoutBtn = document.getElementById('signoutBtn');
 signoutBtn.addEventListener('click', signout);

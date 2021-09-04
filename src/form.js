@@ -4,7 +4,7 @@ const userIcon = document.querySelector('.user-icon');
 
 export const logged = () => {
   const userLogged = localStorage.getItem('user-logged');
-  if (userLogged === 'true') {
+  if (JSON.parse(userLogged)) {
     makeUserVisible();
     makeSignHidden();
   }
@@ -197,4 +197,12 @@ export const signup = {
         });
     }
   },
+};
+
+export const signout = () => {
+  localStorage.setItem('user-logged', false);
+  localStorage.setItem('user-token', '');
+  localStorage.setItem('card', JSON.stringify([]));
+  localStorage.setItem('favorite', JSON.stringify([]));
+  location.reload();
 };

@@ -5,7 +5,7 @@ export const addToFavorite = btn => {
     elements.detailsModal.classList.remove('show');
     toggleSignModals();
   } else {
-    arrfavoriteIDs.push(btn.value);
+    if (!arrfavoriteIDs.includes(btn.value)) arrfavoriteIDs.push(btn.value);
     localStorage.setItem('favorite', JSON.stringify(arrfavoriteIDs));
   }
 };

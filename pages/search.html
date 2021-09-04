@@ -38,7 +38,7 @@
       <!-- NavBar -->
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="../index.html"
+          <a class="navbar-brand" href="/index.html"
             ><i class="fas fa-utensils fa-2x"></i
           ></a>
           <button
@@ -55,7 +55,7 @@
           <div class="collapse navbar-collapse ml-auto" id="header-navbar">
             <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link" href="#recipes">Our Cuisines</a>
+                <a class="nav-link" href="../index.html">Home</a>
               </li>
               <li class="nav-item signin-icon">
                 <a class="nav-link" href="#" id="signin"> Sign in </a>
@@ -94,7 +94,7 @@
                     <li>
                       <button
                         type="button"
-                        class="btn btn-primary dropdown-item"
+                        class="btn btn-primary dropdown-item favorite-open"
                         data-bs-toggle="modal"
                         data-bs-target="#favouriteModal"
                       >
@@ -105,6 +105,7 @@
                       <button
                         type="button"
                         class="btn btn-primary dropdown-item"
+                        id="orderBtn"
                         data-bs-toggle="modal"
                         data-bs-target="#orderModal"
                       >
@@ -147,8 +148,8 @@
                       type="search"
                       placeholder="Search"
                       aria-label="Search"
-                      onchange="searchOnChangeSearchPage()"
                       onfocus="this.value=''"
+                      onchange="searchOnChangeSearchPage()"
                     />
                     <button
                       id="search"
@@ -158,6 +159,8 @@
                       <i class="fas fa-search"></i>
                     </button>
                   </div>
+                  <!-- onfocus="this.value=''" -->
+
                   <ul class="suggestions">
                     <!-- Seggestions -->
                   </ul>
@@ -286,7 +289,9 @@
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">....</div>
+            <div class="modal-body">
+              <ul class="favorite-items"></ul>
+            </div>
             <div class="modal-footer">
               <button
                 type="button"
@@ -357,6 +362,7 @@
                   class="form-input"
                   onfocus="this.value=''"
                   maxlength="40"
+                  autocomplete="off"
                   required
                 />
                 <div class="name-error hidden">Incorrect Name</div>
@@ -371,6 +377,7 @@
                   onfocus="this.value=''"
                   minlength="10"
                   maxlength="40"
+                  autocomplete="off"
                   required
                 />
                 <div class="email-error hidden">Incorrect Email</div>
@@ -400,6 +407,7 @@
                   class="form-input"
                   onfocus="this.value=''"
                   minlength="8"
+                  autocomplete="off"
                   required
                 />
                 <div class="password-confirm-error hidden">
@@ -486,6 +494,52 @@
       </div>
       <!-- End Sign in modal  -->
       <!-- End form model -->
+
+      <!-- Order Modal -->
+      <div class="form__container" id="order-modal">
+        <div class="form__modal">
+          <button class="close-btn" id="order-close">
+            <i class="fa fa-times"></i>
+          </button>
+          <div class="modal__form__header">
+            <h3>Order Now</h3>
+          </div>
+          <div class="modal__form__content">
+            <div class="modal__form">
+              <div class="order-error"></div>
+              <div>
+                <label for="phone-number">Phone Number</label>
+                <input
+                  type="tel"
+                  id="phone-number"
+                  placeholder="Enter Phone Number"
+                  class="form-input"
+                  onfocus="this.value=''"
+                  minlength="8"
+                  maxlength="16"
+                  required
+                />
+              </div>
+
+              <div>
+                <label for="address">Address</label>
+                <input
+                  type="text"
+                  id="address"
+                  placeholder="Enter your Address"
+                  class="form-input"
+                  onfocus="this.value=''"
+                  minlength="10"
+                  required
+                />
+              </div>
+              <!-- data-bs-toggle="modal" -->
+              <!-- data-bs-target="#orderResultModal" -->
+              <button class="btn btn-md btn-primary order">Order Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
       <!--details Modal -->
       <div
         class="modal fade"
@@ -506,89 +560,6 @@
               ></button>
             </div>
             <div class="modal-body" id="ingredients">
-              <!--Start Body -->
-              <!-- <div class="recipe">
-                <figure class="recipe__fig">
-                  <img
-                    src="../img/pestoa0e7.jpg"
-                    alt="pizza"
-                    class="recipe__img"
-                  />
-                  <h1 class="recipe__title">
-                    <span>Pasta with tomato cream sauce</span>
-                  </h1>
-                </figure>
-                <div class="recipe__details">
-                  <div class="recipe__info">
-                    <i class="fas fa-male recipe__info-icon"></i>
-                    <span class="recipe__info-people">4</span>
-                    <span class="recipe__info-text"> servings</span>
-                  </div>
-                  <div class="recipe-button">
-                    <button class="recipe__love">
-                      <i class="far fa-heart"></i>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="recipe__ingredients">
-                  <ul class="recipe__ingredient-list">
-                    <li class="recipe__item">
-                      <i class="fas fa-check recipe__icon"></i>
-                      <div class="recipe__count">1000</div>
-                      <div class="recipe__ingredient">
-                        <span class="recipe__unit">g</span>
-                        pasta
-                      </div>
-                    </li>
-                    <li class="recipe__item">
-                      <i class="fas fa-check recipe__icon"></i>
-                      <div class="recipe__count">1/2</div>
-                      <div class="recipe__ingredient">
-                        <span class="recipe__unit">cup</span>
-                        ricotta cheese
-                      </div>
-                    </li>
-                    <li class="recipe__item">
-                      <i class="fas fa-check recipe__icon"></i>
-                      <div class="recipe__count">1</div>
-                      <div class="recipe__ingredient">
-                        <span class="recipe__unit"></span>
-                        can of tomatoes, whole or crushed
-                      </div>
-                    </li>
-                    <li class="recipe__item">
-                      <i class="fas fa-check recipe__icon"></i>
-                      <div class="recipe__count">1</div>
-                      <div class="recipe__ingredient">
-                        <span class="recipe__unit"></span>
-                        can tuna packed in olive oil
-                      </div>
-                    </li>
-                    <li class="recipe__item">
-                      <i class="fas fa-check recipe__icon"></i>
-                      <div class="recipe__count">1/2</div>
-                      <div class="recipe__ingredient">
-                        <span class="recipe__unit">cup</span>
-                        grated parmesan cheese
-                      </div>
-                    </li>
-                    <li class="recipe__item">
-                      <i class="fas fa-check recipe__icon"></i>
-                      <div class="recipe__count">1/4</div>
-                      <div class="recipe__ingredient">
-                        <span class="recipe__unit">cup</span>
-                        fresh basil, chopped or torn
-                      </div>
-                    </li>
-                  </ul>
-                  <button class="btn-small recipe__btn">
-                    <i class="fas fa-cart-plus"></i>
-                    <span>Add to Cart</span>
-                  </button>
-                </div>
-              </div> -->
-
               <!--End Body -->
             </div>
             <div class="modal-footer">
@@ -604,6 +575,77 @@
         </div>
       </div>
       <!--details Modal -->
+
+      <!-- Order Result Modal -->
+      <div
+        class="modal fade"
+        id="orderResultModal"
+        tabindex="-1"
+        aria-labelledby="orderResultModal"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Order Content</h5>
+              <button
+                type="button"
+                class="btn-close close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body order-result-items"></div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary close"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Order Result Modal -->
+
+      <!-- cancel Order  -->
+
+      <div
+        class="modal fade"
+        id="orderCancelModal"
+        tabindex="-1"
+        aria-labelledby="orderCancelModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="orderCancelModalLabel">Order</h5>
+              <button
+                type="button"
+                class="btn-close close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary close"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- end cancel order -->
     </main>
 
     <script

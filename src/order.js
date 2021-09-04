@@ -1,26 +1,18 @@
 import { elements } from './base.js';
 const orderItems = [];
-// elements.cartModal
-//   .querySelectorAll('.row')
-//   .forEach(val =>
-//     console.log(
-//       val.querySelector('.amount').value,
-//       val.querySelector('.id').textContent
-//     )
-//   );
-const address = elements.orderModal.querySelector('#address').value,
-  phoneNumber = elements.orderModal.querySelector('#phone-number').value;
+elements.orderError.textContent = '';
+const token = localStorage.getItem('user-token');
 
 export const postOrder = () => {
-  elements.orderError.textContent = '';
+  const address = elements.orderModal.querySelector('#address').value,
+    phoneNumber = elements.orderModal.querySelector('#phone-number').value;
   elements.cartModal.querySelectorAll('.row').forEach(val =>
     orderItems.push({
       recipeId: val.querySelector('.id').textContent,
       amount: val.querySelector('.amount').value,
     })
   );
-  const token = localStorage.getItem('user-token');
-  console.log(orderItems);
+
   fetch('https://panda-restaurant.herokuapp.com/api/v1/orders', {
     method: 'POST',
     headers: {
@@ -39,7 +31,7 @@ export const postOrder = () => {
       localStorage.setItem('card', JSON.stringify([]));
       elements.orderModal.classList.remove('show__modal');
       elements.orderResultModal.classList.add('show');
-      console.log(data.data.orderContent);
+      elements.orderResultModal.style = 'display: block';
       showResultOrder(data.data);
     })
     .catch(err => {
@@ -65,7 +57,7 @@ export const showResultOrder = data => {
   <li class="cart-item">
     <div class="row" >
       <div class="col-10" style="font-weigth: bold; color: #222;">Total Price</div>
-      <div class="col-2 total-price" style="font-weigth: bold; color: #222;">${
+      <div class="col-2 total-price" style="font-weigth: bold; color: green;">${
         data.totalPrice
       }$</div>
     </div>
@@ -80,9 +72,9 @@ const createRecipeInfo = res => {
   const content = `
   <li class="cart-item">
     <div class="row">
-        <div class="col-5 recipe-name">${res.recipeName}</div>
-        <div class="col-5 recipe-amount">${res.recipeAmount}</div>
-        <div class="col-2 recipe-price">${res.recipePrice}$</div>
+        <div class="col-5 recipe-name" >${res.recipeName}</div>
+        <div class="col-5 recipe-amount" >${res.recipeAmount}</div>
+        <div class="col-2 recipe-price" style="color: green; ">${res.recipePrice}$</div>
     </div>
     </li>
     `;
@@ -94,3 +86,8 @@ const createRecipeInfo = res => {
 //     "customerPhoneNumber":"0115151515"
 // }
 // https://panda-restaurant.herokuapp.com//api/v1/orders/
+
+export const closeModalResult = modal => {
+  modal.style = 'display: none;';
+  modal.classList.remove('show');
+};

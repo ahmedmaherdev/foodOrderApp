@@ -103,6 +103,7 @@
                       <button
                         type="button"
                         class="btn btn-primary dropdown-item"
+                        id="orderBtn"
                         data-bs-toggle="modal"
                         data-bs-target="#orderModal"
                       >
@@ -313,7 +314,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="orderModalLabel">Modal title</h5>
+              <h5 class="modal-title" id="orderModalLabel">Orders</h5>
               <button
                 type="button"
                 class="btn-close"
@@ -321,11 +322,11 @@
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">...</div>
+            <div class="modal-body"></div>
             <div class="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                class="btn btn-secondary close"
                 data-bs-dismiss="modal"
               >
                 Close
@@ -358,6 +359,7 @@
                   class="form-input"
                   onfocus="this.value=''"
                   maxlength="40"
+                  autocomplete="off"
                   required
                 />
                 <div class="name-error hidden">Incorrect Name</div>
@@ -372,6 +374,7 @@
                   onfocus="this.value=''"
                   minlength="10"
                   maxlength="40"
+                  autocomplete="off"
                   required
                 />
                 <div class="email-error hidden">Incorrect Email</div>
@@ -408,25 +411,6 @@
                 </div>
               </div>
 
-              <!-- <div>
-                  <label for="postCode">Post Code</label>
-                  <input
-                    type="number"
-                    id="PostCode"
-                    placeholder="Enter Post code"
-                    class="form-input"
-                  />
-                </div>
-                <div>
-                  <label for="address">address</label>
-                  <input
-                    type="address"
-                    id="address"
-                    placeholder="Enter address"
-                    class="form-input"
-                  />
-                </div> -->
-
               <button class="btn submit-btn btn-md btn-primary">Sign Up</button>
               <p onclick="toggleSignModals()">have an account? signIn</p>
             </div>
@@ -459,6 +443,7 @@
                   onfocus="this.value=''"
                   minlength="10"
                   maxlength="40"
+                  autocomplete="off"
                   required
                 />
                 <div class="email-error hidden">Incorrect Email</div>
@@ -544,7 +529,7 @@
                   placeholder="Enter Phone Number"
                   class="form-input"
                   onfocus="this.value=''"
-                  minlength="9"
+                  minlength="8"
                   maxlength="16"
                   required
                 />
@@ -562,13 +547,9 @@
                   required
                 />
               </div>
-              <button
-                class="btn btn-md btn-primary order"
-                data-bs-toggle="modal"
-                data-bs-target="#orderResultModal"
-              >
-                Order Now
-              </button>
+              <!-- data-bs-toggle="modal" -->
+              <!-- data-bs-target="#orderResultModal" -->
+              <button class="btn btn-md btn-primary order">Order Now</button>
             </div>
           </div>
         </div>
@@ -576,7 +557,7 @@
 
       <!-- End Order Modal -->
 
-      <!--Order Result Modal -->
+      <!-- Order Result Modal -->
       <div
         class="modal fade"
         id="orderResultModal"
@@ -590,7 +571,7 @@
               <h5 class="modal-title" id="exampleModalLabel">Order Content</h5>
               <button
                 type="button"
-                class="btn-close"
+                class="btn-close close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
@@ -599,7 +580,7 @@
             <div class="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                class="btn btn-secondary close"
                 data-bs-dismiss="modal"
               >
                 Close
@@ -608,7 +589,44 @@
           </div>
         </div>
       </div>
+
       <!--Order Result Modal -->
+
+      <!-- cancel Order  -->
+
+      <div
+        class="modal fade"
+        id="orderCancelModal"
+        tabindex="-1"
+        aria-labelledby="orderCancelModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="orderCancelModalLabel">Order</h5>
+              <button
+                type="button"
+                class="btn-close close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary close"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- end cancel order -->
     </main>
 
     <!-- End Main -->

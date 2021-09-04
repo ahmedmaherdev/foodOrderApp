@@ -6,7 +6,7 @@ export const addToCart = btn => {
     elements.detailsModal.classList.remove('show');
     toggleSignModals();
   } else {
-    arrOfIDs.push(btn.value);
+    if (!arrOfIDs.includes(btn.value)) arrOfIDs.push(btn.value);
     localStorage.setItem('card', JSON.stringify(arrOfIDs));
   }
 };
