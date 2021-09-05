@@ -110,6 +110,9 @@ body {
 }
 .main .container .mobile .mobile-info {
   margin: 5px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .main .container .mobile .mobile-info h3 {
   color: #111;
