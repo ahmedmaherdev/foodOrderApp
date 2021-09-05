@@ -78,6 +78,7 @@ window.orderNowForRecipe = orderNowForRecipe;
 
 const changeinput = inp => {
   if (inp.value === '0' || inp.value === '') inp.value = '1';
+  if (Number(inp.value) > 100) inp.value = '100';
 };
 
 window.changeinput = changeinput;

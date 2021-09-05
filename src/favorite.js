@@ -5,8 +5,12 @@ export const addToFavorite = btn => {
   if (!JSON.parse(localStorage.getItem('user-logged'))) {
     elements.detailsModal.classList.remove('show');
     toggleSignModals();
+    popupContainer('Already In Favorite');
   } else {
-    if (!arrfavoriteIDs.includes(btn.value)) arrfavoriteIDs.push(btn.value);
+    if (!arrfavoriteIDs.includes(btn.value)) {
+      arrfavoriteIDs.push(btn.value);
+      popupContainer('Added To Favorite');
+    }
     localStorage.setItem('favorite', JSON.stringify(arrfavoriteIDs));
   }
 };

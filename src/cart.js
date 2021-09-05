@@ -6,7 +6,9 @@ export const addToCart = btn => {
     elements.detailsModal.classList.remove('show');
     toggleSignModals();
   } else {
-    if (!arrOfIDs.includes(btn.value)) arrOfIDs.push(btn.value);
+    if (!arrOfIDs.includes(btn.value)) {
+      arrOfIDs.push(btn.value);
+    }
     localStorage.setItem('card', JSON.stringify(arrOfIDs));
   }
 };
@@ -41,18 +43,7 @@ export const createCart = recipe => {
       <h3>${recipe.name}</h3>
       <div class="summary">
         <span class="price">${recipe.price}$</span>
-        <select class="amount" value="amount">
-          <option value="1">x 1</option>
-          <option value="2">x 2</option>
-          <option value="3">x 3</option>
-          <option value="4">x 4</option>
-          <option value="5">x 5</option>
-          <option value="6">x 6</option>
-          <option value="7">x 7</option>
-          <option value="8">x 8</option>
-          <option value="9">x 9</option>
-          <option value="10">x 10</option>
-        </select>
+        <input class="amount" type="number" value="1" min="1" step="1" max="100" oninput="changeinput(this)" style="width: 50%">
       </div>
       <div class="hidden id">${recipe._id}</div>
     </div>

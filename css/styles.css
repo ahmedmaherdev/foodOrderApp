@@ -11,6 +11,7 @@ body {
   line-height: 1.6;
   color: #655a56;
   min-height: calc(100vh - 2 * 1vw);
+  position: relative;
 }
 
 .ml-auto {
@@ -271,6 +272,20 @@ body {
 
 .hidden {
   display: none !important;
+}
+
+.popup {
+  width: max-content;
+  height: 80px;
+  background-color: #eee;
+  color: #333;
+  text-align: center;
+  padding: 10px;
+  font-size: bold;
+  font-size: 1em;
+  position: absolute;
+  right: 1%;
+  top: 5%;
 }
 
 @media (max-width: 983px) {
