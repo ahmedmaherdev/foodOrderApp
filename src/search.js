@@ -91,14 +91,18 @@ window.addEventListener('click', e => {
   e.target == elements.signinModal
     ? elements.signinModal.classList.remove('show__modal')
     : false;
-  clearSuggestions();
-
+  e.target == elements.orderModal
+    ? elements.orderModal.classList.remove('show__modal')
+    : false;
+  suggestions.innerHTML = '';
   e.target == elements.orderCancelModal
     ? closeModalResult(elements.orderCancelModal)
     : false;
   e.target == elements.orderResultModal
     ? closeModalResult(elements.orderResultModal)
     : false;
+  if (!elements.orderModal.classList.contains('show__modal'))
+    localStorage.setItem('recipe-ordered', false);
 });
 
 //hide details  modal
@@ -291,3 +295,9 @@ signup.passwordConfirm.addEventListener('keyup', e => {
 
 const signoutBtn = document.getElementById('signoutBtn');
 signoutBtn.addEventListener('click', signout);
+
+// close order modal
+elements.orderCloseBtn.addEventListener('click', () => {
+  elements.orderModal.classList.remove('show__modal');
+  localStorage.setItem('recipe-ordered', false);
+});

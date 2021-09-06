@@ -169,11 +169,11 @@ body {
 }
 .card:hover {
   transform: scale(1.05, 1.05);
-  box-shadow: 3px 3px 3px #eee;
+  box-shadow: 3px 3px 3px #ddd;
 }
 .card:active {
   transform: scale(0.97, 0.97);
-  box-shadow: 2px 2px 2px #eee;
+  box-shadow: 2px 2px 2px #ccc;
 }
 
 .pages {
@@ -274,6 +274,18 @@ body {
 
 .recipe__amount {
   margin: 10px;
+}
+
+#detailsModal .recipe-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.addToFavorite-message,
+.addToCart-message {
+  margin: 5px;
+  font-size: 0.8em;
+  font-weight: bold;
 }
 
 .footer {

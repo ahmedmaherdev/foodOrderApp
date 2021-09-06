@@ -489,11 +489,10 @@
                   id="phone-number"
                   placeholder="Enter Phone Number"
                   class="form-input"
-                  minlength="8"
-                  maxlength="16"
                   required
                 />
               </div>
+              <div class="order-phone-error" style="color: red"></div>
 
               <div>
                 <label for="address">Address</label>
@@ -506,6 +505,7 @@
                   required
                 />
               </div>
+              <div class="order-address-error" style="color: red"></div>
               <!-- data-bs-toggle="modal" -->
               <!-- data-bs-target="#orderResultModal" -->
               <button class="btn btn-md btn-primary order">Order Now</button>
@@ -513,6 +513,8 @@
           </div>
         </div>
       </div>
+
+      <!-- End Order Modal -->
       <!--details Modal -->
       <div
         class="modal fade"

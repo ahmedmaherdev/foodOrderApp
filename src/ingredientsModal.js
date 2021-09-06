@@ -31,9 +31,10 @@ export function createIngredientsModel(rec) {
         <div class="recipe-button">
           <button class="recipe__love data-bs-dismiss="modal" value=${
             recipe._id
-          } onclick="addToFavorite(this)">
+          } onclick="addToFavorite(this)" style="margin: 5px auto">
             <i class="far fa-heart"></i>
           </button>
+          <div class="addToFavorite-message"></div>
         </div>
       </div>
 
@@ -47,7 +48,8 @@ export function createIngredientsModel(rec) {
           <i class="fas fa-cart-plus"></i>
             <span>Add to Cart</span>
         </button>
-        <input class="recipe__amount" type="number" value="1" min="1" step="1" max="100" oninput="changeinput(this)" style="width: 25%">
+        <div class="addToCart-message"></div>
+        <input class="recipe__amount" type="number" value="1" min="1" step="1" max="100" oninput="changeinput(this)" style="width: 25%; text-align: center">
        
         <button class="btn-small recipe__btn__order" value=${
           recipe._id

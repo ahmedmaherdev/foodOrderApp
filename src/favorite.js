@@ -9,8 +9,13 @@ export const addToFavorite = btn => {
   } else {
     if (!arrfavoriteIDs.includes(btn.value)) {
       arrfavoriteIDs.push(btn.value);
-      popupContainer('Added To Favorite');
-    }
+      elements.detailsModal.querySelector(
+        '.addToFavorite-message'
+      ).textContent = 'Added To Favorite';
+    } else
+      elements.detailsModal.querySelector(
+        '.addToFavorite-message'
+      ).textContent = 'Already in Favorite';
     localStorage.setItem('favorite', JSON.stringify(arrfavoriteIDs));
   }
 };

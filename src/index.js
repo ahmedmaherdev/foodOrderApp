@@ -216,9 +216,10 @@ elements.orderNow.addEventListener('click', () => {
     elements.orderModal.classList.add('show__modal');
 });
 
-elements.orderCloseBtn.addEventListener('click', () =>
-  elements.orderModal.classList.remove('show__modal')
-);
+elements.orderCloseBtn.addEventListener('click', () => {
+  elements.orderModal.classList.remove('show__modal');
+  localStorage.setItem('recipe-ordered', false);
+});
 
 //hide modal
 elements.closeSignup.addEventListener('click', () => {
@@ -247,6 +248,8 @@ window.addEventListener('click', e => {
   e.target == elements.orderResultModal
     ? closeModalResult(elements.orderResultModal)
     : false;
+  if (!elements.orderModal.classList.contains('show__modal'))
+    localStorage.setItem('recipe-ordered', false);
 });
 
 //hide details  modal
