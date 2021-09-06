@@ -115,7 +115,7 @@ const validAddress = () => {
 };
 
 const validTelephone = () => {
-  if (phoneNumber.value && Number(phoneNumber.value) != NaN) {
+  if (phoneNumber.value && Number(phoneNumber.value)) {
     return true;
   } else {
     phoneNumberError.textContent = 'Invalid Phone Number';

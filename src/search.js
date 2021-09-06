@@ -5,7 +5,7 @@ import { createRecipe as createRecipe } from './createRecipe.js';
 import { createIngredientsModel as createIngredientsModel } from './ingredientsModal.js';
 import { searchOnClick, searchOnClickLink } from './searchActions.js';
 import { signin, signup, logged, signout } from './form.js';
-import { addToCart as addToCart, createCarts as createCarts } from './cart.js';
+import { addToCart, createCarts, putTotalSalary } from './cart.js';
 import { addToFavorite, createFavorites } from './favorite.js';
 import { postOrder, closeModalResult } from './order.js';
 import { getOrdersBtn, getOrders, orderCancel } from './getOrders.js';
@@ -25,7 +25,10 @@ window.orderCancel = orderCancel;
 // add to card
 window.addToCart = addToCart;
 const cartBtn = document.getElementById('cart-open');
-cartBtn.addEventListener('click', createCarts);
+cartBtn.addEventListener('click', () => {
+  createCarts();
+  putTotalSalary();
+});
 
 // close result order
 const closeOrderResultBtns = document.querySelectorAll(
