@@ -1,5 +1,12 @@
 import { elements } from './base.js';
-import { toggleSignModals as toggleSignModals } from './cart.js';
+import {
+  toggleSignModals as toggleSignModals,
+  putTotalSalary,
+  totalSalary,
+} from './cart.js';
+
+window.putTotalSalary = putTotalSalary;
+window.totalSalary = totalSalary;
 const createIngredientLi = el => `
   <li class="recipe__item">
     <i class="fas fa-check recipe__icon"></i>
@@ -79,8 +86,13 @@ export const orderNowForRecipe = recipeBtn => {
 window.orderNowForRecipe = orderNowForRecipe;
 
 const changeinput = inp => {
-  if (inp.value === '0' || inp.value === '') inp.value = '1';
-  if (Number(inp.value) > 100) inp.value = '100';
+  if (inp.value === '0' || inp.value === '') {
+    inp.value = '1';
+  }
+  if (Number(inp.value) > 100) {
+    inp.value = '100';
+  }
+  putTotalSalary();
 };
 
 window.changeinput = changeinput;

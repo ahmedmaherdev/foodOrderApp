@@ -34,6 +34,7 @@ export const createCarts = () => {
             },
           } = data;
           createCart(recipe);
+          putTotalSalary();
         })
         .catch(err => console.log(err));
     });
@@ -47,7 +48,7 @@ export const createCart = recipe => {
     <div class="col-8 cart-content">
       <h3>${recipe.name}</h3>
       <div class="summary">
-        <span class="price">${recipe.price}$</span>
+        <span class="price" value=${recipe.price}>${recipe.price}$</span>
         <input class="amount" type="number" value="1" min="1" step="1" max="100" oninput="changeinput(this)" style="width: 50%; text-align: center">
       </div>
       <div class="hidden id">${recipe._id}</div>
@@ -88,11 +89,26 @@ window.toggleSignModals = toggleSignModals;
 
 const removeFromCart = btn => {
   // const arr = JSON.parse(localStorage.getItem('card'));
-  if (arrOfIDs.includes(btn.value)) {
-    arrOfIDs.pop(btn.value);
-    localStorage.setItem('card', JSON.stringify(arrOfIDs));
-    createCarts();
-  }
+  arrOfIDs.pop(btn.value);
+  localStorage.setItem('card', JSON.stringify(arrOfIDs));
+  createCarts();
+  putTotalSalary();
 };
 
 window.removeFromCart = removeFromCart;
+
+export const totalSalary = document.querySelector(
+  '#cartModal .total-salary span'
+);
+export const putTotalSalary = () => {
+  let total = 0;
+  const carts = elements.cartModal.querySelectorAll('.row');
+  if (carts.length > 0 && elements.cartModal.classList.contains('show')) {
+    carts.forEach(val => {
+      total +=
+        Number(val.querySelector('.price').textContent.replace('$', '')) *
+        Number(val.querySelector('.amount').value);
+    });
+  }
+  totalSalary.textContent = total + '$';
+};

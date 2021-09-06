@@ -264,6 +264,19 @@ body {
   width: 100%;
 }
 
+#cartModal .modal-footer {
+  justify-content: space-between;
+}
+
+#cartModal .modal-footer .total-salary {
+  justify-self: center;
+}
+
+#cartModal .modal-footer .total-salary span {
+  color: green;
+  font-weight: bold;
+}
+
 .order-result-items .row .col-4,
 .order-result-items .row .col-4 {
   text-align: center;
