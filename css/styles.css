@@ -122,17 +122,14 @@ body {
   line-height: 2;
 }
 .app-container {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)),
-    url('../img/pizza.jpg');
-  background-size: cover;
+  padding: 0px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #111;
 }
 .main .container .mobile .app-photo {
-  width: 45%;
-  height: 90%;
+  width: 100%;
+  height: max-content;
 }
 
 .search-section {
