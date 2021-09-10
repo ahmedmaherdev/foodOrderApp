@@ -2,7 +2,12 @@
 
 import { elements, loadSpinner, clearLoader } from './base.js';
 import { createPopular, popular } from './createRecipe.js';
-import { DisplayList, SetupPagination } from './paginations.js';
+import {
+  DisplayList,
+  SetupPagination,
+  current_page,
+  itemsPerPage,
+} from './paginations.js';
 import { createIngredientsModel } from './ingredientsModal.js';
 import {
   searchOnChange,
@@ -14,8 +19,8 @@ import { addToCart, createCarts, putTotalSalary } from './cart.js';
 import { addToFavorite, createFavorites } from './favorite.js';
 import { postOrder, closeModalResult } from './order.js';
 import { getOrdersBtn, getOrders, orderCancel } from './getOrders.js';
-let current_page = 1;
-let itemsPerPage = 6;
+// let current_page = 1;
+// let itemsPerPage = 12;
 
 logged();
 

@@ -3,8 +3,8 @@ import { elements } from './base.js';
 /* pagination */
 const recipes = elements.recipeContainer;
 
-let current_page = 1;
-let itemsPerPage = 6;
+export let current_page = 1;
+export let itemsPerPage = 6;
 
 export function DisplayList(items, wrapper, rows_per_page, page) {
   wrapper.innerHTML = '';

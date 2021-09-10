@@ -174,12 +174,13 @@ body {
 }
 
 .pages {
-  width: 75%;
+  width: max-content;
+  max-width: 90%;
   background-color: #fff;
   display: flex;
-  justify-content: space-around;
-  margin: 20px auto;
-  padding: 10px;
+  justify-content: center;
+  margin: 10px auto;
+  padding: 20px;
   border-radius: 20px;
   overflow-x: auto;
 }
@@ -334,6 +335,9 @@ body {
   }
   .main .container .cuisines .categories .btn {
     margin: 5px;
+  }
+  .pages {
+    justify-content: flex-start;
   }
 }
 @media (min-width: 984px) and (max-width: 1349px) {

@@ -56,14 +56,15 @@ export function createIngredientsModel(rec) {
             <span>Add to Cart</span>
         </button>
         <div class="addToCart-message"></div>
-        <input class="recipe__amount" type="number" value="1" min="1" step="1" max="100" oninput="changeinput(this)" style="width: 25%; text-align: center">
        
+       <div style="margin-bottom: 5px">OR</div>
         <button class="btn-small recipe__btn__order" value=${
           recipe._id
         } onclick="orderNowForRecipe(this)" data-bs-dismiss="modal">
         <i class="fas fa-money-bill-wave"></i>
             <span>Order Now</span>
         </button>
+        <input class="recipe__amount" type="number" value="1" min="1" step="1" max="100" oninput="changeinput(this)" style="width: 25%; text-align: center" placeholder="choose number">
       </div>
     </div>
 
