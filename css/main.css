@@ -5,7 +5,6 @@
   --secondary-color: #be2edd;
 }
 
-
 .spinner {
   display: flex;
   width: 100%;
@@ -31,7 +30,6 @@
     transform: rotate(360deg);
   }
 }
-
 
 /* start cart Items */
 .cart-items {
@@ -64,7 +62,7 @@
 }
 
 .summary {
-  width: 10rem;
+  width: 13rem;
   display: flex;
   justify-content: space-between;
   align-items: center;

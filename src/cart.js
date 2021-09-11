@@ -1,5 +1,8 @@
 import { elements } from './base.js';
+import { incValue, decValue } from './ingredientsModal.js';
 
+// // window.incValue = incValue;
+// // window.decValue = decValue;
 if (!localStorage.getItem('card'))
   localStorage.setItem('card', JSON.stringify([]));
 export const arrOfIDs = [];
@@ -48,12 +51,18 @@ export const createCart = recipe => {
     <div class="col-8 cart-content">
       <h3>${recipe.name}</h3>
       <div class="summary">
-        <span class="price" value=${recipe.price}>${recipe.price}$</span>
-        <input class="amount" type="number" value="1" min="1" step="1" max="100" oninput="changeinput(this)" style="width: 50%; text-align: center">
+      <span class="price" value=${recipe.price}>${recipe.price}$</span>
+        <div style="text-align: center;">
+        <button class="add" onclick="addToAmount(this)">+</button>
+        <input class="amount recipe__amount" type="number" value="1" min="1>" step="1" max="100" oninput="changeinput(this)" onchange="changeinput(this)" style="width: 50%; text-align: center">
+        <button class="subtract" onclick="subtractToAmount(this)">-</button>
+       </div>
+       
       </div>
       <div class="hidden id">${recipe._id}</div>
       <div style="margin: 10px 0px">
         <button class="btn btn-danger btn-md remove-cart" value=${recipe._id} onClick="removeFromCart(this)">Remove</button>
+        
       </div>
     </div>
     <div class="col-4">
@@ -112,3 +121,16 @@ export const putTotalSalary = () => {
   }
   totalSalary.textContent = total + '$';
 };
+
+const addToAmount = ele => {
+  incValue(ele);
+  putTotalSalary();
+};
+
+const subtractToAmount = ele => {
+  decValue(ele);
+  putTotalSalary();
+};
+
+window.addToAmount = addToAmount;
+window.subtractToAmount = subtractToAmount;

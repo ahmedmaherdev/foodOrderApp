@@ -64,7 +64,12 @@ export function createIngredientsModel(rec) {
         <i class="fas fa-money-bill-wave"></i>
             <span>Order Now</span>
         </button>
-        <input class="recipe__amount" type="number" value="1" min="1" step="1" max="100" oninput="changeinput(this)" style="width: 25%; text-align: center" placeholder="choose number">
+        <div style="text-align: center;">
+        <button class="add" onclick="incValue(this)" >+</button>
+        <input class="recipe__amount" type="number" value="1" min="1>" step="1" max="100" oninput="changeinput(this)" style="width: 25%; text-align: center">
+        <button class="subtract" onclick="decValue(this)">-</button>
+        </div>
+        
       </div>
     </div>
 
@@ -97,3 +102,16 @@ const changeinput = inp => {
 };
 
 window.changeinput = changeinput;
+
+export const incValue = ele => {
+  const amount = ele.closest('div').querySelector('.recipe__amount');
+  if (amount.value < 100) amount.value = Number(++amount.value);
+};
+
+export const decValue = ele => {
+  const amount = ele.closest('div').querySelector('.recipe__amount');
+  if (amount.value > 1) amount.value = Number(--amount.value);
+};
+
+window.incValue = incValue;
+window.decValue = decValue;

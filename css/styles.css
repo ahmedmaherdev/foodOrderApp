@@ -299,6 +299,23 @@ body {
   font-weight: bold;
 }
 
+.add,
+.subtract {
+  font-size: 1.3em;
+  padding: 2px;
+  font-weight: bold;
+  background-color: inherit;
+  border: none;
+}
+
+.add {
+  color: green;
+}
+
+.subtract {
+  color: red;
+}
+
 .footer {
   margin: 20px;
   text-align: center;
