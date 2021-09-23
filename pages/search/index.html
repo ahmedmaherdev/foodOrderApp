@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <!-- css -->
+
+    <link rel="stylesheet" href="../../css/styles.css" />
+    <link rel="stylesheet" href="../../css/main.css" />
+    <link rel="stylesheet" href="../../css/search.css" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" href="../../img/restaurant-icon.png" />
+    <title>Resturant</title>
+  </head>
+  <body>
+    <header class="header">
+      <!-- NavBar -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="../../index.html"
+            ><i class="fas fa-utensils fa-2x"></i
+          ></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#header-navbar"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse ml-auto" id="header-navbar">
+            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="#recipes">Our Cuisines</a>
+              </li>
+              <li class="nav-item signin-icon">
+                <a class="nav-link" href="#" id="signin"> Sign in </a>
+              </li>
+              <li class="nav-item signup-icon">
+                <a class="nav-link signup" href="#" id="signup"> Sign up </a>
+              </li>
+
+              <!-- dropdown -->
+              <li class="nav-item user-icon hidden">
+                <div class="dropdown">
+                  <button
+                    class="btn btn-secondary dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <i class="fas fa-user"></i>
+                  </button>
+                  <ul
+                    class="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton1"
+                  >
+                    <li>
+                      <button
+                        id="cart-open"
+                        type="button"
+                        class="btn btn-primary dropdown-item"
+                        data-bs-toggle="modal"
+                        data-bs-target="#cartModal"
+                      >
+                        <i class="fas fa-cart-arrow-down"></i> Cart
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        type="button"
+                        class="btn btn-primary dropdown-item"
+                        data-bs-toggle="modal"
+                        data-bs-target="#favouriteModal"
+                      >
+                        <i class="fas fa-heart"></i> Favourite
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        type="button"
+                        class="btn btn-primary dropdown-item"
+                        data-bs-toggle="modal"
+                        data-bs-target="#orderModal"
+                      >
+                        <!--
+                           NOTE 
+                            i added "disabled" to the button as user can't show the orderList unless he is signed in
+
+                            will well change this by javascript
+                        -->
+                        <i class="fas fa-hamburger"></i> Orders
+                      </button>
+                    </li>
+                    <li>
+                      <button
+                        id="profileBtn"
+                        type="button"
+                        class="btn btn-primary dropdown-item"
+                      >
+                        <i class="fas fa-user-circle"></i> Profile
+                      </button>
+                    </li>
+                    <li class="signoutBtnContainer">
+                      <button
+                        id="signoutBtn"
+                        type="button"
+                        class="btn btn-primary"
+                      >
+                        Sign Out
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <!-- dropdown -->
+              <li class="nav-item">
+                <div class="search-section">
+                  <div class="d-flex">
+                    <input
+                      class="form-control me-2 search-label"
+                      type="search"
+                      placeholder="Search"
+                      aria-label="Search"
+                      onchange="searchOnChangeSearchPage()"
+                      onfocus="this.value=''"
+                    />
+                    <button
+                      id="search"
+                      class="btn btn-outline-primary"
+                      type="submit"
+                    >
+                      <i class="fas fa-search"></i>
+                    </button>
+                  </div>
+                  <ul class="suggestions">
+                    <!-- Seggestions -->
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main">
+      <h3 class="search-target" style="text-align: center; margin: 30px"></h3>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 recipes" id="#recipes">
+            <div class="row recipes-container"></div>
+          </div>
+        </div>
+      </div>
+
+      <!--Cart Modal -->
+      <div
+        class="modal fade"
+        id="cartModal"
+        tabindex="-1"
+        aria-labelledby="cartModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="cartModalLabel">Cart</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <ul class="cart-items">
+                <li class="cart-item">
+                  <div class="row">
+                    <div class="col-8 cart-content">
+                      <h3>Pizza</h3>
+                      <div class="summary">
+                        <span class="price">12$</span>
+                        <span class="amount">x 2</span>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <img class="pic" src="../../img/pizza.jpg" />
+                    </div>
+                  </div>
+                </li>
+                <li class="cart-item">
+                  <div class="row">
+                    <div class="col-8 cart-content">
+                      <h3>Pizza</h3>
+                      <div class="summary">
+                        <span class="price">12$</span>
+                        <span class="amount">x 2</span>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <img class="pic" src="../../img/pizza.jpg" />
+                    </div>
+                  </div>
+                </li>
+
+                <li class="cart-item">
+                  <div class="row">
+                    <div class="col-8 cart-content">
+                      <h3>Pizza</h3>
+                      <div class="summary">
+                        <span class="price">12$</span>
+                        <span class="amount">x 2</span>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <img class="pic" src="../../img/pizza.jpg" />
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="orderNow"
+                data-bs-dismiss="modal"
+              >
+                Order Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Cart Modal -->
+
+      <!--favourite Modal -->
+      <div
+        class="modal fade"
+        id="favouriteModal"
+        tabindex="-1"
+        aria-labelledby="favouriteModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Favourite</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">....</div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Favourite Modal -->
+
+      <!-- order List Modal -->
+      <div
+        class="modal fade"
+        id="orderModal"
+        tabindex="-1"
+        aria-labelledby="orderModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="orderModalLabel">Modal title</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">...</div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End order List modal -->
+      <!-- form model -->
+      <!-- Sign Up Modal -->
+      <div class="form__container" id="signup-modal">
+        <div class="form__modal">
+          <button class="close-btn" id="close">
+            <i class="fa fa-times"></i>
+          </button>
+          <div class="modal__form__header">
+            <h3>Sign Up</h3>
+          </div>
+          <div class="modal__form__content">
+            <!-- <p>Put you data to sign up </p> -->
+            <div class="modal__form">
+              <div class="signup-error"></div>
+              <div>
+                <label for="name">Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="Enter Name"
+                  class="form-input"
+                  onfocus="this.value=''"
+                  maxlength="40"
+                  required
+                />
+                <div class="name-error hidden">Incorrect Name</div>
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  id="signupEmail"
+                  class="form-input"
+                  placeholder="example@email,com"
+                  onfocus="this.value=''"
+                  minlength="10"
+                  maxlength="40"
+                  required
+                />
+                <div class="email-error hidden">Incorrect Email</div>
+              </div>
+              <div>
+                <label for="password-user">Password</label>
+                <input
+                  type="password"
+                  id="password-user"
+                  placeholder="Enter Password"
+                  class="form-input"
+                  onfocus="this.value=''"
+                  minlength="8"
+                  required
+                />
+                <div class="password-error hidden">
+                  Invalid Password , password must bigger than characters
+                </div>
+              </div>
+
+              <div>
+                <label for="password-confirm">Repeat Password</label>
+                <input
+                  type="password"
+                  id="password-confirm"
+                  placeholder="Enter Password Again"
+                  class="form-input"
+                  onfocus="this.value=''"
+                  minlength="8"
+                  required
+                />
+                <div class="password-confirm-error hidden">
+                  Not Same Password
+                </div>
+              </div>
+
+              <!-- <div>
+                  <label for="postCode">Post Code</label>
+                  <input
+                    type="number"
+                    id="PostCode"
+                    placeholder="Enter Post code"
+                    class="form-input"
+                  />
+                </div>
+                <div>
+                  <label for="address">address</label>
+                  <input
+                    type="address"
+                    id="address"
+                    placeholder="Enter address"
+                    class="form-input"
+                  />
+                </div> -->
+
+              <button class="btn submit-btn btn-md btn-primary">Sign Up</button>
+              <p onclick="toggleSignModals()">have an account? signIn</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- End Sign up modal -->
+
+      <!-- Sign in modal -->
+      <div class="form__container" id="signin-modal">
+        <div class="form__modal">
+          <button class="close-btn" id="signin-close">
+            <i class="fa fa-times"></i>
+          </button>
+          <div class="modal__form__header">
+            <h3>Sign In</h3>
+          </div>
+          <div class="modal__form__content">
+            <!-- <p>Put you data to sign up </p> -->
+            <div class="modal__form">
+              <div class="signin-error"></div>
+              <div>
+                <label for="email">Email</label>
+                <input
+                  type="email"
+                  id="signinEmail"
+                  placeholder="Enter Email"
+                  class="form-input"
+                  onfocus="this.value=''"
+                  minlength="10"
+                  maxlength="40"
+                  required
+                />
+                <div class="email-error hidden">Incorrect Email</div>
+              </div>
+
+              <div>
+                <label for="password">Password</label>
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Enter Password"
+                  class="form-input"
+                  onfocus="this.value=''"
+                  minlength="8"
+                  required
+                />
+                <div class="password-error hidden">Incorrect Password</div>
+              </div>
+              <button class="btn submit-btn btn-md btn-primary">Sign In</button>
+              <p onclick="toggleSignModals()">
+                signUp if you didn't have an account
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Sign in modal  -->
+      <!-- End form model -->
+      <!--details Modal -->
+      <div
+        class="modal fade"
+        id="detailsModal"
+        tabindex="-1"
+        aria-labelledby="detailsModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Ingredient</h5>
+              <button
+                type="button"
+                class="btn-close close__details"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body" id="ingredients">
+              <!--Start Body -->
+              <!-- <div class="recipe">
+                <figure class="recipe__fig">
+                  <img
+                    src="../img/pestoa0e7.jpg"
+                    alt="pizza"
+                    class="recipe__img"
+                  />
+                  <h1 class="recipe__title">
+                    <span>Pasta with tomato cream sauce</span>
+                  </h1>
+                </figure>
+                <div class="recipe__details">
+                  <div class="recipe__info">
+                    <i class="fas fa-male recipe__info-icon"></i>
+                    <span class="recipe__info-people">4</span>
+                    <span class="recipe__info-text"> servings</span>
+                  </div>
+                  <div class="recipe-button">
+                    <button class="recipe__love">
+                      <i class="far fa-heart"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="recipe__ingredients">
+                  <ul class="recipe__ingredient-list">
+                    <li class="recipe__item">
+                      <i class="fas fa-check recipe__icon"></i>
+                      <div class="recipe__count">1000</div>
+                      <div class="recipe__ingredient">
+                        <span class="recipe__unit">g</span>
+                        pasta
+                      </div>
+                    </li>
+                    <li class="recipe__item">
+                      <i class="fas fa-check recipe__icon"></i>
+                      <div class="recipe__count">1/2</div>
+                      <div class="recipe__ingredient">
+                        <span class="recipe__unit">cup</span>
+                        ricotta cheese
+                      </div>
+                    </li>
+                    <li class="recipe__item">
+                      <i class="fas fa-check recipe__icon"></i>
+                      <div class="recipe__count">1</div>
+                      <div class="recipe__ingredient">
+                        <span class="recipe__unit"></span>
+                        can of tomatoes, whole or crushed
+                      </div>
+                    </li>
+                    <li class="recipe__item">
+                      <i class="fas fa-check recipe__icon"></i>
+                      <div class="recipe__count">1</div>
+                      <div class="recipe__ingredient">
+                        <span class="recipe__unit"></span>
+                        can tuna packed in olive oil
+                      </div>
+                    </li>
+                    <li class="recipe__item">
+                      <i class="fas fa-check recipe__icon"></i>
+                      <div class="recipe__count">1/2</div>
+                      <div class="recipe__ingredient">
+                        <span class="recipe__unit">cup</span>
+                        grated parmesan cheese
+                      </div>
+                    </li>
+                    <li class="recipe__item">
+                      <i class="fas fa-check recipe__icon"></i>
+                      <div class="recipe__count">1/4</div>
+                      <div class="recipe__ingredient">
+                        <span class="recipe__unit">cup</span>
+                        fresh basil, chopped or torn
+                      </div>
+                    </li>
+                  </ul>
+                  <button class="btn-small recipe__btn">
+                    <i class="fas fa-cart-plus"></i>
+                    <span>Add to Cart</span>
+                  </button>
+                </div>
+              </div> -->
+
+              <!--End Body -->
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary close__details"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--details Modal -->
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+      integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
+      integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="../../src/search.js"></script>
+  </body>
+</html>

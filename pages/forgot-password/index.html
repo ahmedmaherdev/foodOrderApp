@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resturant</title>
+    <link rel="icon" href="../../img/restaurant-icon.png" />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+  />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+    crossorigin="anonymous"
+  />
+  <style>
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+      padding: 1.5rem;
+      margin: 6% auto;
+      border-radius: 1rem;
+      box-shadow: 1px 1px 28px 2px #eee6fd;
+    }
+    .icon-div {
+      margin-bottom: 1rem;
+    }
+    .btn-div{
+      width: 100%;
+      margin-top: 1rem;
+    }
+    .afterSending {
+      text-align: center;
+      color: green;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+    
+  <div class="card container" style="width: 25rem;">
+    <div class="icon-div">
+      <i class="fas fa-lock fa-6x"></i>
+    </div>
+    <div>
+      <h1>Forgot Password</h1>
+      <p>You can reset your password here</p>
+    </div>
+    <div class="input-group flex-nowrap">
+      <span class="input-group-text" id="addon-wrapping">
+        <i class="far fa-envelope"></i>
+      </span>
+      <input type="email" class="form-control" placeholder="Email" aria-label="Email" id="resetEmail" aria-describedby="addon-wrapping" required>
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto btn-div">
+      <button class="btn btn-primary" type="button" id="restSubmit">Reset Password</button>
+    </div>
+  </div>
+
+  <div>
+    <p id='sentSucceeded' class="afterSending"></p>
+  </div>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+    integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
+    integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
+    crossorigin="anonymous"
+  ></script>
+  <script type="module" src="../../src/profile/forgotPassword.js"></script>
+</body>
+</html>
